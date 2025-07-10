@@ -19,7 +19,8 @@ const Footer = () => {
   return (
     <footer className="bg-light  border-top">
       {/* <Container fluid className="text-center"> */}
-      <Container fluid className="text-center text-md-start">
+      <Container className="px-3 px-md-4 text-center text-md-start">
+
 
         {/* Top Bar */}
         <Row className="text-center py-3 border-bottom">
