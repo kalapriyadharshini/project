@@ -18,7 +18,9 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-light pt-4 border-top">
-      <Container fluid className="text-center">
+      {/* <Container fluid className="text-center"> */}
+      <Container fluid="md" className="text-center text-md-start">
+
         {/* Top Bar */}
         <Row className="text-center py-3 border-bottom">
           <Col md={3}>
