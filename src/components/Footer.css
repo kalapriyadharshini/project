@@ -12,7 +12,7 @@ a.text-decoration-none:hover {
   text-decoration: none;
 }
 /* Only apply this style if screen width <= 425px */
-@media (max-width: 425px) {
+/* @media (max-width: 425px) {
   .footer-brand {
     text-align: center;
     align-items: center;
@@ -21,4 +21,4 @@ a.text-decoration-none:hover {
   .footer-icons {
     justify-content: center !important;
   }
-}
+} */
