@@ -130,7 +130,7 @@ const CustomNavbar = () => {
       <Navbar className="py-2 bg-light-blue shadow-sm d-none d-md-flex d-xxl-none position-sticky top-0" style={{ zIndex: 999 }}>
         <Container fluid className="ms-3 me-3">
           <div className="d-flex align-items-center gap-2 me-3">
-            <span className="brand-text fs-5">BLUEVIN</span>
+           <Link to="/" style={{ textDecoration: 'none' }} className="brand-text fs-5">BLUEVIN</Link>
             <FaBars size={22} />
           </div>
           <FaSearch size={22} className="ms-auto me-3 text-dark" />
@@ -154,7 +154,7 @@ const CustomNavbar = () => {
         <Container fluid className="ms-1 me-1">
           <FaBars size={22} className="text-dark" />
           <div className="d-flex flex-column align-items-center text-center">
-            <span className=" brand-text fs-5">BLUEVIN</span>
+          <Link to="/" style={{ textDecoration: 'none' }} className="brand-text fs-5">BLUEVIN</Link>
           </div>
           <FaSearch size={22} className="text-dark" />
         </Container>

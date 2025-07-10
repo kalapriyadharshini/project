@@ -8,13 +8,17 @@
 .bg-light-blue {
   background-color: #cbe3f6 !important;
 }
-.bluevin-text {
-  color: #0074b7;
-  font-weight: 200;
-  font-size: 18px;
-  letter-spacing: 1px;
-}
-
 a.text-decoration-none:hover {
   text-decoration: none;
+}
+/* Only apply this style if screen width <= 425px */
+@media (max-width: 425px) {
+  .footer-brand {
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-icons {
+    justify-content: center !important;
+  }
 }
