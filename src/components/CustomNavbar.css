@@ -1,0 +1,79 @@
+.bg-light-blue {
+  background-color: #cbe3f6 !important;
+}
+
+.ultra-light-placeholder::placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+@media (min-width: 1440px) {
+  .top-nav-hover:hover {
+    color: #4ba2f2 !important;
+  }
+}
+/* }
+ .bold-link {
+  font-weight: bold;
+  color: #000; 
+  text-decoration: none;
+}
+.navbar-brand-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #007bff; 
+  letter-spacing: 1px;
+}
+
+.nav-hover .icon,
+.nav-hover .text {
+  color: #212529; 
+  transition: color 0.3s ease;
+}
+
+.nav-hover:hover .icon,
+.nav-hover:hover .text {
+  color: #0d6efd; 
+} */
+
+/* Brand Title */
+/* .brand-text {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #003366; 
+} */
+/* .brand-text {
+  font-size: 2.8rem;       
+  font-weight:900;
+  letter-spacing: 1px;
+  color: #003366 !important;  
+  font-family: 'Poppins', sans-serif; 
+} */
+
+
+.brand-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color:  #003366; /* Navy Blue */
+  text-transform: uppercase;
+}
+
+
+/* Hover Effects for Nav Icons & Text */
+.nav-hover .icon,
+.nav-hover .text {
+  color: #003366;
+  transition: color 0.3s ease;
+}
+
+.nav-hover:hover .icon,
+.nav-hover:hover .text {
+  color: #007BFF; /* Bright Blue Hover */
+}
+.navbar .brand-text {
+  color: #003366 !important;
+}
+
