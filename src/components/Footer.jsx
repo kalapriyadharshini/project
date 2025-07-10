@@ -23,22 +23,22 @@ const Footer = () => {
 
         {/* Top Bar */}
         <Row className="text-center py-3 border-bottom">
-          <Col md={3}>
+          <Col md={2}>
             <FaTruck size={24} className="mb-2" />
             <h6>SPEED DELIVERY</h6>
             <p>Surface And Air Delivery</p>
           </Col>
-          <Col md={3}>
+          <Col md={2}>
             <FaClock size={24} className="mb-2" />
             <h6>24 X 7 SERVICE</h6>
             <p>Online Service For 24 X 7</p>
           </Col>
-          <Col md={3}>
+          <Col md={2}>
             <FaBullhorn size={24} className="mb-2" />
             <h6>NEW STOCKS DAILY</h6>
             <p>New Updates Every Day</p>
           </Col>
-          <Col md={3}>
+          <Col md={2}>
             <FaTags size={24} className="mb-2" />
             <h6>BEST PRICES & OFFERS</h6>
             <p>Lowest Price In The Market</p>
