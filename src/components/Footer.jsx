@@ -15,6 +15,7 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import './Footer.css';
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-light  border-top">
@@ -67,16 +68,17 @@ const Footer = () => {
 
           {/* Useful Links */}
           <Col md={4} className="mb-3">
-            <h5>USEFUL LINKS</h5>
-            <ul className="list-unstyled text-muted mt-3">
-              <li>About Us</li>
-              <li>Track Your Order</li>
-              <li>Terms & Conditions</li>
-              <li>Privacy Policy</li>
-              <li>Shipping & Returns</li>
-              <li>Contact Us</li>
-            </ul>
-          </Col>
+  <h5>USEFUL LINKS</h5>
+  <ul className="list-unstyled text-muted mt-3">
+    <li><Link to="/about" className="text-muted text-decoration-none">About Us</Link></li>
+    <li><Link to="/track-order" className="text-muted text-decoration-none">Track Your Order</Link></li>
+    <li><Link to="/terms" className="text-muted text-decoration-none">Terms & Conditions</Link></li>
+    <li><Link to="/privacy" className="text-muted text-decoration-none">Privacy Policy</Link></li>
+    <li><Link to="/shipping" className="text-muted text-decoration-none">Shipping & Returns</Link></li>
+    <li><Link to="/contact" className="text-muted text-decoration-none">Contact Us</Link></li>
+  </ul>
+</Col>
+
 
           {/* Store Information */}
           <Col md={4}>
