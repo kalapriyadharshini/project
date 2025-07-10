@@ -18,7 +18,7 @@ import './Footer.css';
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer className="bg-light  border-top">
+    <footer className="bg-light-blue  border-top">
       {/* <Container fluid className="text-center"> */}
       <Container className="text-center text-md-start">
 
@@ -52,7 +52,10 @@ const Footer = () => {
         <Row className="py-4">
           {/* Logo and About */}
           <Col md={4} className="mb-3">
-            <img src="/logo.png" alt="Bluevin" style={{ width: "120px" }} />
+              <Link to="/" className="text-decoration-none">
+  <h4 className="bluevin-text">BLUEVIN</h4>
+</Link>
+
             <p className="mt-3 text-muted">
               Bluevin offers top-quality pet and aquatic products with fast delivery, secure payment, and 24/7 support, ensuring a trusted shopping experience.
             </p>
@@ -70,13 +73,14 @@ const Footer = () => {
           <Col md={4} className="mb-3">
   <h5>USEFUL LINKS</h5>
   <ul className="list-unstyled text-muted mt-3">
-    <li><Link to="/about" className="text-muted text-decoration-none">About Us</Link></li>
-    <li><Link to="/track-order" className="text-muted text-decoration-none">Track Your Order</Link></li>
-    <li><Link to="/terms" className="text-muted text-decoration-none">Terms & Conditions</Link></li>
-    <li><Link to="/privacy" className="text-muted text-decoration-none">Privacy Policy</Link></li>
-    <li><Link to="/shipping" className="text-muted text-decoration-none">Shipping & Returns</Link></li>
-    <li><Link to="/contact" className="text-muted text-decoration-none">Contact Us</Link></li>
-  </ul>
+  <li><Link to="/about" className="text-decoration-none text-muted">About Us</Link></li>
+  <li><Link to="/track" className="text-decoration-none text-muted">Track Your Order</Link></li>
+  <li><Link to="/term" className="text-decoration-none text-muted">Terms & Conditions</Link></li>
+  <li><Link to="/privacy" className="text-decoration-none text-muted">Privacy Policy</Link></li>
+  <li><Link to="/shipping" className="text-decoration-none text-muted">Shipping & Returns</Link></li>
+  <li><Link to="/contact" className="text-decoration-none text-muted">Contact Us</Link></li>
+</ul>
+
 </Col>
 
 
