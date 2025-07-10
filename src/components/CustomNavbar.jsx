@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Navbar, Nav, Container, Button, Form, FormControl, Offcanvas } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaBars, FaSearch, FaHeart, FaUser, FaShoppingCart, FaHome } from "react-icons/fa";
-import './customNavbar.css';
+import './CustomNavbar.css';
 
 const CustomNavbar = () => {
   const navigate = useNavigate();
