@@ -22,7 +22,7 @@ const Footer = () => {
       <Container className="text-center text-md-start">
 
         {/* Top Bar */}
-        <Row className="text-center py-3 px-0 border-bottom">
+        <Row className="text-center py-3 border-bottom">
           <Col md={3}>
             <FaTruck size={24} className="mb-2" />
             <h6>SPEED DELIVERY</h6>
