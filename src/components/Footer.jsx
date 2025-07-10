@@ -17,7 +17,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-light pt-4 border-top">
+    <footer className="bg-light  border-top">
       {/* <Container fluid className="text-center"> */}
       <Container className="text-center text-md-start">
 
