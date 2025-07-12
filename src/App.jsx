@@ -23,6 +23,7 @@ function App() {
           <Route path="/term" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/shipping" element={<Shipping />} />
+          
        </Routes>
 
     </>
