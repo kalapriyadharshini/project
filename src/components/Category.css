@@ -445,7 +445,7 @@
   border-radius: 50%;
 }
 .dot.active {
-  background-color: #28a745;
+  background-color: blue;
 }
 
 /* INNER CONTAINER */
