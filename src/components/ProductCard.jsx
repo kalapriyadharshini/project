@@ -18,10 +18,17 @@ function ProductCard({ product }) {
 
 
         <div className="overlay-icons">
-          <i className="icon fas fa-heart"></i>
-          <i className="icon fas fa-search"></i>
-          <i className="icon fas fa-shopping-cart"></i>
-        </div>
+  <div className="icon-box">
+    <i className="icon fas fa-heart"></i>
+  </div>
+  <div className="icon-box">
+    <i className="icon fas fa-search"></i>
+  </div>
+  <div className="icon-box">
+    <i className="icon fas fa-shopping-cart"></i>
+  </div>
+</div>
+
       </div>
 
       <Card.Body>
