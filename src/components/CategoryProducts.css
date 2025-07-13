@@ -1,0 +1,14 @@
+/* .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+@media (min-width: 1440px) {
+  .product-row {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+} */
