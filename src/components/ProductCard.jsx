@@ -38,6 +38,8 @@ function ProductCard({ product }) {
           &nbsp;
           <span className="product-price">{product.price}</span>
         </Card.Text>
+       
+
       </Card.Body>
     </Card>
   );

@@ -444,8 +444,14 @@
 .icon:hover {
   color: #0d6efd;
 }
-
-
+.product-price {
+  text-decoration: line-through;
+}
+.product-offer {
+  font-weight: bold;
+  font-size: larger;
+  color: #0d6efd;
+}
 /* 1440px and above — Desktop layout */
 @media (min-width: 1440px) {
   .section-container {
