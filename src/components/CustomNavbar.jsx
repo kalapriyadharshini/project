@@ -4,7 +4,7 @@ import { Navbar, Nav, Container, Button, Form, FormControl, Offcanvas } from "re
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaBars, FaSearch, FaHeart, FaUser, FaShoppingCart, FaHome } from "react-icons/fa";
 import './CustomNavbar.css';
-// import SidebarMenu from './SidebarMenu'; 
+import SidebarMenu from './SidebarMenu'; 
 
 const CustomNavbar = () => {
   const navigate = useNavigate();
@@ -147,21 +147,21 @@ const CustomNavbar = () => {
       
 
 {/* Inside return: below mobile nav */}
-{/* <Offcanvas
+
+
+<Offcanvas
   show={showSidebar}
   onHide={() => setShowSidebar(false)}
   scroll
   backdrop={false}
   placement="start"
-  onMouseLeave={() => setShowSidebar(false)} // close on mouse leave
+  onMouseLeave={() => setShowSidebar(false)}
 >
-  <Offcanvas.Header closeButton>
-    <Offcanvas.Title>All Categories</Offcanvas.Title>
-  </Offcanvas.Header>
   <Offcanvas.Body>
     <SidebarMenu onClose={() => setShowSidebar(false)} />
   </Offcanvas.Body>
-</Offcanvas> */}
+</Offcanvas>
+
 
     </>
   );
