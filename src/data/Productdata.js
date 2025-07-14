@@ -123,7 +123,7 @@ const productData = {
     img: decor3,
   },
   {
-    name: "Resin Castle Decor",
+    name: "Resin Castle Decor (large)",
     price: "₹900",
     offer: "₹799",
     img: decor4,
