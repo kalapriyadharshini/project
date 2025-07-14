@@ -77,3 +77,14 @@
   color: #003366 !important;
 }
 
+/* Limit sidebar width globally */
+.custom-sidebar {
+  width: 320px;
+  max-width: 100%;
+}
+.sidebar-menu {
+  background-color: #e0f7fa; 
+
+  height: 100%;
+  width: 100%;
+}

@@ -28,7 +28,53 @@
 // export default SidebarMenu;
 
 // SidebarMenu.jsx
-import React from "react";
+// import {
+//   FaFish,
+//   FaLeaf,
+//   FaCubes,
+//   FaLightbulb,
+//   FaHome,
+//   FaTrophy,
+//   FaUtensils,
+//   FaTint,
+//   FaFilter,
+//   FaEgg
+// } from "react-icons/fa";
+// import "./SidebarMenu.css";
+
+// const categories = [
+//   { name: "Aquarium Tanks", icon: <FaHome /> },
+//   { name: "Aqua Plants", icon: <FaLeaf /> },
+//   { name: "Planted Aquarium Kits", icon: <FaCubes /> },
+//   { name: "Aquarium Lighting", icon: <FaLightbulb /> },
+//   { name: "Aquarium Decor", icon: <FaTrophy /> },
+//   { name: "Live Fish", icon: <FaFish /> },
+//   { name: "Fish Foods", icon: <FaUtensils /> },
+//   { name: "Water Conditioners & Supplements", icon: <FaTint /> },
+//   { name: "Aquarium Filters", icon: <FaFilter /> },
+//   { name: "Breeding Accessories", icon: <FaEgg /> }
+// ];
+
+// const SidebarMenu = ({ onClose }) => {
+//   return (
+//     <div className="sidebar-menu">
+//       <div className="sidebar-header" onClick={onClose}>
+//         ← BACK
+//       </div>
+//       <div className="category-list">
+//         {categories.map((cat, index) => (
+//           <div key={index} className="category-item">
+//             <span className="me-2 icon">{cat.icon}</span> {cat.name}
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SidebarMenu;
+
+
 import {
   FaFish,
   FaLeaf,
@@ -39,8 +85,10 @@ import {
   FaUtensils,
   FaTint,
   FaFilter,
-  FaEgg
+  FaEgg,
+  FaArrowLeft,
 } from "react-icons/fa";
+
 import "./SidebarMenu.css";
 
 const categories = [
@@ -53,19 +101,21 @@ const categories = [
   { name: "Fish Foods", icon: <FaUtensils /> },
   { name: "Water Conditioners & Supplements", icon: <FaTint /> },
   { name: "Aquarium Filters", icon: <FaFilter /> },
-  { name: "Breeding Accessories", icon: <FaEgg /> }
+  { name: "Breeding Accessories", icon: <FaEgg /> },
 ];
 
 const SidebarMenu = ({ onClose }) => {
   return (
     <div className="sidebar-menu">
-      <div className="sidebar-header" onClick={onClose}>
-        ← BACK
+      <div className="back-button" onClick={onClose}>
+        <FaArrowLeft className="me-2" /> BACK
       </div>
+
       <div className="category-list">
         {categories.map((cat, index) => (
-          <div key={index} className="category-item">
-            <span className="me-2 icon">{cat.icon}</span> {cat.name}
+          <div key={index} className="sidebar-link">
+            {cat.icon}
+            <span className="ms-2">{cat.name}</span>
           </div>
         ))}
       </div>
