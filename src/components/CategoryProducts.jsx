@@ -10,7 +10,7 @@ function CategoryProducts() {
     <>
       {Object.entries(productData).map(([category, products]) => (
         <div className="section-container my-4" key={category}>
-          <h2 className="text-primary text-center mb-4">{category.toUpperCase()}</h2>
+          <h2 className="text-primary text-center mb-4 fw-bold">{category.toUpperCase()}</h2>
           <Row xs={12} sm={6} md={4} lg={5} className="gx-0 gy-0 product-row">
             {products.map((product, index) => (
               <Col key={index}>
