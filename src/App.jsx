@@ -9,6 +9,7 @@ import Contactus from './Pages/Contactus'
 import Terms from './Pages/Terms'
 import Privacy from './Pages/Privacy'
 import Shipping from './Pages/Shipping'
+import CategoryPage from './components/CategoryPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,6 +24,7 @@ function App() {
           <Route path="/term" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/shipping" element={<Shipping />} />
+           <Route path="/category/:categoryName" element={<CategoryPage />} />
           
        </Routes>
 

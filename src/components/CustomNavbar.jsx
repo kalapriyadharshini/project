@@ -161,12 +161,28 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaBars, FaSearch, FaHeart, FaUser, FaShoppingCart, FaHome } from "react-icons/fa";
 import './CustomNavbar.css';
 import SidebarMenu from './SidebarMenu'; 
+// import { useNavigate } from "react-router-dom";
+
+
 
 const CustomNavbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showSidebar, setShowSidebar] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  //   const handleCategorySelect = (category) => {
+  //   console.log("Selected Category:", category);
+
+  // };
+  const handleCategorySelect = (category) => {
+  navigate(`/category/${encodeURIComponent(category)}`);
+};
+   let hoverTimeout = null;
+ 
+
+
 
   // track screen resize
   useEffect(() => {
@@ -225,7 +241,7 @@ const CustomNavbar = () => {
       {/* XXL DARK CATEGORY NAVBAR */}
       <Navbar bg="dark" variant="dark" className="d-none d-xxl-flex position-sticky" style={{ height: "60px" }}>
         <Container fluid className="ms-5 me-5">
-          <Button
+          {/* <Button
             variant="primary"
             className="fw-bold text-white"
             onMouseEnter={() => {
@@ -233,7 +249,22 @@ const CustomNavbar = () => {
             }}
           >
             <FaBars className="me-2" /> BROWSE ALL CATEGORIES
-          </Button>
+          </Button> */}
+
+        <Button
+  variant="primary"
+  className="fw-bold text-white"
+  onMouseEnter={() => {
+    if (hoverTimeout) clearTimeout(hoverTimeout); // Cancel close
+    if (screenWidth >= 1440) setShowSidebar(true);
+  }}
+  onMouseLeave={() => {
+    hoverTimeout = setTimeout(() => setShowSidebar(false), 300);
+  }}
+>
+  <FaBars className="me-2" /> BROWSE ALL CATEGORIES
+</Button>
+  
 
           <div className="position-absolute start-50 top-50 translate-middle">
             <Nav className="fw-semibold d-flex align-items-center justify-content-center">
@@ -348,19 +379,58 @@ const CustomNavbar = () => {
       </div>
 
       {/* SIDEBAR OFFCANVAS */}
-     <Offcanvas
+     {/* <Offcanvas
   show={showSidebar}
   onHide={() => setShowSidebar(false)}
   scroll
   backdrop={false}
   placement="start"
   onMouseLeave={() => setShowSidebar(false)}
-  className="custom-sidebar" // Add this for styling
+  className="custom-sidebar" 
 >
-  <Offcanvas.Body className="px-3 py-2"> {/* Padding for spacing */}
+  <Offcanvas.Body className="px-3 py-2"> 
     <SidebarMenu onClose={() => setShowSidebar(false)} />
   </Offcanvas.Body>
+</Offcanvas> */}
+  <Offcanvas
+  show={showSidebar}
+  onHide={() => setShowSidebar(false)}
+  scroll
+  backdrop={false}
+  placement="start"
+  // onMouseLeave={() => setShowSidebar(false)}
+  className="custom-sidebar"
+>
+  {/* <Offcanvas.Body className="px-3 py-2">
+    <SidebarMenu
+      onClose={() => setShowSidebar(false)}
+      onSelectCategory={handleCategorySelect} 
+    />
+  </Offcanvas.Body> */}
+  
+ <Offcanvas.Body
+  className="px-3 py-2"
+  onMouseEnter={() => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      hoverTimeout = null;
+    }
+    setShowSidebar(true);
+  }}
+  onMouseLeave={() => {
+    hoverTimeout = setTimeout(() => {
+      setShowSidebar(false);
+    }, 200); // 200ms delay to avoid flicker
+  }}
+>
+  <SidebarMenu
+    onClose={() => setShowSidebar(false)}
+    onSelectCategory={handleCategorySelect}
+  />
+</Offcanvas.Body>
+
 </Offcanvas>
+
 
     </>
   );

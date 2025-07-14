@@ -53,28 +53,10 @@ const productData = {
     { name: "Dwarf Hairgrass", price: "₹220", offer: "₹179", img: plant4 },
   ],
   "Planted Aquarium kits": [
-     { name: "Nano Planted Aquarium Kit - 5L", price: "₹2800", offer: "₹2399",img: kit1 },
-    {
-      name: "Premium Planted Setup kit- 10L",
-      price: "₹4200",
-      offer: "₹3799",
-      img: kit2,
-      
-    },
-    {
-      name: "Bluevin Complete Planted Kit - 15L",
-      price: "₹5600",
-      offer: "₹4999",
-      img: kit3,
-     
-    },
-    {
-      name: "Starter Planted Kit with Soil - 12L",
-      price: "₹3800",
-      offer: "₹3399",
-      img: kit4,
-     
-    },
+     { name: "Nano Planted Aquarium Kit - 5L", price: "₹2800", offer: "₹2399", img: kit1 },
+    { name: "Premium Planted Setup kit- 10L", price: "₹4200", offer: "₹3799", img: kit2 },
+    { name: "Bluevin Complete Planted Kit - 15L", price: "₹5600", offer: "₹4999", img: kit3 },
+    { name: "Starter Planted Kit with Soil - 12L", price: "₹3800", offer: "₹3399", img: kit4 },
   ],
   "Aquarium Lighting": [
    
@@ -123,7 +105,7 @@ const productData = {
     img: decor3,
   },
   {
-    name: "Resin Castle Decor (large)",
+    name: "Resin Castle Decor  pack (larger)",
     price: "₹900",
     offer: "₹799",
     img: decor4,
