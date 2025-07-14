@@ -79,7 +79,7 @@ const productData = {
   "Aquarium Lighting": [
    
   {
-    name: "LED Nano Light - 10W",
+    name: "LED plant  Nano Light - 10W",
     price: "₹1200",
     offer: "₹999",
     img: light1, 
@@ -215,13 +215,13 @@ const productData = {
     img: filter1,
   },
   {
-    name: "Internal Power Filter - 600L/H",
+    name: "InternalFilter - 600L/H",
     price: "₹1500",
     offer: "₹1299",
     img: filter2,
   },
   {
-    name: "Sponge Filter for Betta Tanks",
+    name: "Sponge Filter Betta Tanks",
     price: "₹450",
     offer: "₹399",
     img: filter3,
