@@ -4,6 +4,7 @@ import { Navbar, Nav, Container, Button, Form, FormControl, Offcanvas } from "re
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaBars, FaSearch, FaHeart, FaUser, FaShoppingCart, FaHome } from "react-icons/fa";
 import './CustomNavbar.css';
+import SidebarMenu from './SidebarMenu'; 
 
 const CustomNavbar = () => {
   const navigate = useNavigate();
@@ -14,51 +15,6 @@ const CustomNavbar = () => {
 
   return (
     <>
-      {/* XXL - Desktop */}
-      {/* <Navbar className="py-2 bg-light-blue shadow-sm d-none d-xxl-flex position-sticky top-0" style={{ zIndex: 999 }}>
-        <Container fluid className="ms-5 me-5 justify-content-between">
-          <Navbar.Brand as={Link} to="/" className="d-flex align-items-center fs-3 fw-bold text-primary">BLUEVIN</Navbar.Brand>
-           <Navbar.Brand as={Link} to="/" className="fs-3 text-dark" style={{ fontWeight: 800, letterSpacing: "1px" }}>
-  BLUEVIN
-</Navbar.Brand>
-
-
-          <Form className="mx-auto" style={{ width: "600px" }}>
-            <div style={{
-              display: "flex", border: "1px solid #ccc", borderRadius: "999px",
-              overflow: "hidden", height: "45px", backgroundColor: "#f8f9fa"
-            }}>
-              <FormControl type="search" placeholder="Search a Product"
-                className="border-0 shadow-none"
-                style={{
-                  flex: 1, paddingLeft: "20px", fontSize: "1rem",
-                  borderRadius: "999px 0 0 999px", backgroundColor: "#f8f9fa"
-                }}
-              />
-              <div style={{
-                width: "50px", display: "flex", alignItems: "center",
-                justifyContent: "center", borderLeft: "2px solid #cce0ff",
-                backgroundColor: "#f2f2f2"
-              }}>
-                <FaSearch color="black" size={20} />
-              </div>
-            </div>
-          </Form> 
-            <div className="d-flex align-items-center gap-4">
-               <Link to="/wishlist" className="nav-hover text-decoration-none d-flex align-items-center">
-                <FaHeart size={20} className="me-2 icon" />
-                <span className="fw-semibold text">Wishlist</span>
-              </Link>
-               <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
-                 <FaUser size={20} className="me-2 icon" />
-                  <span className="fw-semibold text">Account</span>
-               </Link>
-              <Link to="/cart" className="nav-hover text-decoration-none d-flex align-items-center">
-                <FaShoppingCart size={20} className="icon" />
-              </Link>
-           </div>
-        </Container>
-      </Navbar> */}
       <Navbar className="py-2 bg-light-blue shadow-sm d-none d-xxl-flex position-sticky top-0" style={{ zIndex: 999 }}>
   <Container fluid className="ms-5 me-5 justify-content-between">
 
@@ -188,6 +144,25 @@ const CustomNavbar = () => {
           <CategorySidebar onClose={() => setShowSidebar(false)} />
         </Offcanvas.Body>
       </Offcanvas> */}
+      
+
+{/* Inside return: below mobile nav */}
+<Offcanvas
+  show={showSidebar}
+  onHide={() => setShowSidebar(false)}
+  scroll
+  backdrop={false}
+  placement="start"
+  onMouseLeave={() => setShowSidebar(false)} // close on mouse leave
+>
+  <Offcanvas.Header closeButton>
+    <Offcanvas.Title>All Categories</Offcanvas.Title>
+  </Offcanvas.Header>
+  <Offcanvas.Body>
+    <SidebarMenu onClose={() => setShowSidebar(false)} />
+  </Offcanvas.Body>
+</Offcanvas>
+
     </>
   );
 };

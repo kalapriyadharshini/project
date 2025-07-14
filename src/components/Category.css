@@ -405,7 +405,7 @@
   cursor: pointer;
   user-select: none;
   position: absolute;
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
   z-index: 2;
   opacity: 0.8;
@@ -418,7 +418,7 @@
 }
 
 .arrow.left {
-  left: 5px;
+  left: -12px;
 }
 .arrow.right {
   right: 5px;
