@@ -9,9 +9,9 @@ function Home() {
   return (
     <>
       <Banner /> 
-      <Categories />
+       <Categories />
       <CategoryProducts />
-      <Footer />
+      <Footer /> 
     </>
   );
 }

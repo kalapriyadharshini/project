@@ -18,7 +18,7 @@ function App() {
         <CustomNavbar />
        <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<Aboutus />} />
+          <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/track" element={<Track />} />
           <Route path="/contact" element={<Contactus />} />
           <Route path="/term" element={<Terms />} />

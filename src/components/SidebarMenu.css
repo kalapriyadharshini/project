@@ -39,7 +39,7 @@
 
 .back-button:hover {
   color: #01579b;
-  transform: translateX(-4px);
+  /* transform: translateX(-4px); */
 }
 
 /* List wrapper */

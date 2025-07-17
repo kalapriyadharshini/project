@@ -1,57 +1,15 @@
-.bg-light-blue {
+ /* .bg-light-blue {
   background-color: #cbe3f6 !important;
 }
-
 .ultra-light-placeholder::placeholder {
   color: #cccccc;
   opacity: 1;
 }
-
 @media (min-width: 1440px) {
   .top-nav-hover:hover {
     color: #4ba2f2 !important;
   }
 }
-/* }
- .bold-link {
-  font-weight: bold;
-  color: #000; 
-  text-decoration: none;
-}
-.navbar-brand-text {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #007bff; 
-  letter-spacing: 1px;
-}
-
-.nav-hover .icon,
-.nav-hover .text {
-  color: #212529; 
-  transition: color 0.3s ease;
-}
-
-.nav-hover:hover .icon,
-.nav-hover:hover .text {
-  color: #0d6efd; 
-} */
-
-/* Brand Title */
-/* .brand-text {
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: #003366; 
-} */
-/* .brand-text {
-  font-size: 2.8rem;       
-  font-weight:900;
-  letter-spacing: 1px;
-  color: #003366 !important;  
-  font-family: 'Poppins', sans-serif; 
-} */
-
-
 .brand-text {
   font-family: 'Montserrat', sans-serif;
   font-size: 2.2rem;
@@ -60,9 +18,73 @@
   color:  #003366; 
   text-transform: uppercase;
 }
+.nav-hover .icon,
+.nav-hover .text {
+  color: #003366;
+  transition: color 0.3s ease;
+}
+.nav-hover:hover .icon,
+.nav-hover:hover .text {
+  color: #007BFF;
+}
+.navbar .brand-text {
+  color: #003366 !important;
+}
+.custom-sidebar {
+  width: 320px;
+  max-width: 100%;
+}
+.sidebar-menu {
+  background-color: #e0f7fa; 
+  height: 100%;
+  width: 100%;
+} 
+.category-sticky-navbar {
+  position: static;
+  margin-top: 0 !important;
+}
+@media (min-width: 1440px) {
+  .category-sticky-navbar {
+    position: sticky;
 
+    z-index: 998;
+  }
+}
+  */
 
+ /* Top Navbar Background */
+.bg-light-blue {
+  background-color: #cbe3f6 !important;
+}
 
+/* Input Placeholder Light Color */
+.ultra-light-placeholder::placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+/* Brand Text Style */
+.brand-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #003366;
+  text-transform: uppercase;
+}
+
+.navbar .brand-text {
+  color: #003366 !important;
+}
+
+/* Hover Effects for Top Nav Items */
+@media (min-width: 1440px) {
+  .top-nav-hover:hover {
+    color: #4ba2f2 !important;
+  }
+}
+
+/* Hover for Wishlist / Account Icons */
 .nav-hover .icon,
 .nav-hover .text {
   color: #003366;
@@ -73,18 +95,18 @@
 .nav-hover:hover .text {
   color: #007BFF;
 }
-.navbar .brand-text {
-  color: #003366 !important;
-}
 
-/* Limit sidebar width globally */
+/* Sidebar (if used) */
 .custom-sidebar {
   width: 320px;
   max-width: 100%;
 }
-.sidebar-menu {
-  background-color: #e0f7fa; 
 
+.sidebar-menu {
+  background-color: #e0f7fa;
   height: 100%;
   width: 100%;
 }
+
+
+ 
