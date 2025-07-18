@@ -181,8 +181,8 @@ const SidebarMenu = ({ onClose, onSelectCategory }) => {
             key={index}
             className="sidebar-link"
             onClick={() => {
-              onSelectCategory(cat.name);  // ✅ triggers navigation
-              onClose();                   // ✅ closes sidebar
+              onSelectCategory(cat.name);  
+              onClose();                   
             }}
           >
             {cat.icon}
