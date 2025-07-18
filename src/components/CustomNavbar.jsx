@@ -421,10 +421,10 @@ const CustomNavbar = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <FaShoppingCart size={20} className="icon position-relative" />
+      <FaShoppingCart size={20} className="icon  position-relative " />
       
       {totalQuantity > 0 && (
-        <Badge bg="danger" pill className="position-absolute top-0 start-100 translate-middle">
+        <Badge bg="primary" pill className="position-absolute top-0 start-100 translate-middle">
           {totalQuantity}
         </Badge>
       )}

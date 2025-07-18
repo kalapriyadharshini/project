@@ -32,11 +32,11 @@ const CartDropdown = ({ cartItems = [], totalPrice = 0, onRemoveItem }) => {
                     <div className="fw-semibold small">{item.name || 'Unnamed Item'}</div>
                     <div className="d-flex justify-content-between small">
                       <span className="text-muted">₹{safeItemPrice} × {item.quantity || 1}</span>
-                      <span className="fw-bold">₹{safeItemTotal}</span>
+                      <span className="fw-bold ">₹{safeItemTotal}</span>
                     </div>
                   </div>
                   <button
-                    className="btn btn-sm btn-light text-danger ms-2"
+                    className="btn btn-sm btn-light text-primary ms-2"
                     onClick={() => onRemoveItem(item.id)}
                   >
                     <FaTrashAlt />
@@ -51,8 +51,8 @@ const CartDropdown = ({ cartItems = [], totalPrice = 0, onRemoveItem }) => {
           </div>
 
           <div className="d-flex gap-2 mt-3">
-            <Link to="/cart" className="btn btn-dark w-50">View Cart</Link>
-            <Link to="/checkout" className="btn btn-warning w-50">Checkout</Link>
+            <Link to="/cart" className="btn btn-primary w-50">View Cart</Link>
+            <Link to="/checkout" className="btn btn-primary w-50">Checkout</Link>
           </div>
         </>
       )}

@@ -434,12 +434,12 @@
   justify-content: center;
 }
 .icon {
-  color: #d2cfcf;
+  color: #003366 !important;
   font-size: 1.4rem;
   transition: color 0.3s ease;
 }
 .icon:hover {
-  color: #0d6efd;
+  color: #0d6efd !important;
 }
 .product-price {
   text-decoration: line-through;

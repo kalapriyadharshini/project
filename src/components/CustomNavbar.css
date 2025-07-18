@@ -87,13 +87,13 @@
 /* Hover for Wishlist / Account Icons */
 .nav-hover .icon,
 .nav-hover .text {
-  color: #003366;
+  color: #003366 !important;
   transition: color 0.3s ease;
 }
 
 .nav-hover:hover .icon,
 .nav-hover:hover .text {
-  color: #007BFF;
+  color: #007BFF !important;
 }
 
 /* Sidebar (if used) */
@@ -112,18 +112,4 @@
  
 
 
-/* index.css or CustomNavbar.css */
-/* .icon {
-  color: #000;
-  transition: transform 0.2s ease;
-}
 
-.icon:hover {
-  transform: scale(1.1);
-}
-
-.dropdown-box {
-  border: 1px solid #ddd;
-  background-color: white;
-  z-index: 999;
-} */
