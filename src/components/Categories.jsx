@@ -6,7 +6,7 @@ import Plantedaquariumkits from '../assets/Plantedaquariumkits.jpg';
 import Aquariumlighting from '../assets/Aquariumlighting.jpg';
 import Aquariumdecor from '../assets/Aquariumdecor.jpg';
 import Livefishes from '../assets/Livefishes.jpg';
-import fishfoods from '../assets/fishfood.jpg';
+import Fishfoods from '../assets/Fishfood.jpg';
 import aquariumconditioners from '../assets/aquariumconditioners.jpg';
 import aquariumfilters from '../assets/aquariumfilters.jpg';
 import aquariumbreeding from '../assets/aquariumbreeding.jpg';
@@ -20,7 +20,7 @@ const categoriesList = [
   { name: 'AQUARIUM LIGHTING', img: Aquariumlighting },
   { name: 'AQUARIUM DECOR', img: Aquariumdecor },
   { name: 'LIVE FISHES', img: Livefishes },
-  { name: 'FISH FOODS', img: fishfoods },
+  { name: 'FISH FOODS', img: Fishfoods },
   { name: 'WATER CONDITIONERS & SUPPLEMENTS', img: aquariumconditioners },
   { name: 'AQUARIUM FILTERS', img: aquariumfilters },
   { name: 'BREEDING ACCESSORIES', img: aquariumbreeding },
