@@ -10,7 +10,7 @@ import Terms from './Pages/Terms'
 import Privacy from './Pages/Privacy'
 import Shipping from './Pages/Shipping'
 import CategoryPage from './components/CategoryPage'
-
+import SubcategoryPage from './components/SubcategoryPage'
 function App() {
   const [count, setCount] = useState(0)
   return (
@@ -24,8 +24,8 @@ function App() {
           <Route path="/term" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/shipping" element={<Shipping />} />
-           <Route path="/category/:categoryName" element={<CategoryPage />} />
-          
+          <Route path="/category/:categoryName" element={<CategoryPage />} />
+          <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} />   
        </Routes>
 
     </>

@@ -77,7 +77,7 @@ const FilteredProductDisplay = ({ categoryName, products }) => {
 
   return (
     <>
-      <h4 className="mb-3">{categoryName}</h4>
+      <h4 className="mb-2">{categoryName}</h4>
 
       <FilterSortBar
         sortType={sortType}

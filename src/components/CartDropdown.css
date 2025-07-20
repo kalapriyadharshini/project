@@ -1,40 +1,9 @@
 /* 
 .cart-dropdown {
   position: absolute;
-  right:  -7px;
-  top: -8px;
-  width: 300px;
-  background: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  padding: 15px;
-  z-index: 1000;
-  border-radius: 8px;
-}
-
-.cart-items-scroll {
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.cart-item {
-  align-items: center;
-}
-
-.cart-item-img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 6px;
-} */
-
-
-/* Default (Mobile first) */
-.cart-dropdown {
-  position: absolute;
   right: 0;
   top: 45px;
-  width: 90vw; /* full width on mobile */
+  width: 90vw; 
   max-width: 320px;
   background: white;
   border: 1px solid #ccc;
@@ -44,7 +13,7 @@
   border-radius: 8px;
 }
 
-/* Large screens (1440px and above) */
+
 @media (min-width: 1440px) {
   .cart-dropdown {
     right: -7px;
@@ -66,4 +35,77 @@
   height: 50px;
   object-fit: cover;
   border-radius: 6px;
+} */
+
+
+/* === Cart Dropdown – Default Mobile First (320px and above) === */
+.cart-dropdown {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 90vw; /* Full width on mobile */
+  max-width: 320px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  z-index: 1000;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Cart Items Scroll */
+.cart-items-scroll {
+  max-height: 220px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+/* Cart Item Layout */
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Cart Item Image */
+.cart-item-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+/* === Specifically for Mobile Devices: 320px to 425px === */
+@media (max-width: 425px) {
+  .cart-dropdown {
+    width: 95vw;
+    top: 50px;
+    right: 10px;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .cart-item-img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .cart-item {
+    margin-bottom: 8px;
+  }
+
+  .cart-items-scroll {
+    max-height: 180px;
+  }
+}
+
+/* === Large Screens (1440px and above) === */
+@media (min-width: 1440px) {
+  .cart-dropdown {
+    right: -7px;
+    top: -7px;
+    width: 300px;
+  }
 }

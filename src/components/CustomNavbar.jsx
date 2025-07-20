@@ -307,7 +307,7 @@
 //           </Container>
 //         </Navbar>
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef } from "react";
 import {
   Navbar,
   Nav,
@@ -334,7 +334,9 @@ import { toggleDropdown, removeFromCart } from '../redux/cartSlice';
 import CartDropdown from './CartDropdown';
 
 
+
 const CustomNavbar = () => {
+  const hoverTimeout = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -348,6 +350,8 @@ const CustomNavbar = () => {
 
   const handleMouseEnter = () => dispatch(toggleDropdown(true));
   const handleMouseLeave = () => dispatch(toggleDropdown(false));
+
+
 
   const handleCategorySelect = (category) => {
     navigate(`/category/${encodeURIComponent(category)}`);
@@ -523,7 +527,7 @@ const CustomNavbar = () => {
         borderTop: "1px solid #ccc", display: "flex", justifyContent: "space-around",
         padding: "10px 0", zIndex: 1000
       }}>
-        <Button variant="link" className={`nav-icon ${isActive("/search") ? "text-primary" : "text-dark"}`} onClick={() => navigate("/search")}>
+        {/* <Button variant="link" className={`nav-icon ${isActive("/search") ? "text-primary" : "text-dark"}`} onClick={() => navigate("/search")}>
           <FaSearch size={20} />
         </Button>
         <Button variant="link" className={`nav-icon ${isActive("/wishlist") ? "text-primary" : "text-dark"}`} onClick={() => navigate("/wishlist")}>
@@ -537,7 +541,63 @@ const CustomNavbar = () => {
         </Button>
         <Button variant="link" className={`nav-icon ${isActive("/") ? "text-primary" : "text-dark"}`} onClick={() => navigate("/")}>
           <FaHome size={20} />
-        </Button>
+        </Button> */}
+
+        {/* Mobile Bottom Nav (320px to 768px) */}
+
+  <Button
+    variant="link"
+    className={`nav-icon ${isActive("/") ? "text-primary" : "text-dark"}`}
+    onClick={() => navigate("/")}
+  >
+    <FaHome size={20} />
+  </Button>
+
+  <Button
+    variant="link"
+    className={`nav-icon ${isActive("/search") ? "text-primary" : "text-dark"}`}
+    onClick={() => navigate("/search")}
+  >
+    <FaSearch size={20} />
+  </Button>
+
+  <Button
+    variant="link"
+    className={`nav-icon ${isActive("/wishlist") ? "text-primary" : "text-dark"}`}
+    onClick={() => navigate("/wishlist")}
+  >
+    <FaHeart size={20} />
+  </Button>
+
+  <div className="position-relative">
+    <Button
+      variant="link"
+      className={`nav-icon ${isActive("/cart") ? "text-primary" : "text-dark"}`}
+      onClick={() => navigate("/cart")}
+    >
+      <FaShoppingCart size={20} />
+      {totalQuantity > 0 && (
+        <Badge
+          bg="primary"
+          pill
+          className="position-absolute top-0 start-100 translate-middle"
+          style={{ fontSize: "0.6rem" }}
+        >
+          {totalQuantity}
+        </Badge>
+      )}
+    </Button>
+  </div>
+
+  <Button
+    variant="link"
+    className={`nav-icon ${isActive("/profile") ? "text-primary" : "text-dark"}`}
+    onClick={() => navigate("/profile")}
+  >
+    <FaUser size={20} />
+  </Button>
+
+
       </div>
 
       {/* Sidebar */}
@@ -552,14 +612,14 @@ const CustomNavbar = () => {
         <Offcanvas.Body
           className="px-3 py-2"
           onMouseEnter={() => {
-            if (hoverTimeout) {
-              clearTimeout(hoverTimeout);
-              hoverTimeout = null;
+            if (hoverTimeout.current) {
+              clearTimeout(hoverTimeout.current);
+              hoverTimeout.current = null;
             }
             setShowSidebar(true);
           }}
           onMouseLeave={() => {
-            hoverTimeout = setTimeout(() => {
+            hoverTimeout.current = setTimeout(() => {
               setShowSidebar(false);
             }, 200);
           }}
@@ -569,6 +629,7 @@ const CustomNavbar = () => {
             onSelectCategory={handleCategorySelect}
           />
         </Offcanvas.Body>
+      
       </Offcanvas>
     </>
   );
