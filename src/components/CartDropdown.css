@@ -78,11 +78,11 @@
 }
 
 /* === Specifically for Mobile Devices: 320px to 425px === */
-@media (max-width: 425px) {
+/* @media (max-width: 425px) {
   .cart-dropdown {
-    width: 95vw;
-    top: 50px;
-    right: 10px;
+    bottom: 150px;
+    right: 5px;
+ 
     padding: 12px;
     font-size: 13px;
   }
@@ -99,7 +99,25 @@
   .cart-items-scroll {
     max-height: 180px;
   }
+} */
+
+/* Only for mobile screens: 320px to 425.98px */
+@media (min-width: 320px) and (max-width: 425.98px) {
+  .cart-dropdown {
+    position: fixed !important;
+    bottom: 59px;
+    /* left: 5vw; */
+    width: 90vw;
+    z-index: 999 !important;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
 }
+
+
 
 /* === Large Screens (1440px and above) === */
 @media (min-width: 1440px) {
@@ -107,5 +125,24 @@
     right: -7px;
     top: -7px;
     width: 300px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024.98px) {
+  .cart-dropdown {
+    right: -8px;
+    top: 5px;
+    width: 320px;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .cart-items-scroll {
+    max-height: 240px;
+  }
+
+  .cart-item-img {
+    width: 50px;
+    height: 50px;
   }
 }

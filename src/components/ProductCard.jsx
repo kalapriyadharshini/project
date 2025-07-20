@@ -49,7 +49,7 @@ const imageSrc = product.img;
       </div>
       <Card.Body>
         <Card.Title className="product-title text-center">{product.name}</Card.Title>
-        <Card.Text class="price text-center">
+        <Card.Text className="price text-center">
           <span className="product-offer">{product.offer}</span>
           &nbsp;
           <span className="product-price">{product.price}</span>

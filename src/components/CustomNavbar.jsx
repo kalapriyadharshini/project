@@ -350,6 +350,7 @@ const CustomNavbar = () => {
 
   const handleMouseEnter = () => dispatch(toggleDropdown(true));
   const handleMouseLeave = () => dispatch(toggleDropdown(false));
+  const [showMobileCartDropdown, setShowMobileCartDropdown] = useState(false);
 
 
 
@@ -433,23 +434,29 @@ const CustomNavbar = () => {
         </Badge>
       )}
 
-      {showCartDropdown && (
-        <div
-          className="position-absolute"
-          style={{
-            top: '30px',
-            right: 0,
-            zIndex: 1000,
-            transition: 'all 0.2s ease',
-          }}
-        >
-          <CartDropdown
-            cartItems={cartItems}
-            totalPrice={totalPrice}
-            onRemoveItem={(id) => dispatch(removeFromCart(id))}
-          />
-        </div>
-      )}
+      {showMobileCartDropdown && (
+  <div
+    className="mobile-cart-dropdown"
+    style={{
+      position: 'absolute',
+      top: '40px',   // adjust this based on your icon
+      right: '10px',
+      zIndex: 1000,
+      backgroundColor: 'white',
+      border: '1px solid #ddd',
+      borderRadius: '5px',
+      padding: '10px',
+      boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    }}
+  >
+    <CartDropdown
+      cartItems={cartItems}
+      totalPrice={totalPrice}
+      onRemoveItem={(id) => dispatch(removeFromCart(id))}
+    />
+  </div>
+)}
+
     </div>
               
             </div>
@@ -479,7 +486,7 @@ const CustomNavbar = () => {
       </div>
 
       {/* Tablet */}
-      <Navbar className="py-2 bg-light-blue shadow-sm d-none d-md-flex d-xxl-none position-sticky top-0" style={{ zIndex: 999 }}>
+      {/* <Navbar className="py-2 bg-light-blue shadow-sm d-none d-md-flex d-xxl-none position-sticky top-0" style={{ zIndex: 999 }}>
         <Container fluid className="ms-3 me-3">
           <div className="d-flex align-items-center gap-2 me-3">
             <Link to="/" style={{ textDecoration: 'none' }} className="brand-text fs-5">BLUEVIN</Link>
@@ -504,7 +511,77 @@ const CustomNavbar = () => {
             </Link>
           </div>
         </Container>
-      </Navbar>
+      </Navbar> */}
+      <Navbar className="py-2 bg-light-blue shadow-sm d-none d-md-flex d-xxl-none position-sticky top-0" style={{ zIndex: 999 }}>
+  <Container fluid className="ms-3 me-3">
+    {/* Logo + Sidebar Toggle */}
+    <div className="d-flex align-items-center gap-2 me-3">
+      <Link to="/" style={{ textDecoration: 'none' }} className="brand-text fs-5">BLUEVIN</Link>
+      <FaBars
+        size={22}
+        style={{ cursor: 'pointer' }}
+        onClick={() => setShowSidebar(true)}
+        onMouseEnter={() => {
+          if (screenWidth >= 768 && screenWidth < 1400) {
+            setShowSidebar(true);
+          }
+        }}
+      />
+    </div>
+
+    {/* Search Icon */}
+    <FaSearch size={22} className="ms-auto me-3 text-dark" />
+
+    {/* Wishlist, Account, Cart with Hover Dropdown */}
+    <div className="d-flex align-items-center gap-4">
+      <Link to="/wishlist" className="nav-hover text-decoration-none d-flex align-items-center">
+        <FaHeart size={20} className="me-2 icon" />
+        <span className="fw-semibold text">Wishlist</span>
+      </Link>
+
+      <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
+        <FaUser size={20} className="me-2 icon" />
+        <span className="fw-semibold text">Account</span>
+      </Link>
+
+      {/* Cart Hover Dropdown */}
+      <div
+        className="position-relative me-2"
+        style={{ cursor: 'pointer' }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <FaShoppingCart size={20} className="icon position-relative" />
+
+        {totalQuantity > 0 && (
+          <Badge bg="primary" pill className="position-absolute top-0 start-100 translate-middle">
+            {totalQuantity}
+          </Badge>
+        )}
+
+        {showCartDropdown && (
+          <div
+            className="position-absolute"
+            style={{
+              top: '30px',
+              right: 0,
+              zIndex: 1000,
+              transition: 'all 0.2s ease',
+            }}
+          >
+            <CartDropdown
+              cartItems={cartItems}
+              totalPrice={totalPrice}
+              onRemoveItem={(id) => dispatch(removeFromCart(id))}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  </Container>
+</Navbar>
+
+
 
       {/* Mobile Top Navbar */}
       <Navbar className="py-2 bg-light-blue shadow-sm d-flex d-md-none position-sticky top-0" style={{ zIndex: 999 }}>
@@ -570,24 +647,43 @@ const CustomNavbar = () => {
   </Button>
 
   <div className="position-relative">
-    <Button
-      variant="link"
-      className={`nav-icon ${isActive("/cart") ? "text-primary" : "text-dark"}`}
-      onClick={() => navigate("/cart")}
+  <Button
+    variant="link"
+    className={`nav-icon ${isActive("/cart") ? "text-primary" : "text-dark"}`}
+    onClick={() => setShowMobileCartDropdown(!showMobileCartDropdown)}
+  >
+    <FaShoppingCart size={20} />
+    {totalQuantity > 0 && (
+      <Badge
+        bg="primary"
+        pill
+        className="position-absolute top-0 start-100 translate-middle"
+        style={{ fontSize: "0.6rem" }}
+      >
+        {totalQuantity}
+      </Badge>
+    )}
+  </Button>
+
+  {/* Show CartDropdown when tapped */}
+  {showMobileCartDropdown && (
+    <div
+      className="position-absolute"
+      style={{
+        bottom: "50px", // place above bottom nav
+        right: 0,
+        zIndex: 1100,
+      }}
     >
-      <FaShoppingCart size={20} />
-      {totalQuantity > 0 && (
-        <Badge
-          bg="primary"
-          pill
-          className="position-absolute top-0 start-100 translate-middle"
-          style={{ fontSize: "0.6rem" }}
-        >
-          {totalQuantity}
-        </Badge>
-      )}
-    </Button>
-  </div>
+      <CartDropdown
+        cartItems={cartItems}
+        totalPrice={totalPrice}
+        onRemoveItem={(id) => dispatch(removeFromCart(id))}
+      />
+    </div>
+  )}
+</div>
+
 
   <Button
     variant="link"

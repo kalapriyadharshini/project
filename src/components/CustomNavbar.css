@@ -126,7 +126,23 @@
   font-size: 1.2rem;
 }
 
- 
+ /* Only for mobile screens: 320px to 425.98px */
+@media (min-width: 320px) and (max-width: 425.98px) {
+  .mobile-cart-dropdown {
+    position: absolute !important;
+    /* top: 50px; 
+    right: 10px; */
+    bottom: 100px;
+    width: 90vw;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+}
+
 
 
 
