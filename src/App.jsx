@@ -11,6 +11,7 @@ import Privacy from './Pages/Privacy'
 import Shipping from './Pages/Shipping'
 import CategoryPage from './components/CategoryPage'
 import SubcategoryPage from './components/SubcategoryPage'
+import Footer from './components/Footer'
 function App() {
   const [count, setCount] = useState(0)
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} />   
        </Routes>
-
+       <Footer />
     </>
   )
 }
