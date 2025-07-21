@@ -420,7 +420,7 @@ const CustomNavbar = () => {
                 <FaUser size={20} className="me-2 icon" />
                 <span className="fw-semibold text">Account</span>
               </Link>
-     <div
+     {/* <div
       className="position-relative me-3"
       style={{ cursor: 'pointer' }}
       onMouseEnter={handleMouseEnter}
@@ -457,8 +457,70 @@ const CustomNavbar = () => {
   </div>
 )}
 
+    </div> */}
+    {/* <div
+  className="position-relative me-3"
+  style={{ cursor: 'pointer' }}
+  onMouseEnter={screenWidth >= 1440 ? handleMouseEnter : undefined}
+  onMouseLeave={screenWidth >= 1440 ? handleMouseLeave : undefined}
+>
+  <FaShoppingCart size={20} className="icon position-relative" />
+
+  {totalQuantity > 0 && (
+    <Badge bg="primary" pill className="position-absolute top-0 start-100 translate-middle">
+      {totalQuantity}
+    </Badge>
+  )}
+  {screenWidth >= 1440 && showCartDropdown && (
+    <div className="cart-dropdown">
+      <CartDropdown
+        cartItems={cartItems}
+        totalPrice={totalPrice}
+        onRemoveItem={(id) => dispatch(removeFromCart(id))}
+      />
     </div>
-              
+  )}
+
+</div> */}
+{screenWidth >= 1440 && (
+  <div
+    className="position-relative me-2"
+    style={{ cursor: 'pointer' }}
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
+  >
+    <FaShoppingCart size={20} className="icon position-relative" />
+
+    {totalQuantity > 0 && (
+      <Badge
+        bg="primary"
+        pill
+        className="position-absolute top-0 start-100 translate-middle"
+      >
+        {totalQuantity}
+      </Badge>
+    )}
+
+    {showCartDropdown && (
+      <div
+        className="position-absolute"
+        style={{
+          top: '30px',
+          right: 0,
+          zIndex: 1000,
+          transition: 'all 0.2s ease',
+        }}
+      >
+        <CartDropdown
+          cartItems={cartItems}
+          totalPrice={totalPrice}
+          onRemoveItem={(id) => dispatch(removeFromCart(id))}
+        />
+      </div>
+    )}
+  </div>
+)}
+  
             </div>
           </Container>
         </Navbar>
@@ -546,7 +608,7 @@ const CustomNavbar = () => {
 
       {/* Cart Hover Dropdown */}
       <div
-        className="position-relative me-2"
+        className="position-relative me-2 "
         style={{ cursor: 'pointer' }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -577,6 +639,8 @@ const CustomNavbar = () => {
           </div>
         )}
       </div>
+
+      
     </div>
   </Container>
 </Navbar>

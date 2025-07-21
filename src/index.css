@@ -57,9 +57,9 @@ html, body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  overflow-y: auto;       /* optional: allow scroll */
+  overflow-y: auto;     
   margin: 0;
   padding: 0;
-  position: relative;     /* IMPORTANT */
-  z-index: 1;             /* Ensures layering starts right */
+  position: relative;     
+  z-index: 1;            
 }
