@@ -14,6 +14,8 @@ import SubcategoryPage from './components/SubcategoryPage'
 import Footer from './components/Footer'
 import CartPage from './components/CartPage'
 
+
+
 function App() {
   const [count, setCount] = useState(0)
   return (
