@@ -54,7 +54,7 @@ const CartPage = () => {
   alt={item.name}
   width="80"
   height="80"
-  className="me-2 rounded shadow"
+  className="me-2 "
 />
 
                   </td>
