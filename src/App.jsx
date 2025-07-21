@@ -31,7 +31,7 @@ function App() {
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} /> 
-          <Route path="/cart" element={<CartPage />} />  
+          <Route path="/cartpage" element={<CartPage />} />  
        </Routes>
        <Footer />
     </>
