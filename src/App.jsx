@@ -12,6 +12,7 @@ import Shipping from './Pages/Shipping'
 import CategoryPage from './components/CategoryPage'
 import SubcategoryPage from './components/SubcategoryPage'
 import Footer from './components/Footer'
+import CartPage from './components/CartPage'
 function App() {
   const [count, setCount] = useState(0)
   return (
@@ -26,7 +27,8 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
-          <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} />   
+          <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} /> 
+          <Route path="/cart" element={<CartPage />} />  
        </Routes>
        <Footer />
     </>

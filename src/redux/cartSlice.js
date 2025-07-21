@@ -71,7 +71,43 @@ const cartSlice = createSlice({
     0
   );
 },
+updateQuantity(state, action) {
+  const { id, quantity } = action.payload;
 
+  const item = state.cartItems.find(item => item.id === id);
+  if (item && quantity >= 1) {
+    item.quantity = quantity;
+    item.totalPrice = item.quantity * Number(item.price || 0);
+  }
+
+  state.totalQuantity = state.cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  state.totalPrice = state.cartItems.reduce(
+    (total, item) => total + item.totalPrice,
+    0
+  );
+},
+increaseQty(state, action) {
+  const item = state.cartItems.find(item => item.id === action.payload);
+  if (item) {
+    item.quantity += 1;
+    item.totalPrice = item.quantity * Number(item.price || 0);
+  }
+  state.totalQuantity = state.cartItems.reduce((total, item) => total + item.quantity, 0);
+  state.totalPrice = state.cartItems.reduce((total, item) => total + item.totalPrice, 0);
+},
+decreaseQty(state, action) {
+  const item = state.cartItems.find(item => item.id === action.payload);
+  if (item && item.quantity > 1) {
+    item.quantity -= 1;
+    item.totalPrice = item.quantity * Number(item.price || 0);
+  }
+  state.totalQuantity = state.cartItems.reduce((total, item) => total + item.quantity, 0);
+  state.totalPrice = state.cartItems.reduce((total, item) => total + item.totalPrice, 0);
+},
 
     toggleDropdown(state, action) {
       state.showCartDropdown = action.payload;
@@ -89,7 +125,10 @@ const cartSlice = createSlice({
 export const {
   addToCart,
   removeFromCart,
+    updateQuantity,
   toggleDropdown,
+  decreaseQty,
+  increaseQty,
   clearCart,
 } = cartSlice.actions;
 
