@@ -3,7 +3,11 @@
   width: 100%;
   margin: 0 auto;
 }
-
+.subcategory-title {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #007BFF;
+  }
 /* Laptop view: 1024px to 1439px */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .custom-card-wrapper {
@@ -51,6 +55,7 @@
 
   .subcategory-title {
     margin-bottom: 2rem;
+
   }
 }
 

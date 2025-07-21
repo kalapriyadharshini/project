@@ -59,7 +59,7 @@ const SubcategoryPage = () => {
 
   return (
  <div className="subcategory-container">
-      <h2 className="subcategory-title text-center">
+      <h2 className="subcategory-title text-center fw-bold ">
         {formattedCategory?.toUpperCase()}
       </h2>
       <div className="row justify-content-center">
