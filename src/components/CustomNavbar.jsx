@@ -351,6 +351,9 @@ const CustomNavbar = () => {
   const handleMouseEnter = () => dispatch(toggleDropdown(true));
   const handleMouseLeave = () => dispatch(toggleDropdown(false));
   const [showMobileCartDropdown, setShowMobileCartDropdown] = useState(false);
+ const handleMobileCartToggle = () => {
+    setShowMobileCartDropdown((prev) => !prev);
+  };
 
 
 

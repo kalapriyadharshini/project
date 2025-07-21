@@ -122,8 +122,8 @@
 /* === Large Screens (1440px and above) === */
 @media (min-width: 1440px) {
   .cart-dropdown {
-    right: -7px;
-    top: 11px;
+    right: -10px;
+    top: -6px;
     width: 300px;
   }
 }
@@ -155,7 +155,7 @@
 @media (min-width: 768px) and (max-width: 1024.98px) {
   .cart-dropdown {
     right: -8px;
-    top: 5px;
+    top: -6px;
     width: 320px;
     padding: 16px;
     font-size: 14px;
