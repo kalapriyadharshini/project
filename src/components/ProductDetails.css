@@ -1,0 +1,261 @@
+.product-details-container {
+   /* max-width: 1200px; */
+   margin:  auto; 
+  padding: 50px;
+  background-color: #e0f7fa;
+  /* border-radius: 16px; */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); */
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+.product-details-content {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+    background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(60, 133, 216, 0.1);
+}
+
+.product-image-wrapper {
+  flex: 1 1 350px;
+}
+
+.product-image {
+  width: 80% !important;
+  height: 400px !important;
+  /* border-radius: 4px; */
+  margin-left: 40px;
+  margin-top: 25px;
+  transition: transform 0.3s ease;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(7, 164, 226, 0.12);
+}
+.product-image:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+}
+.product-info {
+  flex: 2;
+}
+
+.product-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.product-price {
+  font-size: 22px;
+  margin: 15px 0;
+  text-decoration: none;
+}
+
+.offer-price {
+  color: #007bff;
+  font-weight: 700;
+  margin-right: 10px;
+  /* text-decoration: line-through  */
+}
+
+.original-price {
+  color: #888;
+  font-weight: 500;
+  text-decoration: line-through;
+}
+
+.product-rating {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.product-features {
+  margin-top: 20px;
+}
+
+.product-features strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #222;
+}
+
+.product-features ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.product-features li {
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #555;
+}
+
+.product-info p {
+  font-size: 16px;
+  color: #444;
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.product-buttons {
+  display: flex; 
+  /* justify-content: center;  */
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.product-buttons button {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add-to-cart,
+.btn-buy-now {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-add-to-cart:hover,
+.btn-buy-now:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-details-content {
+    flex-direction: column;
+  }
+
+  .product-image-wrapper,
+  .product-info {
+    flex: 1 1 100%;
+  }
+
+  .product-title,
+  .product-price,
+  .product-rating {
+    text-align: center;
+  }
+}
+.large-stars {
+  color: #007bff;
+  margin-left: 8px;
+  font-size: 30px;
+}
+
+
+@media (max-width: 425px) {
+  .product-details-container {
+    padding: 20px;
+  }
+
+  .product-details-content {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .product-image-wrapper {
+    text-align: center;
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+
+  .product-image {
+    width: 90% !important;
+    height: auto !important;
+    margin: 0 auto;
+  }
+
+  .product-info {
+    flex: 1 1 100%;
+  }
+
+  .product-title,
+  .product-price,
+  .product-rating,
+  .product-features,
+  .product-info p {
+    text-align: center;
+  }
+
+  .product-features ul {
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+
+
+  .product-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .product-buttons button {
+    width: 60%;
+  }
+}
+@media (max-width: 768px) {
+  .product-details-container {
+    padding: 20px;
+  }
+
+  .product-details-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .product-image-wrapper {
+    text-align: center;
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+    margin-top: 35px;
+  }
+
+  .product-image {
+    width: 90% !important;
+    height: auto !important;
+    margin: 0 auto;
+  }
+
+  .product-info {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .product-title,
+  .product-price,
+  .product-rating,
+  .product-info p,
+  .product-features {
+    text-align: center;
+  }
+
+  .product-features ul {
+    padding-left: 0;
+    list-style-position: inside;
+  }
+
+  .product-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+  }
+
+  .product-buttons button {
+    width: 60%;
+  }
+}

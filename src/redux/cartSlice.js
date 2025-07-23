@@ -14,7 +14,8 @@ const cartSlice = createSlice({
     addToCart(state, action) {
       const newItem = action.payload;
       const existingItem = state.cartItems.find(
-        item => item.id === newItem.id && item.name === newItem.name && item.img === newItem.img
+       item => item.id === newItem.id && item.name === newItem.name && item.image === newItem.image
+
       );
 
       if (existingItem) {

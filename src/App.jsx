@@ -13,6 +13,7 @@ import CategoryPage from './components/CategoryPage'
 import SubcategoryPage from './components/SubcategoryPage'
 import Footer from './components/Footer'
 import CartPage from './components/CartPage'
+import ProductDetails from './components/ProductDetails'
 
 
 
@@ -31,7 +32,9 @@ function App() {
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} /> 
-          <Route path="/cartpage" element={<CartPage />} />  
+          <Route path="/cart" element={<CartPage />} />  
+          <Route path="/product/:name" element={<ProductDetails />} />
+
        </Routes>
        <Footer />
     </>
