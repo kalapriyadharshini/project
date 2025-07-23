@@ -421,6 +421,14 @@ const CustomNavbar = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+useEffect(() => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  setIsLoggedIn(!!storedUser);
+}, [location]); // re-run when route changes
+
+
   const dispatch = useDispatch();
   const { cartItems, showCartDropdown, totalQuantity, totalPrice } = useSelector((state) => state.cart);
 
@@ -504,10 +512,17 @@ const CustomNavbar = () => {
                 <span className="fw-semibold text">Wishlist</span>
               </Link>
 
-              <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
+              {/* <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
                 <FaUser size={20} className="me-2 icon" />
                 <span className="fw-semibold text">Account</span>
-              </Link>
+              </Link> */}
+              {isLoggedIn && (
+                 <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
+                     <FaUser size={20} className="me-2 icon" />
+                     <span className="fw-semibold text">My Account</span>
+                 </Link>
+              )}
+
 
               {screenWidth >= 1440 && (
                 <div

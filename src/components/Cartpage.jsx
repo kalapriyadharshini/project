@@ -1,4 +1,3 @@
-
 // impo
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -112,7 +111,10 @@ const CartPage = () => {
               >
                 Continue Shopping
               </Button>
-              <Button variant="primary">Checkout</Button>
+              <Button variant="primary" onClick={() => navigate("/checkout")}>
+  Checkout
+</Button>
+
             </div>
           </div>
         </>
