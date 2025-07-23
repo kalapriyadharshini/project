@@ -12,8 +12,10 @@ import Shipping from './Pages/Shipping'
 import CategoryPage from './components/CategoryPage'
 import SubcategoryPage from './components/SubcategoryPage'
 import Footer from './components/Footer'
-import CartPage from './components/CartPage'
+
 import ProductDetails from './components/ProductDetails'
+import CartPage from './components/CartPage'
+
 
 
 
