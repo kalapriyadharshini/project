@@ -108,7 +108,7 @@ const CartPage = () => {
             <div className="d-flex justify-content-end mt-3 gap-2">
               <Button
                 variant="primary"
-                onClick={() => navigate("/shop")}
+                onClick={() => navigate("/")}
               >
                 Continue Shopping
               </Button>
