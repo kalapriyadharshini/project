@@ -68,7 +68,7 @@ const ProductDetails = () => {
           </div> */}
            <div className="product-rating">
   <strong>Rating:</strong> {product.rating?.stars}
-  <span style={{ color: '#f5b301', marginLeft: '8px' }}>
+  <span style={{ color: '#007bff', marginLeft: '8px' }}>
     {Array.from({ length: 5 }, (_, i) => {
       const full = i + 1 <= Math.floor(product.rating?.stars || 0);
       const half = !full && i < product.rating?.stars;

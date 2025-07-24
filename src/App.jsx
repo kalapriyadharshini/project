@@ -14,11 +14,11 @@ import SubcategoryPage from './components/SubcategoryPage'
 import Footer from './components/Footer'
 
 import ProductDetails from './components/ProductDetails'
-import CartPage from './components/CartPage'
 import CheckoutAuthPage from './components/CheckoutAuthPage'
 import OrderSummaryPage from './components/OrderSummaryPage'
 import OrderSuccessPage from './components/OrderSuccessPage'
 import Profile from './Pages/Profile'
+import CartPage from './components/CartPage'
 
 
 
@@ -41,12 +41,12 @@ function App() {
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} /> 
-          <Route path="/cart" element={<CartPage/>} />  
+          <Route path="/cart" element={<CartPage />} />  
           <Route path="/product/:name" element={<ProductDetails />} />
           <Route path="/checkout" element={<CheckoutAuthPage />} />
           <Route path="/order-summary" element={<OrderSummaryPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
-
+           <Route path="/login" element={<CheckoutAuthPage />} />
 
        </Routes>
        <Footer />

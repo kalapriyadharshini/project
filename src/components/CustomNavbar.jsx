@@ -429,6 +429,19 @@ useEffect(() => {
 }, [location]); // re-run when route changes
 
 
+// new 
+const [showAccountDropdown, setShowAccountDropdown] = useState(false);
+const handleLogout = () => {
+  localStorage.removeItem("user");
+  setIsLoggedIn(false);
+  navigate("/login"); 
+};
+
+
+
+
+
+
   const dispatch = useDispatch();
   const { cartItems, showCartDropdown, totalQuantity, totalPrice } = useSelector((state) => state.cart);
 
@@ -516,13 +529,35 @@ useEffect(() => {
                 <FaUser size={20} className="me-2 icon" />
                 <span className="fw-semibold text">Account</span>
               </Link> */}
-              {isLoggedIn && (
+              {/* {isLoggedIn && (
                  <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
                      <FaUser size={20} className="me-2 icon" />
                      <span className="fw-semibold text">My Account</span>
                  </Link>
-              )}
+              )} */}
+              
+              {isLoggedIn && (
+  <div
+    className="position-relative nav-hover text-decoration-none d-flex align-items-center"
+    onMouseEnter={() => setShowAccountDropdown(true)}
+    onMouseLeave={() => setShowAccountDropdown(false)}
+    style={{ cursor: "pointer" }}
+  >
+    <FaUser size={20} className="me-2 icon" />
+    <span className="fw-semibold text">My Account</span>
 
+    {showAccountDropdown && (
+      <div
+        className="position-absolute bg-white shadow-sm rounded"
+        style={{ top: "15px", right: 0, zIndex: 1000, padding: "0.5rem 1rem", minWidth: "100px" }}
+      >
+        <span onClick={handleLogout} style={{ cursor: "pointer", color: "#333", fontWeight: 500 }}>
+          Logout
+        </span>
+      </div>
+    )}
+  </div>
+)}
 
               {screenWidth >= 1440 && (
                 <div
@@ -579,7 +614,7 @@ useEffect(() => {
       {/* Tablet Navbar */}
       <Navbar className="py-2 bg-light-blue shadow-sm d-none d-md-flex d-xxl-none position-sticky top-0" style={{ zIndex: 999 }}>
         <Container fluid className="ms-3 me-3">
-          <div className="d-flex align-items-center gap-2 me-3">
+          <div className="d-flex align-items-center gap-2  me-3">
             <Link to="/" style={{ textDecoration: 'none' }} className="brand-text fs-5">BLUEVIN</Link>
             <FaBars size={22} style={{ cursor: 'pointer' }} onClick={() => setShowSidebar(true)} />
           </div>
@@ -589,19 +624,16 @@ useEffect(() => {
               <FaHeart size={20} className="me-2 icon" />
               <span className="fw-semibold text">Wishlist</span>
             </Link>
-            <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
-              <FaUser size={20} className="me-2 icon" />
-              <span className="fw-semibold text">Account</span>
-            </Link>
+            
             <div className="position-relative me-2" style={{ cursor: 'pointer' }} onClick={handleMobileCartToggle}>
               <FaShoppingCart size={20} className="icon position-relative" />
               {totalQuantity > 0 && (
-                <Badge bg="primary" pill className="position-absolute top-0 start-100 translate-middle">
+                <Badge bg="primary" pill className="position-absolute top-0 start-90 translate-middle">
                   {totalQuantity}
                 </Badge>
               )}
               {showMobileCartDropdown && (
-                <div className="position-absolute" style={{ top: '30px', right: 0, zIndex: 1000 }}>
+                <div className="position-absolute" style={{ top: '30px', right: '80px', zIndex: 1000 }}>
                   <CartDropdown
                     cartItems={cartItems}
                     totalPrice={totalPrice}
@@ -609,6 +641,13 @@ useEffect(() => {
                   />
                 </div>
               )}
+              <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
+              <FaUser size={20} className="me-2 icon" />
+              <span className="fw-semibold text">Account</span>
+            </Link>
+             {/* Tablet Account Dropdown – 768px to 1024px */}
+            
+
             </div>
           </div>
         </Container>
