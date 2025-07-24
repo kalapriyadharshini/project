@@ -21,7 +21,7 @@ function Banner() {
         <Carousel.Item>
           <ExampleCarouselImage src={TropicalFish} alt="Aquarium setup" />
           <div className="caption-wrapper">
-            <h1 className='my-5'>Welcome to AquaWorld!!!</h1>
+            <h1 className='my-5'>Welcome to AquaWorld!!! by rajasekar</h1>
             <p>
                Your destination for vibrant fish, custom tanks, expert care, lighting, live plants & more.
     Dive into a world of underwater beauty with our wide range of exotic species, stylish aquarium setups,
