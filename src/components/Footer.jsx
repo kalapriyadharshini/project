@@ -62,7 +62,7 @@ const Footer = () => {
           <Col md={4} className="mb-3">
   <h5>USEFUL LINKS</h5>
   <ul className="list-unstyled  mt-3">
-  <li><Link to="/about" className="text-decoration-none text-muted">About Us</Link></li>
+  <li><Link to="/aboutus" className="text-decoration-none text-muted">About Us</Link></li>
   <li><Link to="/track" className="text-decoration-none text-muted">Track Your Order</Link></li>
   <li><Link to="/term" className="text-decoration-none text-muted">Terms & Conditions</Link></li>
   <li><Link to="/privacy" className="text-decoration-none text-muted">Privacy Policy</Link></li>
