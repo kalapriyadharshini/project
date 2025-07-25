@@ -1,12 +1,13 @@
+
 // impo
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, increaseQty, decreaseQty } from "../redux/cartSlice";
 import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./CartPage.css";
+import "./ViewPage.css";
 
-const CartPage = () => {
+const ViewPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -123,4 +124,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default ViewPage;

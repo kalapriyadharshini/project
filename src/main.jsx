@@ -19,8 +19,6 @@ import './index.css';
 import App from './App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
-
-// ✅ ADD THESE TWO
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
 

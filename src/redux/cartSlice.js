@@ -39,21 +39,6 @@ const cartSlice = createSlice({
         0
       );
     },
-
-    // removeFromCart(state, action) {
-    //   const id = action.payload;
-    //   state.cartItems = state.cartItems.filter(item => item.id !== id);
-
-    //   state.totalQuantity = state.cartItems.reduce(
-    //     (total, item) => total + item.quantity,
-    //     0
-    //   );
-
-    //   state.totalPrice = state.cartItems.reduce(
-    //     (total, item) => total + item.totalPrice,
-    //     0
-    //   );
-    // },
       removeFromCart(state, action) {
   const id = action.payload;
   const itemToRemove = state.cartItems.find(item => item.id === id);
@@ -134,3 +119,4 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
+

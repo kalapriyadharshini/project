@@ -4,6 +4,8 @@ import productData from '../data/Productdata';
 import './ProductDetails.css';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
+import { useNavigate } from 'react-router-dom'; // at top
+
 
 const ProductDetails = () => {
   const { name } = useParams();
@@ -23,6 +25,23 @@ const ProductDetails = () => {
   };
 
   dispatch(addToCart(productToAdd));
+};
+const navigate = useNavigate();
+
+const handleBuyNow = () => {
+  const cleanedPrice =
+    typeof product.price === "string"
+      ? Number(product.price.replace(/[^\d.]/g, ""))
+      : product.price;
+
+  const productToAdd = {
+    ...product,
+    price: cleanedPrice,
+    image: product.img,
+  };
+
+  dispatch(addToCart(productToAdd));
+  navigate("/checkout"); // 👈 takes user directly to checkout login page
 };
 
 //   const dispatch = useDispatch();
@@ -89,7 +108,9 @@ const ProductDetails = () => {
   {/* <button className="btn-add-to-cart">Add to Cart</button> */}
   <button className="btn-add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
 
-  <button className="btn-buy-now">Buy Now</button>
+  {/* <button className="btn-buy-now">Buy Now</button> */}
+  <button className="btn-buy-now" onClick={handleBuyNow}>Buy Now</button>
+
 </div>
           </div>
         </div>

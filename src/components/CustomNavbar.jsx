@@ -619,7 +619,7 @@ const handleLogout = () => {
             <FaBars size={22} style={{ cursor: 'pointer' }} onClick={() => setShowSidebar(true)} />
           </div>
           <FaSearch size={22} className="ms-auto me-3 text-dark" />
-          <div className="d-flex align-items-center gap-4">
+          {/* <div className="d-flex align-items-center gap-4">
             <Link to="/wishlist" className="nav-hover text-decoration-none d-flex align-items-center">
               <FaHeart size={20} className="me-2 icon" />
               <span className="fw-semibold text">Wishlist</span>
@@ -645,11 +645,69 @@ const handleLogout = () => {
               <FaUser size={20} className="me-2 icon" />
               <span className="fw-semibold text">Account</span>
             </Link>
-             {/* Tablet Account Dropdown – 768px to 1024px */}
+            
             
 
             </div>
-          </div>
+          </div> */}
+          <div className="d-flex align-items-center gap-4">
+  <Link to="/wishlist" className="nav-hover text-decoration-none d-flex align-items-center">
+    <FaHeart size={20} className="me-2 icon" />
+    <span className="fw-semibold text">Wishlist</span>
+  </Link>
+
+  {/* Cart Icon with Dropdown */}
+  <div className="position-relative me-2" style={{ cursor: 'pointer' }} onClick={handleMobileCartToggle}>
+    <FaShoppingCart size={20} className="icon position-relative" />
+    {totalQuantity > 0 && (
+      <Badge bg="primary" pill className="position-absolute top-0 start-90 translate-middle">
+        {totalQuantity}
+      </Badge>
+    )}
+    {showMobileCartDropdown && (
+      <div className="position-absolute" style={{ top: '30px', right: '2px', zIndex: 1000 }}>
+        <CartDropdown
+          cartItems={cartItems}
+          totalPrice={totalPrice}
+          onRemoveItem={(id) => dispatch(removeFromCart(id))}
+        />
+      </div>
+    )}
+  </div>
+{/* Tablet/Laptop version: 768px–1024px */}
+{isLoggedIn && (
+  <div
+    className="d-none d-md-flex d-lg-none position-relative nav-hover text-decoration-none align-items-center"
+    onClick={() => setShowAccountDropdown((prev) => !prev)}
+    style={{ cursor: "pointer" }}
+  >
+    <FaUser size={20} className="me-2 icon" />
+    <span className="fw-semibold text">My Account</span>
+
+    {showAccountDropdown && (
+      <div
+        className="position-absolute bg-white shadow-sm rounded"
+        style={{
+          top: "35px",
+          right: 0,
+          zIndex: 1000,
+          padding: "0.5rem 1rem",
+          minWidth: "100px",
+        }}
+      >
+        <span
+          onClick={handleLogout}
+          style={{ cursor: "pointer", color: "#333", fontWeight: 500 }}
+        >
+          Logout
+        </span>
+      </div>
+    )}
+  </div>
+)}
+
+</div>
+
         </Container>
       </Navbar>
 
@@ -692,7 +750,75 @@ const handleLogout = () => {
             </div>
           )}
         </div>
-        <Button variant="link" className={`nav-icon ${isActive("/profile") ? "text-primary" : "text-dark"}`} onClick={() => navigate("/profile")}> <FaUser size={20} /> </Button>
+        {/* <Button variant="link" className={`nav-icon ${isActive("/profile") ? "text-primary" : "text-dark"}`} onClick={() => navigate("/profile")}> <FaUser size={20} /> </Button> */}
+        {/* {isLoggedIn && (
+  <div
+    className="d-flex d-md-none position-relative"
+    style={{ cursor: "pointer" }}
+  >
+    <Button
+      variant="link"
+      className={`nav-icon p-0 ${isActive("/profile") ? "text-primary" : "text-dark"}`}
+      onClick={() => setShowAccountDropdown((prev) => !prev)}
+    >
+      <FaUser size={20} />
+    </Button>
+
+    {showAccountDropdown && (
+      <div
+        className="position-absolute bg-white shadow-sm rounded"
+        style={{
+          top: "35px",
+          right: 0,
+          zIndex: 1000,
+          padding: "0.5rem 1rem",
+          minWidth: "100px",
+        }}
+      >
+        <span
+          onClick={handleLogout}
+          style={{ cursor: "pointer", color: "#333", fontWeight: 500 }}
+        >
+          Logout
+        </span>
+      </div>
+    )}
+  </div>
+)} */}
+     
+
+     {isLoggedIn && (
+  <div className="d-flex d-md-none position-relative" style={{ cursor: "pointer" }}>
+    <Button
+      variant="link"
+      className={`nav-icon p-0 ${isActive("/profile") ? "text-primary" : "text-dark"}`}
+      onClick={() => setShowAccountDropdown((prev) => !prev)}
+    >
+      <FaUser size={20} />
+    </Button>
+
+    {showAccountDropdown && (
+      <div
+        className="position-absolute bg-white shadow-sm rounded"
+        style={{
+          bottom: "35px",  // 🔁 CHANGED from top: to bottom:
+          right: 0,
+          zIndex: 1000,
+          padding: "0.5rem 1rem",
+          minWidth: "100px",
+        }}
+      >
+        <span
+          onClick={handleLogout}
+          style={{ cursor: "pointer", color: "#333", fontWeight: 500 }}
+        >
+          Logout
+        </span>
+      </div>
+    )}
+  </div>
+)}
+
       </div>
 
       {/* Sidebar */}

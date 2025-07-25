@@ -12,17 +12,12 @@ import Shipping from './Pages/Shipping'
 import CategoryPage from './components/CategoryPage'
 import SubcategoryPage from './components/SubcategoryPage'
 import Footer from './components/Footer'
-
 import ProductDetails from './components/ProductDetails'
 import CheckoutAuthPage from './components/CheckoutAuthPage'
 import OrderSummaryPage from './components/OrderSummaryPage'
 import OrderSuccessPage from './components/OrderSuccessPage'
 import Profile from './Pages/Profile'
-import CartPage from './components/CartPage'
-
-
-
-
+import ViewPage from './components/ViewPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -41,13 +36,12 @@ function App() {
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} /> 
-          <Route path="/cart" element={<CartPage />} />  
+          <Route path="/cart" element={<ViewPage />} />  
           <Route path="/product/:name" element={<ProductDetails />} />
           <Route path="/checkout" element={<CheckoutAuthPage />} />
           <Route path="/order-summary" element={<OrderSummaryPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
            <Route path="/login" element={<CheckoutAuthPage />} />
-
        </Routes>
        <Footer />
     </>
