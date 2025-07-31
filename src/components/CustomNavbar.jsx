@@ -413,45 +413,69 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleDropdown, removeFromCart } from '../redux/cartSlice';
 import CartDropdown from './CartDropdown';
 
+import { clearUser } from '../redux/userSlice'; // adjust path if needed
+
+
 const CustomNavbar = () => {
   const hoverTimeout = useRef(null);
   const navigate = useNavigate();
+
+  const userInfo = useSelector((state) => state.user.userInfo);
+
+  const handleLogout = () => {
+  
+    
+localStorage.removeItem("userInfo");
+localStorage.removeItem("token"); // if you're using a token
+dispatch(clearUser());
+navigate("/login");
+  };
+
   const location = useLocation();
   const [showSidebar, setShowSidebar] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [isLoginMode, setIsLoginMode] = useState(true);
+    const [username, setUsername] = useState(""); 
 useEffect(() => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  setIsLoggedIn(!!storedUser);
-}, [location]); // re-run when route changes
+  if (userInfo) {
+    setIsLoggedIn(true);
+    setUsername(userInfo.name || "User");
+  } else {
+    setIsLoggedIn(false);
+    setUsername("");
+  }
+}, [userInfo]);
 
+
+  // const handleLogout = () => {
+  //   localStorage.removeItem("user");
+  //   localStorage.removeItem("token");
+  //   setIsLoggedIn(false);
+  //   setUsername("");
+  //   navigate("/login");
+  // };
+             
 
 // new 
 const [showAccountDropdown, setShowAccountDropdown] = useState(false);
-const handleLogout = () => {
-  localStorage.removeItem("user");
-  setIsLoggedIn(false);
-  navigate("/login"); 
-};
-
-
-
-
-
 
   const dispatch = useDispatch();
   const { cartItems, showCartDropdown, totalQuantity, totalPrice } = useSelector((state) => state.cart);
-
   const [isHovered, setIsHovered] = useState(false);
   const [showMobileCartDropdown, setShowMobileCartDropdown] = useState(false);
+
+
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  setIsLoginMode(params.get("mode") !== "register");
+}, [location.search]);
+
 
   const handleMouseEnter = () => {
     if (screenWidth >= 1440) dispatch(toggleDropdown(true));
   };
-
   const handleMouseLeave = () => {
     if (screenWidth >= 1440) dispatch(toggleDropdown(false));
   };
@@ -525,18 +549,8 @@ const handleLogout = () => {
                 <span className="fw-semibold text">Wishlist</span>
               </Link>
 
-              {/* <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
-                <FaUser size={20} className="me-2 icon" />
-                <span className="fw-semibold text">Account</span>
-              </Link> */}
+          
               {/* {isLoggedIn && (
-                 <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
-                     <FaUser size={20} className="me-2 icon" />
-                     <span className="fw-semibold text">My Account</span>
-                 </Link>
-              )} */}
-              
-              {isLoggedIn && (
   <div
     className="position-relative nav-hover text-decoration-none d-flex align-items-center"
     onMouseEnter={() => setShowAccountDropdown(true)}
@@ -549,7 +563,7 @@ const handleLogout = () => {
     {showAccountDropdown && (
       <div
         className="position-absolute bg-white shadow-sm rounded"
-        style={{ top: "15px", right: 0, zIndex: 1000, padding: "0.5rem 1rem", minWidth: "100px" }}
+        style={{ top: "19px", right: 0, zIndex: 1000, padding: "0.5rem 1rem", minWidth: "100px" }}
       >
         <span onClick={handleLogout} style={{ cursor: "pointer", color: "#333", fontWeight: 500 }}>
           Logout
@@ -557,7 +571,93 @@ const handleLogout = () => {
       </div>
     )}
   </div>
-)}
+)} */}
+    {/* <div
+  className="position-relative nav-hover text-decoration-none d-flex align-items-center"
+  onMouseEnter={() => setShowAccountDropdown(true)}
+  onMouseLeave={() => setShowAccountDropdown(false)}
+  style={{ cursor: "pointer" }}
+>
+  <FaUser size={20} className="me-2 icon" />
+  <span className="fw-semibold text">
+    {isLoggedIn ? `Hi, ${username}` : 'Login'}
+  </span>
+
+  {showAccountDropdown && (
+    <div
+      className="position-absolute bg-white shadow-sm rounded"
+      style={{ top: "25px", right: 0, zIndex: 1000, padding: "0.5rem 1rem", minWidth: "150px" }}
+    >
+      {isLoggedIn ? (
+        <>
+          <div className="mb-2" onClick={() => navigate("/myaccount")} style={{ cursor: "pointer", fontWeight: 500 }}>My Account</div>
+          <div className="mb-2" onClick={() => navigate("/orders")} style={{ cursor: "pointer", fontWeight: 500 }}>My Orders</div>
+          <div onClick={handleLogout} style={{ cursor: "pointer", fontWeight: 500, color: "#c00" }}>Logout</div>
+        </>
+      ) : (
+        <>
+          <div className="mb-2" onClick={() => navigate("/login")} style={{ cursor: "pointer", fontWeight: 500 }}>Login</div>
+          <div onClick={() => navigate("/register")} style={{ cursor: "pointer", fontWeight: 500 }}>Register</div>
+        </>
+      )}
+    </div>
+  )}
+</div> */}
+<div
+  className="position-relative nav-hover text-decoration-none d-flex align-items-center"
+  onMouseEnter={() => setShowAccountDropdown(true)}
+  onMouseLeave={() => setShowAccountDropdown(false)}
+  style={{ cursor: "pointer" }}
+>
+  <FaUser size={20} className="me-2 icon" />
+  <span className="fw-semibold text">
+    {isLoggedIn ? `Hi, ${username}` : 'My Account'}
+  </span>
+
+  {showAccountDropdown && (
+    <div
+      className="position-absolute bg-white shadow-sm rounded"
+      style={{
+        top: "25px",
+        right: 0,
+        zIndex: 1000,
+        padding: "0.75rem 1rem",
+        minWidth: "180px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        color: "#333",
+      }}
+    >
+      {isLoggedIn ? (
+        <>
+          <div className="dropdown-item" onClick={() => navigate("/myaccount")}>
+            My Profile
+          </div>
+          <div className="dropdown-item" onClick={() => navigate("/orders")}>
+            Orders
+          </div>
+          <div className="dropdown-item" onClick={() => navigate("/wishlist")}>
+            Wishlist
+          </div>
+          <div
+            className="dropdown-item text-danger"
+            onClick={handleLogout}
+          >
+            Logout
+          </div>
+        </>
+      ) : (
+        <>
+           <div className="dropdown-item" onClick={() => navigate("/login?mode=login")}>
+      Login
+    </div>
+    <div className="dropdown-item" onClick={() => navigate("/login?mode=register")}>
+      Register
+    </div>
+        </>
+      )}
+    </div>
+  )}
+</div>
 
               {screenWidth >= 1440 && (
                 <div
@@ -619,44 +719,13 @@ const handleLogout = () => {
             <FaBars size={22} style={{ cursor: 'pointer' }} onClick={() => setShowSidebar(true)} />
           </div>
           <FaSearch size={22} className="ms-auto me-3 text-dark" />
-          {/* <div className="d-flex align-items-center gap-4">
-            <Link to="/wishlist" className="nav-hover text-decoration-none d-flex align-items-center">
-              <FaHeart size={20} className="me-2 icon" />
-              <span className="fw-semibold text">Wishlist</span>
-            </Link>
-            
-            <div className="position-relative me-2" style={{ cursor: 'pointer' }} onClick={handleMobileCartToggle}>
-              <FaShoppingCart size={20} className="icon position-relative" />
-              {totalQuantity > 0 && (
-                <Badge bg="primary" pill className="position-absolute top-0 start-90 translate-middle">
-                  {totalQuantity}
-                </Badge>
-              )}
-              {showMobileCartDropdown && (
-                <div className="position-absolute" style={{ top: '30px', right: '80px', zIndex: 1000 }}>
-                  <CartDropdown
-                    cartItems={cartItems}
-                    totalPrice={totalPrice}
-                    onRemoveItem={(id) => dispatch(removeFromCart(id))}
-                  />
-                </div>
-              )}
-              <Link to="/profile" className="nav-hover text-decoration-none d-flex align-items-center">
-              <FaUser size={20} className="me-2 icon" />
-              <span className="fw-semibold text">Account</span>
-            </Link>
-            
-            
-
-            </div>
-          </div> */}
           <div className="d-flex align-items-center gap-4">
   <Link to="/wishlist" className="nav-hover text-decoration-none d-flex align-items-center">
     <FaHeart size={20} className="me-2 icon" />
     <span className="fw-semibold text">Wishlist</span>
   </Link>
 
-  {/* Cart Icon with Dropdown */}
+
   <div className="position-relative me-2" style={{ cursor: 'pointer' }} onClick={handleMobileCartToggle}>
     <FaShoppingCart size={20} className="icon position-relative" />
     {totalQuantity > 0 && (
@@ -750,43 +819,6 @@ const handleLogout = () => {
             </div>
           )}
         </div>
-        {/* <Button variant="link" className={`nav-icon ${isActive("/profile") ? "text-primary" : "text-dark"}`} onClick={() => navigate("/profile")}> <FaUser size={20} /> </Button> */}
-        {/* {isLoggedIn && (
-  <div
-    className="d-flex d-md-none position-relative"
-    style={{ cursor: "pointer" }}
-  >
-    <Button
-      variant="link"
-      className={`nav-icon p-0 ${isActive("/profile") ? "text-primary" : "text-dark"}`}
-      onClick={() => setShowAccountDropdown((prev) => !prev)}
-    >
-      <FaUser size={20} />
-    </Button>
-
-    {showAccountDropdown && (
-      <div
-        className="position-absolute bg-white shadow-sm rounded"
-        style={{
-          top: "35px",
-          right: 0,
-          zIndex: 1000,
-          padding: "0.5rem 1rem",
-          minWidth: "100px",
-        }}
-      >
-        <span
-          onClick={handleLogout}
-          style={{ cursor: "pointer", color: "#333", fontWeight: 500 }}
-        >
-          Logout
-        </span>
-      </div>
-    )}
-  </div>
-)} */}
-     
-
      {isLoggedIn && (
   <div className="d-flex d-md-none position-relative" style={{ cursor: "pointer" }}>
     <Button
@@ -801,7 +833,7 @@ const handleLogout = () => {
       <div
         className="position-absolute bg-white shadow-sm rounded"
         style={{
-          bottom: "35px",  // 🔁 CHANGED from top: to bottom:
+          bottom: "35px",  
           right: 0,
           zIndex: 1000,
           padding: "0.5rem 1rem",

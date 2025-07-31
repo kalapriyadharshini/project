@@ -1,5 +1,3 @@
-
-// impo
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, increaseQty, decreaseQty } from "../redux/cartSlice";
@@ -112,10 +110,7 @@ const ViewPage = () => {
               >
                 Continue Shopping
               </Button>
-              <Button variant="primary" onClick={() => navigate("/checkout")}>
-  Checkout
-</Button>
-
+              <Button variant="primary" onClick={() => navigate("/checkout")}>Checkout</Button>
             </div>
           </div>
         </>

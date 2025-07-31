@@ -45,7 +45,7 @@ const FilterSortBar = ({ sortType, setSortType, priceRange, setPriceRange }) => 
   return (
     
     <div className="d-flex justify-content-between align-items-center my-5 px-5 flex-wrap">
-  {/* ✅ First: Price Range */}
+  {/*  First: Price Range */}
   <div className="price-range-section d-flex flex-column flex-md-row align-items-md-center mb-3">
     <label className="fw-bold">Price: 0 - ₹{priceRange[1]}</label>
     <input
@@ -58,7 +58,7 @@ const FilterSortBar = ({ sortType, setSortType, priceRange, setPriceRange }) => 
     />
   </div>
 
-  {/* ✅ Then: Sort Dropdown */}
+  {/*  Then: Sort Dropdown */}
   <select
     value={sortType}
     onChange={(e) => setSortType(e.target.value)}

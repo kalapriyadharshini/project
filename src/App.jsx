@@ -13,22 +13,41 @@ import CategoryPage from './components/CategoryPage'
 import SubcategoryPage from './components/SubcategoryPage'
 import Footer from './components/Footer'
 import ProductDetails from './components/ProductDetails'
-import CheckoutAuthPage from './components/CheckoutAuthPage'
+
 import OrderSummaryPage from './components/OrderSummaryPage'
 import OrderSuccessPage from './components/OrderSuccessPage'
 import Profile from './Pages/Profile'
 import ViewPage from './components/ViewPage'
+import Login from './components/Login'
+import Checkout from './components/Checkout'
+// import Register from './components/Register'
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setUser } from './redux/userSlice';
+
+
+
 
 function App() {
   const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+
+    useEffect(() => {
+  const storedUser = localStorage.getItem("userInfo");
+  if (storedUser) {
+    dispatch(setUser(JSON.parse(storedUser)));
+  }
+}, [dispatch]);
+
   return (
     <>  
         <CustomNavbar />
        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutus" element={<Aboutus />} />
-           <Route path="/profile" element={<Profile />} />
-
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/track" element={<Track />} />
           <Route path="/contact" element={<Contactus />} />
           <Route path="/term" element={<Terms />} />
@@ -38,10 +57,14 @@ function App() {
           <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} /> 
           <Route path="/cart" element={<ViewPage />} />  
           <Route path="/product/:name" element={<ProductDetails />} />
-          <Route path="/checkout" element={<CheckoutAuthPage />} />
+          {/* <Route path="/checkout" element={<CheckoutAuthPage />} /> */}
           <Route path="/order-summary" element={<OrderSummaryPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
-           <Route path="/login" element={<CheckoutAuthPage />} />
+           {/* <Route path="/login" element={<CheckoutAuthPage />} /> */}
+          <Route path="/checkout" element={<Checkout />} />
+          {/* <Route path="/summary" element={<SummaryPage />} /> */}
+
+
        </Routes>
        <Footer />
     </>

@@ -1,13 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
-
 const CartContext = createContext();
-
 export const useCart = () => useContext(CartContext);
-
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [showCartDropdown, setShowCartDropdown] = useState(false);
-
   const addToCart = (product) => {
     setCartItems(prev => {
       const existing = prev.find(item => item.id === product.id);
@@ -20,15 +16,15 @@ export const CartProvider = ({ children }) => {
       }
       return [...prev, { ...product, quantity: 1 }];
     });
-
     setShowCartDropdown(true);
     setTimeout(() => setShowCartDropdown(false), 3000);
   };
 
+ 
+
   const removeFromCart = (id) => {
     setCartItems(prev => prev.filter(item => item.id !== id));
   };
-
   return (
     <CartContext.Provider value={{
       cartItems,

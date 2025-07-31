@@ -4,7 +4,7 @@ import productData from '../data/Productdata';
 import './ProductDetails.css';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
-import { useNavigate } from 'react-router-dom'; // at top
+import { useNavigate } from 'react-router-dom'; 
 
 
 const ProductDetails = () => {
@@ -15,7 +15,7 @@ const ProductDetails = () => {
    const handleAddToCart = () => {
   const cleanedPrice =
     typeof product.price === "string"
-      ? Number(product.price.replace(/[^\d.]/g, "")) // removes ₹, etc.
+      ? Number(product.price.replace(/[^\d.]/g, "")) 
       : product.price;
 
   const productToAdd = {
@@ -41,7 +41,7 @@ const handleBuyNow = () => {
   };
 
   dispatch(addToCart(productToAdd));
-  navigate("/checkout"); // 👈 takes user directly to checkout login page
+  navigate("/checkout"); //  takes user directly to checkout login page
 };
 
 //   const dispatch = useDispatch();

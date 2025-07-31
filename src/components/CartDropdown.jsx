@@ -201,7 +201,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaTrashAlt } from 'react-icons/fa';
 import './CartDropdown.css';
-
 const CartDropdown = ({
   cartItems = [],
   totalPrice = 0,
@@ -210,14 +209,12 @@ const CartDropdown = ({
 }) => {
   const navigate = useNavigate();
   const safeTotal = Number(totalPrice || 0).toFixed(2);
-
   const handleViewCart = () => {
     if (typeof setCartOpen === 'function') {
       setCartOpen(false);
     }
     navigate('/cart');
   };
-
   return (
     <div className="cart-dropdown">
       {(!cartItems || cartItems.length === 0) ? (
@@ -228,7 +225,6 @@ const CartDropdown = ({
             {cartItems.map((item, index) => {
               const safeItemPrice = Number(item.price || 0).toFixed(2);
               const safeItemTotal = Number(item.totalPrice || (item.price * item.quantity) || 0).toFixed(2);
-
               return (
                 <div className="cart-item d-flex mb-2" key={`${item.id}-${index}`}>
                   <img
@@ -256,16 +252,14 @@ const CartDropdown = ({
               );
             })}
           </div>
-
           {/* <div className="d-flex justify-content-between align-items-center mt-3">
             <span className="fw-bold total">Total: ₹{safeTotal}</span>
           </div> */}
-
           <div className="d-flex gap-2 mt-3">
             <button className="btn btn-primary w-50" onClick={handleViewCart}>
               View Cart
             </button>
-            <Link to="/checkout" className="btn btn-primary w-50">
+            <Link to="/checkout" className="btn btn-primary check w-50">
               Checkout
             </Link>
           </div>
@@ -274,5 +268,4 @@ const CartDropdown = ({
     </div>
   );
 };
-
 export default CartDropdown;

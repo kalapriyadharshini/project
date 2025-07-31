@@ -9,7 +9,7 @@ const OrderSuccessPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/");
-    }, 3000); // Auto-redirect after 3 sec
+    }, 3000); 
 
     return () => clearTimeout(timer);
   }, [navigate]);
@@ -17,7 +17,7 @@ const OrderSuccessPage = () => {
   return (
     <div className="order-success-wrapper d-flex flex-column align-items-center justify-content-center">
       <div className="success-box text-center">
-        <h2 className="text-success fw-bold">🎉 Order Placed Successfully!</h2>
+        <h2 className="text-success fw-bold"> Order Placed Successfully!</h2>
         <p className="text-secondary">Thank you for shopping with us.</p>
         <Button variant="primary" onClick={() => navigate("/")}>
           Continue Shopping

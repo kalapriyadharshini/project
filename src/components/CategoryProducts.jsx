@@ -16,8 +16,6 @@ function CategoryProducts() {
               </Col>
             ))}
           </Row>
-          
-
         </div>
       ))}
     </>

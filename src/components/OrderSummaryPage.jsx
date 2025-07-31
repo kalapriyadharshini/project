@@ -71,7 +71,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
-import axios from "axios"; // ✅ Added here
+import axios from "axios"; 
 import "./OrderSummaryPage.css";
 
 const OrderSummaryPage = () => {
@@ -83,7 +83,7 @@ const OrderSummaryPage = () => {
     0
   );
 
-  // ✅ Updated this function to save order to backend
+
   const handleConfirmOrder = async () => {
     const order = {
       products: cartItems,
@@ -97,7 +97,7 @@ const OrderSummaryPage = () => {
     try {
       const res = await axios.post("http://localhost:5000/api/orders", order);
       console.log("Order Saved:", res.data);
-      navigate("/order-success"); // ✅ Move to success page
+      navigate("/order-success"); 
     } catch (err) {
       console.error("Order Failed:", err);
       alert("Failed to place order");

@@ -77,7 +77,7 @@ function ProductCard({ product }) {
     // );
     dispatch(
   addToCart({
-    id: product.id, // ✅ real numeric or unique string ID
+    id: product.id, // real numeric or unique string ID
     name: product.name,
     price: cleanedPrice,
     image: product.img,

@@ -1,45 +1,48 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 const initialState = {
   cartItems: [],
   totalQuantity: 0,
   totalPrice: 0,
   showCartDropdown: false,
 };
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart(state, action) {
-      const newItem = action.payload;
-      const existingItem = state.cartItems.find(
-       item => item.id === newItem.id && item.name === newItem.name && item.image === newItem.image
+  addToCart: (state, action) => {
+  const existingIndex = state.cartItems.findIndex(
+    item => item.id === action.payload.id
+  );
 
-      );
+  if (existingIndex !== -1) {
 
-      if (existingItem) {
-        existingItem.quantity += 1;
-        existingItem.totalPrice = existingItem.quantity * Number(existingItem.price || 0);
-      } else {
-        state.cartItems.push({
-          ...newItem,
-          quantity: 1,
-          totalPrice: Number(newItem.price || 0),
-        });
-      }
+    const existingItem = state.cartItems[existingIndex];
+    existingItem.quantity += 1;
+    existingItem.totalPrice = existingItem.quantity * Number(existingItem.price || 0);
 
-      state.totalQuantity = state.cartItems.reduce(
-        (total, item) => total + item.quantity,
-        0
-      );
+    state.cartItems.splice(existingIndex, 1); 
+    state.cartItems.unshift(existingItem);    
+  } else {
 
-      state.totalPrice = state.cartItems.reduce(
-        (total, item) => total + item.totalPrice,
-        0
-      );
-    },
-      removeFromCart(state, action) {
+    const newItem = {
+      ...action.payload,
+      quantity: 1,
+      totalPrice: Number(action.payload.price || 0),
+    };
+    state.cartItems.unshift(newItem);
+  }
+  state.totalQuantity = state.cartItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+  state.totalPrice = state.cartItems.reduce(
+    (sum, item) => sum + item.totalPrice,
+    0
+  );
+
+  console.log("🛒 Cart Updated (Redux):", state.cartItems);
+},
+  removeFromCart(state, action) {
   const id = action.payload;
   const itemToRemove = state.cartItems.find(item => item.id === id);
   
@@ -111,7 +114,7 @@ decreaseQty(state, action) {
 export const {
   addToCart,
   removeFromCart,
-    updateQuantity,
+  updateQuantity,
   toggleDropdown,
   decreaseQty,
   increaseQty,
