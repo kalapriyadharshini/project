@@ -1,156 +1,160 @@
-// import React from "react";
-// import { useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-// import { Button, Table } from "react-bootstrap";
-// import "./OrderSummaryPage.css";
-// const OrderSummaryPage = () => {
-//   const cartItems = useSelector((state) => state.cart.cartItems);
-//   const navigate = useNavigate();
-//   const subtotal = cartItems.reduce(
-//     (acc, item) => acc + item.price * item.quantity,
-//     0
-//   );
-//   const handleConfirmOrder = () => {
-//     navigate("/order-success");
-//   };
-//   return (
-//     <div className="container mt-4 order-summary-wrapper">
-//       <h2 className="mb-4 text-center text-primary fw-bold">Order Summary</h2>
-//       {cartItems.length === 0 ? (
-//         <p className="text-center text-danger fw-bold">No items in cart.</p>
-//       ) : (
-//         <>
-//           <Table bordered hover responsive className="summary-table my-3">
-//             <thead className="text-center text-primary">
-//               <tr>
-//                 <th style={{ backgroundColor: "#cbe3f6" }}>Image</th>
-//                 <th style={{ backgroundColor: "#cbe3f6" }}>Product</th>
-//                 <th style={{ backgroundColor: "#cbe3f6" }}>Qty</th>
-//                 <th style={{ backgroundColor: "#cbe3f6" }}>Price</th>
-//                 <th style={{ backgroundColor: "#cbe3f6" }}>Total</th>
-//               </tr>
-//             </thead>
-//             <tbody className="text-center align-middle text-primary">
-//               {cartItems.map((item) => (
-//                 <tr key={item.id}>
-//                   <td>
-//                     <img src={item.image} alt={item.name} width="70" height="70" />
-//                   </td>
-//                   <td>{item.name}</td>
-//                   <td>{item.quantity}</td>
-//                   <td>₹{item.price.toFixed(2)}</td>
-//                   <td>₹{(item.quantity * item.price).toFixed(2)}</td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </Table>
-//           <div className="text-end">
-//             <p>
-//               <strong className="text-primary">Sub-Total:</strong> ₹{subtotal.toFixed(2)}
-//             </p>
-//             <h5>
-//               <strong className="text-primary">Total:</strong> ₹{subtotal.toFixed(2)}
-//             </h5>
-//             <Button variant="primary" className="mt-3" onClick={handleConfirmOrder}>
-//               Confirm Order
-//             </Button>
-//           </div>
-//         </>
-//       )}
-//     </div>
-//   );
-// };
-// export default OrderSummaryPage;
-
-
-
-
-
-
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button, Table } from "react-bootstrap";
-import axios from "axios"; 
+import { Button, Table, Image } from "react-bootstrap";
+import axios from "axios";
+import { clearCart } from "../redux/cartSlice";
+import { setUser } from "../redux/userSlice";
 import "./OrderSummaryPage.css";
 
 const OrderSummaryPage = () => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const subtotal = cartItems.reduce(
+  useEffect(() => {
+    const storedUser = localStorage.getItem("userInfo");
+    if (storedUser) {
+      dispatch(setUser(JSON.parse(storedUser)));
+    }
+  }, [dispatch]);
+
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const userInfo = useSelector((state) => state.user.userInfo);
+console.log("UserInfo:", userInfo);
+
+  const safeCartItems = Array.isArray(cartItems) ? cartItems : [];
+
+  const subtotal = safeCartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
+  const roundedSubtotal = Math.round(subtotal * 100) / 100;
 
-  const handleConfirmOrder = async () => {
-    const order = {
-      products: cartItems,
-      user: {
-        name: "Test User",
-        email: "test@example.com",
-      },
-      total: subtotal,
-    };
+  const address = userInfo?.address ?? {};
 
+  const handlePlaceOrder = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/orders", order);
-      console.log("Order Saved:", res.data);
-      navigate("/order-success"); 
-    } catch (err) {
-      console.error("Order Failed:", err);
-      alert("Failed to place order");
+      const token = localStorage.getItem("token");
+      if (!token || !userInfo) {
+        alert("User not logged in");
+        return navigate("/login?mode=login");
+      }
+
+      const requiredFields = [
+        "flat",
+        "area",
+        "city",
+        "pincode",
+        "country",
+        "state",
+      ];
+
+      for (const field of requiredFields) {
+        if (!address[field]) {
+          alert(`Missing required field: ${field}`);
+          return;
+        }
+      }
+
+      const orderPayload = {
+        userId: userInfo.id || userInfo._id,
+        products: safeCartItems.map((item) => ({
+          productId: item._id || item.id,
+          quantity: item.quantity,
+        })),
+        shippingAddress: {
+          flat: address.flat,
+          area: address.area,
+          landmark: address.landmark,
+          city: address.city,
+          pincode: address.pincode,
+          country: address.country,
+          state: address.state,
+        },
+        paymentMethod: "cod",
+        totalAmount: roundedSubtotal,
+      };
+
+      const res = await axios.post("/api/orders", orderPayload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      dispatch(clearCart());
+      navigate("/order-success");
+    } catch (error) {
+      console.error("Order Error:", error.response?.data || error.message);
+      alert("Order failed. Please try again.");
     }
   };
 
   return (
-    <div className="container mt-4 order-summary-wrapper">
-      <h2 className="mb-4 text-center text-primary fw-bold">Order Summary</h2>
+    <div className="order-summary-page container py-4">
+      <h2 className="mb-4">Order Summary</h2>
 
-      {cartItems.length === 0 ? (
-        <p className="text-center text-danger fw-bold">No items in cart.</p>
-      ) : (
-        <>
-          <Table bordered hover responsive className="summary-table my-3">
-            <thead className="text-center text-primary">
-              <tr>
-                <th style={{ backgroundColor: "#cbe3f6" }}>Image</th>
-                <th style={{ backgroundColor: "#cbe3f6" }}>Product</th>
-                <th style={{ backgroundColor: "#cbe3f6" }}>Qty</th>
-                <th style={{ backgroundColor: "#cbe3f6" }}>Price</th>
-                <th style={{ backgroundColor: "#cbe3f6" }}>Total</th>
-              </tr>
-            </thead>
-            <tbody className="text-center align-middle text-primary">
-              {cartItems.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <img src={item.image} alt={item.name} width="70" height="70" />
-                  </td>
-                  <td>{item.name}</td>
-                  <td>{item.quantity}</td>
-                  <td>₹{item.price.toFixed(2)}</td>
-                  <td>₹{(item.quantity * item.price).toFixed(2)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+      <div className="user-details mb-4">
+        <h4>Shipping To:</h4>
+        <p>
+          <strong>{userInfo?.name ?? "Name not available"}</strong>
+        </p>
+        <p>
+          {userInfo?.email ?? "Email missing"} | {userInfo?.phone ?? "Phone missing"}
+        </p>
+        <p>
+          {address.flat ?? "Flat"}, {address.area ?? "Area"}
+          {address.landmark ? `, ${address.landmark}` : ""}
+        </p>
+        <p>
+          {address.city ?? "City"} - {address.pincode ?? "PIN"}, {address.state ?? "State"},{" "}
+          {address.country ?? "Country"}
+        </p>
+      </div>
 
-          <div className="text-end">
-            <p>
-              <strong className="text-primary">Sub-Total:</strong> ₹{subtotal.toFixed(2)}
-            </p>
-            <h5>
-              <strong className="text-primary">Total:</strong> ₹{subtotal.toFixed(2)}
-            </h5>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price (₹)</th>
+            <th>Total (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {safeCartItems.map((item, index) => (
+            <tr key={index}>
+              <td>
+                <Image
+                  src={item.image || "https://via.placeholder.com/50"}
+                  alt={item.name}
+                  width={50}
+                  height={50}
+                  rounded
+                />
+              </td>
+              <td>{item.name}</td>
+              <td>{item.quantity}</td>
+              <td>{item.price}</td>
+              <td>{item.price * item.quantity}</td>
+            </tr>
+          ))}
+          <tr>
+            <td colSpan="4" className="text-end fw-bold">
+              Subtotal
+            </td>
+            <td className="fw-bold">₹{roundedSubtotal}</td>
+          </tr>
+        </tbody>
+      </Table>
 
-            <Button variant="primary" className="mt-3" onClick={handleConfirmOrder}>
-              Confirm Order
-            </Button>
-          </div>
-        </>
-      )}
+      <div className="text-end mt-4">
+        <Button variant="success" onClick={handlePlaceOrder}>
+          Place Order (Cash on Delivery)
+        </Button>
+      </div>
     </div>
   );
 };

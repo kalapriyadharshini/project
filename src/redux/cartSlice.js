@@ -40,7 +40,7 @@ const cartSlice = createSlice({
     0
   );
 
-  console.log("🛒 Cart Updated (Redux):", state.cartItems);
+  console.log(" Cart Updated (Redux):", state.cartItems);
 },
   removeFromCart(state, action) {
   const id = action.payload;

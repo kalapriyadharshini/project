@@ -87,5 +87,10 @@
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
+.nav-hover .icon,
+.nav-hover .text {
+  color: #1e1d1d!important;
+}
+
 }
 

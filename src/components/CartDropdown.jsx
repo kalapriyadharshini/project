@@ -200,6 +200,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaTrashAlt } from 'react-icons/fa';
+import { useSelector } from "react-redux";
 import './CartDropdown.css';
 const CartDropdown = ({
   cartItems = [],
@@ -209,6 +210,7 @@ const CartDropdown = ({
 }) => {
   const navigate = useNavigate();
   const safeTotal = Number(totalPrice || 0).toFixed(2);
+  const userInfo = useSelector((state) => state.user.userInfo);
   const handleViewCart = () => {
     if (typeof setCartOpen === 'function') {
       setCartOpen(false);
@@ -259,9 +261,15 @@ const CartDropdown = ({
             <button className="btn btn-primary w-50" onClick={handleViewCart}>
               View Cart
             </button>
-            <Link to="/checkout" className="btn btn-primary check w-50">
-              Checkout
-            </Link>
+             <button
+  className="btn btn-primary check w-50"
+  onClick={() => {
+    setCartOpen(false);
+    userInfo ? navigate("/order-summary") : navigate("/login");
+  }}
+>
+  Checkout
+</button>
           </div>
         </>
       )}

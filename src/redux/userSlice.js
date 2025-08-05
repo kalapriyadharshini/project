@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const storedUser = localStorage.getItem("userInfo") // ✅ use the correct key
+const storedUser = localStorage.getItem("userInfo") 
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 

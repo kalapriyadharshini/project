@@ -4,10 +4,10 @@ import { removeFromCart, increaseQty, decreaseQty } from "../redux/cartSlice";
 import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./ViewPage.css";
-
 const ViewPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.user.userInfo);
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   useEffect(() => {
@@ -104,13 +104,8 @@ const ViewPage = () => {
             </h5>
 
             <div className="d-flex justify-content-end mt-3 gap-2">
-              <Button
-                variant="primary"
-                onClick={() => navigate("/")}
-              >
-                Continue Shopping
-              </Button>
-              <Button variant="primary" onClick={() => navigate("/checkout")}>Checkout</Button>
+              <Button variant="primary" onClick={() => navigate("/")}>Continue Shopping</Button>
+              <Button variant="primary" onClick={() => { userInfo ? navigate("/order-summary") : navigate("/login"); }}>Checkout</Button>
             </div>
           </div>
         </>
@@ -118,5 +113,4 @@ const ViewPage = () => {
     </div>
   );
 };
-
 export default ViewPage;

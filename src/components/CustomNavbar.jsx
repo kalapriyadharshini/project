@@ -548,7 +548,7 @@ useEffect(() => {
                 <FaHeart size={20} className="me-2 icon" />
                 <span className="fw-semibold text">Wishlist</span>
               </Link>
-
+            
           
               {/* {isLoggedIn && (
   <div
@@ -629,7 +629,7 @@ useEffect(() => {
     >
       {isLoggedIn ? (
         <>
-          <div className="dropdown-item" onClick={() => navigate("/myaccount")}>
+          <div className="dropdown-item" onClick={() => navigate("/profile")}>
             My Profile
           </div>
           <div className="dropdown-item" onClick={() => navigate("/orders")}>
@@ -744,7 +744,7 @@ useEffect(() => {
     )}
   </div>
 {/* Tablet/Laptop version: 768px–1024px */}
-{isLoggedIn && (
+{/* {isLoggedIn && (
   <div
     className="d-none d-md-flex d-lg-none position-relative nav-hover text-decoration-none align-items-center"
     onClick={() => setShowAccountDropdown((prev) => !prev)}
@@ -773,7 +773,62 @@ useEffect(() => {
       </div>
     )}
   </div>
-)}
+)} */}
+<div
+  className="position-relative nav-hover text-decoration-none d-flex align-items-center"
+  onMouseEnter={() => setShowAccountDropdown(true)}
+  onMouseLeave={() => setShowAccountDropdown(false)}
+  style={{ cursor: "pointer" }}
+>
+  <FaUser size={20} className="me-2 icon" />
+  <span className="fw-semibold text">
+    {isLoggedIn ? `Hi, ${username}` : 'My Account'}
+  </span>
+
+  {showAccountDropdown && (
+    <div
+      className="position-absolute bg-white shadow-sm rounded"
+      style={{
+        top: "25px",
+        right: 0,
+        zIndex: 1000,
+        padding: "0.75rem 1rem",
+        minWidth: "180px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        color: "#333",
+      }}
+    >
+      {isLoggedIn ? (
+        <>
+          <div className="dropdown-item" onClick={() => navigate("/profile")}>
+            My Profile
+          </div>
+          <div className="dropdown-item" onClick={() => navigate("/orders")}>
+            Orders
+          </div>
+          <div className="dropdown-item" onClick={() => navigate("/wishlist")}>
+            Wishlist
+          </div>
+          <div
+            className="dropdown-item text-danger"
+            onClick={handleLogout}
+          >
+            Logout
+          </div>
+        </>
+      ) : (
+        <>
+           <div className="dropdown-item" onClick={() => navigate("/login?mode=login")}>
+      Login
+    </div>
+    <div className="dropdown-item" onClick={() => navigate("/login?mode=register")}>
+      Register
+    </div>
+        </>
+      )}
+    </div>
+  )}
+</div>
 
 </div>
 
@@ -819,37 +874,62 @@ useEffect(() => {
             </div>
           )}
         </div>
-     {isLoggedIn && (
-  <div className="d-flex d-md-none position-relative" style={{ cursor: "pointer" }}>
-    <Button
-      variant="link"
-      className={`nav-icon p-0 ${isActive("/profile") ? "text-primary" : "text-dark"}`}
-      onClick={() => setShowAccountDropdown((prev) => !prev)}
-    >
-      <FaUser size={20} />
-    </Button>
+         <div
+  className="position-relative nav-hover text-decoration-none d-flex align-items-center"
+  onMouseEnter={() => setShowAccountDropdown(true)}
+  onMouseLeave={() => setShowAccountDropdown(false)}
+  style={{ cursor: "pointer" }}
+>
+  <FaUser size={20} className="me-2 icon" />
+  <span className="fw-semibold text">
+    {isLoggedIn ? `Hi, ${username}` : 'My Account'}
+  </span>
 
-    {showAccountDropdown && (
-      <div
-        className="position-absolute bg-white shadow-sm rounded"
-        style={{
-          bottom: "35px",  
-          right: 0,
-          zIndex: 1000,
-          padding: "0.5rem 1rem",
-          minWidth: "100px",
-        }}
-      >
-        <span
-          onClick={handleLogout}
-          style={{ cursor: "pointer", color: "#333", fontWeight: 500 }}
-        >
-          Logout
-        </span>
-      </div>
-    )}
-  </div>
-)}
+  {showAccountDropdown && (
+    <div
+      className="position-absolute bg-white shadow-sm rounded"
+      style={{
+        bottom: "35px",
+        right: 0,
+        zIndex: 10000,
+        padding: "0.75rem 1rem",
+        minWidth: "180px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        color: "#007BFF",
+      }}
+    >
+      {isLoggedIn ? (
+        <>
+          <div className="dropdown-item" onClick={() => navigate("/profile")}>
+            My Profile
+          </div>
+          <div className="dropdown-item" onClick={() => navigate("/orders")}>
+            Orders
+          </div>
+          <div className="dropdown-item" onClick={() => navigate("/wishlist")}>
+            Wishlist
+          </div>
+          <div
+            className="dropdown-item text-danger"
+            onClick={handleLogout}
+          >
+            Logout
+          </div>
+        </>
+      ) : (
+        <>
+           <div className="dropdown-item" onClick={() => navigate("/login?mode=login")}>
+      Login
+    </div>
+    <div className="dropdown-item" onClick={() => navigate("/login?mode=register")}>
+      Register
+    </div>
+        </>
+      )}
+    </div>
+  )}
+</div>
+
 
       </div>
 

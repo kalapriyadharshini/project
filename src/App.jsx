@@ -25,6 +25,9 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setUser } from './redux/userSlice';
 
+import Wishlist from './Pages/Wishlist'
+import Orders from './Pages/Orders'
+
 
 
 
@@ -46,6 +49,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/orders" element={<Orders />} />
+           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/track" element={<Track />} />

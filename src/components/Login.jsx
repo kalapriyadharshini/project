@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../redux/userSlice'; // adjust path if needed
+import { setUser } from '../redux/userSlice'; 
 
 import './Login.css';
 
@@ -20,24 +20,27 @@ const Login = () => {
     country: '',
     state: '',
   });
-   const dispatch = useDispatch();
-    useEffect(() => {
-    const storedUser = localStorage.getItem('userInfo');
-    if (storedUser) {
-      dispatch(setUser(JSON.parse(storedUser))); // ✅ sets Redux from storage
-    }
-  }, [dispatch]);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     const mode = query.get('mode');
     setIsLoginMode(mode === 'login');
   }, [location.search]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('userInfo');
+    if (storedUser) {
+      dispatch(setUser(JSON.parse(storedUser)));
+    }
+  }, [dispatch]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,18 +57,39 @@ const Login = () => {
           email: formData.email,
           password: formData.password,
         });
-        console.log('Login success:', res.data);
 
         localStorage.setItem('token', res.data.token);
-        // localStorage.setItem('userInfo', JSON.stringify(res.data.user));
-       localStorage.setItem('userInfo', JSON.stringify(res.data.user));
-dispatch(setUser(res.data.user)); // <-- Add this line
-navigate('/');
+        localStorage.setItem('userInfo', JSON.stringify(res.data.user));
+        // dispatch(setUser(res.data.user));
+        // dispatch(setUser({ user: res.data.user, token: res.data.token }));
+        dispatch(setUser(res.data.user));
 
+
+        navigate('/');
       } else {
-     const res = await axios.post('/api/user/register', formData);
+        const res = await axios.post('/api/user/register', formData);
 
-        setSuccessMessage('Registered successfully! You can now log in.');
+        //  Build full user object with address
+        const fullUser = {
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          address: {
+            flat: formData.flat,
+            area: formData.area,
+            landmark: formData.landmark,
+            city: formData.city,
+            pincode: formData.pincode,
+            country: formData.country,
+            state: formData.state,
+          },
+        };
+
+        //  Save to localStorage and Redux
+        localStorage.setItem('userInfo', JSON.stringify(fullUser));
+        dispatch(setUser(fullUser));
+
+        setSuccessMessage('Registered successfully!');
         setFormData({
           name: '',
           phone: '',
@@ -79,6 +103,7 @@ navigate('/');
           country: '',
           state: '',
         });
+        navigate('/');
       }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred');
