@@ -94,3 +94,24 @@
 
 }
 
+/* Account dropdown */
+.nav-hover .dropdown-item {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  background-color: #f9fdfe; 
+  color: #004d66;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-hover .dropdown-item:hover {
+  background-color: #e6f6fb;
+  color: #005580;
+}
+.nav-hover .dropdown-item.text-danger {
+  background-color: #fff5f5;
+  color: #c0392b;
+}
+.nav-hover .dropdown-item.text-danger:hover {
+  background-color: #fbeaea; 
+  color: #a8322d;
+}

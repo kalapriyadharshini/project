@@ -1,4 +1,4 @@
-.cart-page-wrapper {
+/* .cart-page-wrapper {
   background: #fff;
   padding: 30px;
   border-radius: 10px;
@@ -93,4 +93,137 @@
 }
 
 
+ */
 
+
+
+
+ .cart-page-wrapper {
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+  padding: 30px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 1200px;
+  box-shadow: 0 4px 10px rgba(0, 150, 136, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cart-heading {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #00796b;
+}
+
+.cart-table {
+  width: 100%;
+  border: 1px solid #b2ebf2 !important;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 150, 136, 0.08);
+}
+
+.cart-table th,
+.cart-table td {
+  vertical-align: middle !important;
+  text-align: center;
+  padding: 15px;
+  color: #004d40;
+}
+
+.cart-table th {
+  background-color: #b2ebf2;
+  font-weight: 600;
+  color: #004d40;
+  font-size: 14px;
+}
+
+.cart-img-thumb,
+.cart-image {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  border: 2px solid #b2ebf2;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.qty-controls,
+.qty-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.qty-number {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 500;
+  background-color: #e0f2f1;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: #00695c;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.action-buttons button,
+.qty-controls button {
+  padding: 5px 10px;
+  background-color: #0097a7;
+  border-color: #0097a7;
+  color: white;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.action-buttons button:hover,
+.qty-controls button:hover {
+  background-color: #00796b;
+  border-color: #00796b;
+}
+
+.summary-section,
+.cart-summary {
+  margin-top: 30px;
+  font-size: 1.1rem;
+  text-align: right;
+  margin-right: 10px;
+  color: #004d40;
+}
+
+.summary-section h5,
+.cart-summary h5 {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #00796b;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 15px;
+  margin-right: 10px;
+}
+
+.cart-buttons button {
+  min-width: 150px;
+  background-color: #0097a7;
+  border-color: #0097a7;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+
+.cart-buttons button:hover {
+  background-color: #006064;
+  border-color: #006064;
+}

@@ -27,6 +27,7 @@ import { setUser } from './redux/userSlice';
 
 import Wishlist from './Pages/Wishlist'
 import Orders from './Pages/Orders'
+import ScrollToTop from './components/ScrollToTop'
 
 
 
@@ -45,6 +46,7 @@ function App() {
   return (
     <>  
         <CustomNavbar />
+          <ScrollToTop />
        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutus" element={<Aboutus />} />

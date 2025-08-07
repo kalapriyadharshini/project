@@ -429,8 +429,6 @@ const Wishlist = () => {
   const navigate = useNavigate();
   const [wishlistItems, setWishlistItems] = useState([]);
   const token = localStorage.getItem('token');
-
-  // Redirect if token is not available
   useEffect(() => {
     if (!token) {
       navigate('/login');
@@ -495,7 +493,7 @@ const Wishlist = () => {
 
   return (
     <div className="wishlist-container">
-      <h2 className="wishlist-title">My Wishlist</h2>
+      <h2 className="wishlist-title fw-bold">My Wishlist</h2>
 
       {wishlistItems.length === 0 ? (
         <div className="empty-wishlist text-center">
@@ -544,7 +542,7 @@ const Wishlist = () => {
             </table>
           </div>
 
-          <div className="wishlist-buttons text-center mt-4">
+          <div className="wishlist-buttons  text-center mt-4">
             <Link to="/" className="btn btn-green me-3">CONTINUE SHOPPING</Link>
             <Link
               to="/order-summary"
@@ -561,3 +559,4 @@ const Wishlist = () => {
 };
 
 export default Wishlist;
+

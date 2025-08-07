@@ -55,7 +55,19 @@ const SubcategoryPage = () => {
     key => key.toLowerCase() === categoryName.toLowerCase()
   );
 
-  const categoryProducts = productData[formattedCategory] || [];
+  // const categoryProducts = productData[formattedCategory] || [];
+  useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`/api/products?category=${formattedCategory}`);
+      setCategoryProducts(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  fetchData();
+}, [formattedCategory]);
+
 
   return (
  <div className="subcategory-container">

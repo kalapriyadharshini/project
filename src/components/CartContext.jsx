@@ -19,9 +19,6 @@ export const CartProvider = ({ children }) => {
     setShowCartDropdown(true);
     setTimeout(() => setShowCartDropdown(false), 3000);
   };
-
- 
-
   const removeFromCart = (id) => {
     setCartItems(prev => prev.filter(item => item.id !== id));
   };

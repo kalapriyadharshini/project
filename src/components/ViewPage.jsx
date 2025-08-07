@@ -9,7 +9,6 @@ const ViewPage = () => {
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.user.userInfo);
   const cartItems = useSelector((state) => state.cart.cartItems);
-
   useEffect(() => {
     if (window.innerWidth <= 425) {
       window.scrollTo(0, 0);

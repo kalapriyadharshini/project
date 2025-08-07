@@ -114,8 +114,11 @@
 
 
 // Profile.jsx
+// 
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Profile.css"; 
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -138,19 +141,24 @@ const Profile = () => {
     fetchProfile();
   }, []);
 
-  if (!profile) return <p>Loading profile...</p>;
+  if (!profile) return <p className="profile-loading">Loading profile...</p>;
 
   return (
-    <div className="container mt-4">
-      <h3>User Profile</h3>
-      <p><strong>Name:</strong> {profile.name}</p>
-      <p><strong>Email:</strong> {profile.email}</p>
-      <p><strong>Phone:</strong> {profile.phone}</p>
-      <h5 className="mt-3">Address:</h5>
-      <p>{profile.address.flat}, {profile.address.area}, {profile.address.landmark}</p>
-      <p>{profile.address.city} - {profile.address.pincode}, {profile.address.state}, {profile.address.country}</p>
+    <div className="profile-container mt-4">
+      <h3 className="profile-title text-primary fw-bold">User Profile</h3>
+      <p className="profile-text"><strong>Name:</strong> {profile.name}</p>
+      <p className="profile-text"><strong>Email:</strong> {profile.email}</p>
+      <p className="profile-text"><strong>Phone:</strong> {profile.phone}</p>
+      <h5 className="profile-subtitle mt-3 fw-bold">Address:</h5>
+      <p className="profile-text">
+        {profile.address.flat}, {profile.address.area}, {profile.address.landmark}
+      </p>
+      <p className="profile-text">
+        {profile.address.city} - {profile.address.pincode}, {profile.address.state}, {profile.address.country}
+      </p>
     </div>
   );
 };
 
 export default Profile;
+

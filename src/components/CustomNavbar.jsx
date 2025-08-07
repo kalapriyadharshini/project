@@ -616,10 +616,10 @@ useEffect(() => {
 
   {showAccountDropdown && (
     <div
-      className="position-absolute bg-white shadow-sm rounded"
+      className="position-absolute dropdown-box bg-white shadow-sm rounded"
       style={{
         top: "25px",
-        right: 0,
+        left: "6px",
         zIndex: 1000,
         padding: "0.75rem 1rem",
         minWidth: "180px",
@@ -677,7 +677,7 @@ useEffect(() => {
                     </Badge>
                   )}
                   {showCartDropdown && (
-                    <div className="position-absolute" style={{ top: '30px', right: 0, zIndex: 1000 }}>
+                    <div className="position-absolute" style={{ top: '32px', left: '20px', zIndex: 1000 }}>
                       <CartDropdown
                         cartItems={cartItems}
                         totalPrice={totalPrice}

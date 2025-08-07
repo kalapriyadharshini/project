@@ -51,8 +51,24 @@ const handleBuyNow = () => {
 
 
   // Flatten all product arrays
-  const allProducts = Object.values(productData).flat();
-  const product = allProducts.find(p => p.name === decodedName);
+  // const allProducts = Object.values(productData).flat();
+  // const product = allProducts.find(p => p.name === decodedName);
+   
+
+  useEffect(() => {
+  const fetchProduct = async () => {
+    try {
+      const res = await axios.get(`/api/products/${decodedName}`); // backend route should decode name
+      setProduct(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  fetchProduct();
+}, [decodedName]);
+
+
+
 
   if (!product) {
     return (
