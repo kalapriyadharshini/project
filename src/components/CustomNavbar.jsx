@@ -465,6 +465,7 @@ const [showAccountDropdown, setShowAccountDropdown] = useState(false);
   const { cartItems, showCartDropdown, totalQuantity, totalPrice } = useSelector((state) => state.cart);
   const [isHovered, setIsHovered] = useState(false);
   const [showMobileCartDropdown, setShowMobileCartDropdown] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
 
 useEffect(() => {
@@ -509,7 +510,7 @@ useEffect(() => {
           <Container fluid className="ms-5 me-5 justify-content-between">
             <Navbar.Brand as={Link} to="/" className="brand-text">BLUEVIN</Navbar.Brand>
 
-            <Form className="mx-auto" style={{ width: "600px" }}>
+            {/* <Form className="mx-auto" style={{ width: "600px" }}>
               <div style={{
                 display: "flex",
                 border: "1px solid #ccc",
@@ -541,7 +542,60 @@ useEffect(() => {
                   <FaSearch color="black" size={20} />
                 </div>
               </div>
-            </Form>
+            </Form> */}
+
+
+            <Form
+  className="mx-auto"
+  style={{ width: "600px" }}
+  onSubmit={(e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+    }
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      border: "1px solid #ccc",
+      borderRadius: "999px",
+      overflow: "hidden",
+      height: "45px",
+      backgroundColor: "#f8f9fa",
+    }}
+  >
+    <FormControl
+      type="search"
+      placeholder="Search a Product"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="border-0 shadow-none"
+      style={{
+        flex: 1,
+        paddingLeft: "20px",
+        fontSize: "1rem",
+        borderRadius: "999px 0 0 999px",
+        backgroundColor: "#f8f9fa",
+      }}
+    />
+    <button
+      type="submit"
+      style={{
+        width: "50px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "none",
+        borderLeft: "2px solid #cce0ff",
+        backgroundColor: "#f2f2f2",
+      }}
+    >
+      <FaSearch color="black" size={20} />
+    </button>
+  </div>
+</Form>
+
 
             <div className="d-flex align-items-center gap-4 position-relative">
               <Link to="/wishlist" className="nav-hover text-decoration-none d-flex align-items-center">
