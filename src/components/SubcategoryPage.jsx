@@ -43,41 +43,96 @@
 
 
 
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import productData from '../data/Productdata';
-import ProductCard from '../components/ProductCard'; // adjust path if needed
-import './SubcategoryPage.css';
-const SubcategoryPage = () => {
-  const { categoryName } = useParams();
+// import React from 'react';
+// import { useParams } from 'react-router-dom';
+// import productData from '../data/Productdata';
+// import ProductCard from '../components/ProductCard'; 
+// import './SubcategoryPage.css';
+// const SubcategoryPage = () => {
+//   const { categoryName } = useParams();
 
-  const formattedCategory = Object.keys(productData).find(
-    key => key.toLowerCase() === categoryName.toLowerCase()
-  );
+//   const formattedCategory = Object.keys(productData).find(
+//     key => key.toLowerCase() === categoryName.toLowerCase()
+//   );
 
   // const categoryProducts = productData[formattedCategory] || [];
-  useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(`/api/products?category=${formattedCategory}`);
-      setCategoryProducts(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  fetchData();
-}, [formattedCategory]);
+//   useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const res = await axios.get(`/api/products?category=${formattedCategory}`);
+//       setCategoryProducts(res.data);
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   };
+//   fetchData();
+// }, [formattedCategory]);
 
+
+//   return (
+//  <div className="subcategory-container">
+//       <h2 className="subcategory-title text-center fw-bold ">
+//         {formattedCategory?.toUpperCase()}
+//       </h2>
+//       <div className="row justify-content-center">
+//         {categoryProducts.map((product, index) => (
+//         <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3" key={index}>
+  
+//             <div className="custom-card-wrapper">
+//               <ProductCard product={product} />
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default SubcategoryPage;
+
+
+
+
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios'; // ✅ make sure axios is imported
+import ProductCard from '../components/ProductCard';
+import './SubcategoryPage.css';
+
+const SubcategoryPage = () => {
+  const { categoryName } = useParams();
+  const [categoryProducts, setCategoryProducts] = useState([]);
+
+  const formattedCategory = categoryName?.replace(/%20/g, ' '); // handle space in URL
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `https://your-backend-domain.com/api/products?category=${formattedCategory}`
+        );
+        setCategoryProducts(res.data);
+      } catch (err) {
+        console.error('API call failed. Falling back to local data.', err);
+
+        // fallback to local static productData
+        const localData = require('../data/Productdata');
+        const fallbackData = localData[formattedCategory] || [];
+        setCategoryProducts(fallbackData);
+      }
+    };
+
+    fetchData();
+  }, [formattedCategory]);
 
   return (
- <div className="subcategory-container">
-      <h2 className="subcategory-title text-center fw-bold ">
+    <div className="subcategory-container">
+      <h2 className="subcategory-title text-center fw-bold">
         {formattedCategory?.toUpperCase()}
       </h2>
       <div className="row justify-content-center">
         {categoryProducts.map((product, index) => (
-        <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3" key={index}>
-  
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3" key={index}>
             <div className="custom-card-wrapper">
               <ProductCard product={product} />
             </div>
@@ -86,6 +141,6 @@ const SubcategoryPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SubcategoryPage;
