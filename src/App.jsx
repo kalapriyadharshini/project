@@ -29,6 +29,7 @@ import Wishlist from './Pages/Wishlist'
 import Orders from './Pages/Orders'
 import ScrollToTop from './components/ScrollToTop'
 import SearchResults from './Pages/SearchResults'
+import GuidesPage from './Pages/GuidesPage'
 
 
 
@@ -54,6 +55,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/orders" element={<Orders />} />
            <Route path="/wishlist" element={<Wishlist />} />
+           <Route path="/guides" element={<GuidesPage />} />
            <Route path="/search" element={<SearchResults />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/register" element={<Register />} /> */}
