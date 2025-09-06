@@ -107,3 +107,18 @@
   border-radius: 8px;
   font-size: 14px;
 }
+
+.input-error {
+  border: 2px solid red !important;
+}
+
+.input-success {
+  border: 2px solid green !important;
+}
+
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}

@@ -1,26 +1,46 @@
-.order-success-wrapper {
-  min-height: 70vh;
+/* Container */
+.order-success-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fdfdfd;
+  min-height: 70vh;
+  background: #f9fdfb;
+  padding: 20px;
 }
 
-.success-box {
-  background: #e8f9f1;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 128, 0, 0.1);
+/* Card */
+.order-success-page .success-card {
   max-width: 500px;
-  width: 90%;
+  width: 100%;
+  border-radius: 15px;
+  padding: 25px;
+  background: #ffffff;
 }
 
-.success-box h2 {
-  font-size: 28px;
+/* Title */
+.order-success-page .success-title {
+  color: #28a745;
+  font-weight: bold;
   margin-bottom: 15px;
 }
 
-.success-box p {
-  margin-bottom: 20px;
-  font-size: 18px;
+/* Order ID */
+.order-success-page .order-id {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Message */
+.order-success-page .success-message {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* Buttons */
+.order-success-page .action-buttons .btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 10px 20px;
 }

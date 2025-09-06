@@ -39,14 +39,14 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios"; // ✅ You also need to import axios
+import axios from "axios"; //  You also need to import axios
 import FilteredProductDisplay from "../components/FilteredProductDisplay";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const decodedCategory = decodeURIComponent(categoryName);
 
-  const [products, setProducts] = useState([]); // ✅ FIXED: Declare products state
+  const [products, setProducts] = useState([]); //  FIXED: Declare products state
 
   useEffect(() => {
     const fetchProducts = async () => {

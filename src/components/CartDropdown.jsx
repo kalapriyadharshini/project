@@ -265,7 +265,7 @@ const CartDropdown = ({
   className="btn btn-primary check w-50"
   onClick={() => {
     setCartOpen(false);
-    userInfo ? navigate("/order-summary") : navigate("/login");
+    userInfo ? navigate("/checkout/summary") : navigate("/login");
   }}
 >
   Checkout

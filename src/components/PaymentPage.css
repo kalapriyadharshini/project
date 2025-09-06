@@ -1,0 +1,51 @@
+/* Scope everything under .payment-page */
+.payment-page {
+  background: #fefeff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.payment-page h2 {
+  color: #006d77;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Radio buttons */
+.payment-page .form-check {
+  padding: 10px;
+  border: 1px solid #d8eefe;
+  border-radius: 8px;
+  background: #f9fdff;
+  transition: all 0.2s ease;
+}
+.payment-page .form-check:hover {
+  background: #e6f7ff;
+  border-color: #00a7b3;
+}
+.payment-page .form-check-input:checked {
+  background-color: #00a7b3;
+  border-color: #00a7b3;
+}
+.payment-page .form-check-label {
+  margin-left: 8px;
+  color: #333;
+}
+
+/* Error message */
+.payment-page .text-danger {
+  font-weight: bold;
+}
+
+/* Button */
+.payment-page .btn-primary {
+  background-color: #00a7b3;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+.payment-page .btn-primary:hover {
+  background-color: #008c96;
+}

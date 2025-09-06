@@ -4,7 +4,7 @@ import CustomNavbar from './components/CustomNavbar'
 import Home from './Pages/Home'
 import { Routes, Route } from 'react-router-dom'
 import Aboutus from './Pages/Aboutus'
-import Track from './Pages/Track'
+// import Track from './Pages/Track'
 import Contactus from './Pages/Contactus'
 import Terms from './Pages/Terms'
 import Privacy from './Pages/Privacy'
@@ -13,23 +13,34 @@ import CategoryPage from './components/CategoryPage'
 import SubcategoryPage from './components/SubcategoryPage'
 import Footer from './components/Footer'
 import ProductDetails from './components/ProductDetails'
-
-import OrderSummaryPage from './components/OrderSummaryPage'
-import OrderSuccessPage from './components/OrderSuccessPage'
+// import OrderSummaryPage from './components/OrderSummaryPage'
+// import OrderSuccessPage from './components/OrderSuccessPage'
 import Profile from './Pages/Profile'
 import ViewPage from './components/ViewPage'
 import Login from './components/Login'
-import Checkout from './components/Checkout'
-// import Register from './components/Register'
+// import Checkout from './components/Checkout'
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setUser } from './redux/userSlice';
-
 import Wishlist from './Pages/Wishlist'
 import Orders from './Pages/Orders'
 import ScrollToTop from './components/ScrollToTop'
 import SearchResults from './Pages/SearchResults'
 import GuidesPage from './Pages/GuidesPage'
+import Track from './Pages/Track'
+import Checkout from './components/Checkout'
+import PaymentPage from './components/PaymentPage'
+// import OrderSummaryPage from './components/OrderSummaryPage'
+import OrderSuccessPage from './components/OrderSuccessPage'
+// import Checkout from './components/Checkout'
+// import PaymentPage from './components/PaymentPage'
+// import OrderSummaryPage from './components/OrderSummaryPage'
+// import OrderSuccessPage from './components/OrderSuccessPage'
+// import AddressPage from './components/AddressPage'
+import OrderSummaryPage from './components/OrderSummaryPage'
+import AddressPage from './components/AddressPage'
+// import PaymentPage from './components/PaymentPage'
+
 
 
 
@@ -37,7 +48,6 @@ import GuidesPage from './Pages/GuidesPage'
 function App() {
   const [count, setCount] = useState(0)
   const dispatch = useDispatch();
-
     useEffect(() => {
   const storedUser = localStorage.getItem("userInfo");
   if (storedUser) {
@@ -60,20 +70,36 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/track" element={<Track />} />
+          <Route path="/track/:orderId" element={<Track />} />
           <Route path="/contact" element={<Contactus />} />
           <Route path="/term" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/shipping" element={<Shipping />} />
+           {/* <Route path="/shop" element={<Categories />} /> */}
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} /> 
           <Route path="/cart" element={<ViewPage />} />  
           <Route path="/product/:name" element={<ProductDetails />} />
           {/* <Route path="/checkout" element={<CheckoutAuthPage />} /> */}
-          <Route path="/order-summary" element={<OrderSummaryPage />} />
-          <Route path="/order-success" element={<OrderSuccessPage />} />
+           {/* <Route path="/checkout" element={<Checkout />} /> 
+           <Route path="/checkout/address" element={<AddressPage />} />
+           <Route path="/checkout/payment" element={<PaymentPage />} />
+           <Route path="/checkout/summary" element={<OrderSummaryPage />} /> */}
+           {/* <Route path="/order-summary" element={<OrderSummaryPage />} /> */}
+           {/* <Route path="/order-success" element={<OrderSuccessPage />} />
+          <Route path="/order-summary" element={<OrderSummaryPage />} /> */}
+          {/* <Route path="/order-success" element={<OrderSuccessPage />} /> */}
            {/* <Route path="/login" element={<CheckoutAuthPage />} /> */}
-          <Route path="/checkout" element={<Checkout />} />
+          {/* <Route path="/checkout" element={<Checkout />} /> */}
           {/* <Route path="/summary" element={<SummaryPage />} /> */}
+
+           
+            <Route path="/checkout" element={<Checkout />} /> 
+<Route path="/checkout/address" element={<AddressPage />} />
+<Route path="/checkout/payment" element={<PaymentPage />} />
+<Route path="/checkout/summary" element={<OrderSummaryPage />} />
+<Route path="/order-success" element={<OrderSuccessPage />} />
+
 
 
        </Routes>

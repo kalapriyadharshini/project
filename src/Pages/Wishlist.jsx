@@ -137,7 +137,7 @@ const Wishlist = () => {
           <div className="wishlist-buttons text-center mt-4">
             <Link to="/" className="btn btn-green me-3">CONTINUE SHOPPING</Link>
             <Link
-              to="/order-summary"
+              to="/checkout/summary"
               className="btn btn-green"
               onClick={handleCheckoutAll}
             >

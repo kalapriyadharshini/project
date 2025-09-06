@@ -1,0 +1,85 @@
+/* Scope everything to .address-page */
+.address-page {
+  background: #e6f7f9; /* light aqua background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.address-page h3 {
+  color: #006d77;
+  font-weight: bold;
+  border-bottom: 2px solid #83c5be;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+/* Display address card */
+.address-page .bg-light {
+  background: #f0fbfc !important;
+  border-left: 5px solid #00a7b3;
+  border-radius: 12px !important;
+}
+
+/* Form style */
+.address-page form {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Input fields */
+.address-page .form-control {
+  border-radius: 8px;
+  border: 1px solid #cce7ea;
+  transition: all 0.3s ease;
+}
+
+.address-page .form-control:focus {
+  border-color: #00a7b3;
+  box-shadow: 0 0 6px rgba(0,167,179,0.4);
+}
+
+/* Buttons */
+.address-page .btn-primary {
+  background-color: #00a7b3;
+  border: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+.address-page .btn-primary:hover {
+  background-color: #008c96;
+}
+
+.address-page .btn-outline-secondary {
+  border-color: #83c5be;
+  color: #006d77;
+  border-radius: 8px;
+}
+.address-page .btn-outline-secondary:hover {
+  background-color: #83c5be;
+  color: white;
+}
+
+.address-page .btn-success {
+  /* background-color: #38b000; */
+  background-color: #00a7b3;
+  border-radius: 8px;
+  border: none;
+}
+.address-page .btn-success:hover {
+  /* background-color: #2d9100; */
+  background-color: #008c96;
+}
+
+/* Add new address link */
+.address-page .btn-link {
+  font-weight: bold;
+  color: #0096c7 !important;
+  text-decoration: none;
+}
+.address-page .btn-link:hover {
+  text-decoration: none;
+}

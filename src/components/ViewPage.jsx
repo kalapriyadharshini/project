@@ -104,7 +104,9 @@ const ViewPage = () => {
 
             <div className="d-flex justify-content-end mt-3 gap-2">
               <Button variant="primary" onClick={() => navigate("/")}>Continue Shopping</Button>
-              <Button variant="primary" onClick={() => { userInfo ? navigate("/order-summary") : navigate("/login"); }}>Checkout</Button>
+              {/* <Button variant="primary" onClick={() => { userInfo ? navigate("/order-summary") : navigate("/login"); }}>Checkout</Button> */}
+              <Button variant="primary" onClick={() => { userInfo ? navigate("/checkout/summary") : navigate("/login"); }}>Checkout</Button>
+
             </div>
           </div>
         </>

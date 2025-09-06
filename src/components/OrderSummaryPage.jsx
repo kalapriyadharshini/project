@@ -1,150 +1,109 @@
+// src/pages/OrderSummaryPage.jsx
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { Button, Table, Image } from "react-bootstrap";
-import axios from "axios";
-import { clearCart } from "../redux/cartSlice";
-import { setUser } from "../redux/userSlice";
 import "./OrderSummaryPage.css";
 const OrderSummaryPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector((state) => state.cart.cartItems) ?? [];
+  const address = useSelector((state) => state.address.address);
+  const paymentMethod = useSelector((state) => state.payment.method) ?? "";
+
+  // Redirect if any step is missing
   useEffect(() => {
-    const storedUser = localStorage.getItem("userInfo");
-    if (storedUser) {
-      dispatch(setUser(JSON.parse(storedUser)));
-    }
-  }, [dispatch]);
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const userInfo = useSelector((state) => state.user.userInfo);
-console.log("UserInfo:", userInfo);
-  const safeCartItems = Array.isArray(cartItems) ? cartItems : [];
-  const subtotal = safeCartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    if (cartItems.length === 0) navigate("/cart");
+    else if (!address) navigate("/checkout/address");
+    else if (!paymentMethod) navigate("/checkout/payment");
+  }, [cartItems, address, paymentMethod, navigate]);
+  
+
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + Number(item.price || 0) * Number(item.quantity || 1),
     0
   );
-  const roundedSubtotal = Math.round(subtotal * 100) / 100;
-  const address = userInfo?.address ?? {};
-  const handlePlaceOrder = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token || !userInfo) {
-        alert("User not logged in");
-        return navigate("/login?mode=login");
-      }
-      const requiredFields = [
-        "flat",
-        "area",
-        "city",
-        "pincode",
-        "country",
-        "state",
-      ];
 
-      for (const field of requiredFields) {
-        if (!address[field]) {
-          alert(`Missing required field: ${field}`);
-          return;
-        }
-      }
-      const orderPayload = {
-        userId: userInfo.id || userInfo._id,
-        products: safeCartItems.map((item) => {
-  if (!item.id) {
-    console.error("Missing product id in cart item:", item);
+  // const handlePlaceOrder = () => {
+  //   Generate fake order ID
+  //   const fakeOrderId = Math.floor(Math.random() * 1000000);
+
+  //   Navigate first
+  //   navigate("/order-success", { state: { orderId: fakeOrderId } });
+
+  //   Clear cart after navigation to avoid redirect issues
+  //   dispatch(clearCart());
+  // };
+  const handlePlaceOrder = () => {
+  const fakeOrderId = Math.floor(Math.random() * 1000000);
+
+  // Only navigate — do NOT clear cart here
+  navigate("/order-success", { state: { orderId: fakeOrderId } });
+};
+
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="container mt-4 text-center">
+        <h3>Your cart is empty.</h3>
+      </div>
+    );
   }
-  return {
-    productId: item.id,
-    quantity: item.quantity,
-  };
-}),
 
-        shippingAddress: {
-          flat: address.flat,
-          area: address.area,
-          landmark: address.landmark,
-          city: address.city,
-          pincode: address.pincode,
-          country: address.country,
-          state: address.state,
-        },
-        paymentMethod: "cod",
-        totalAmount: roundedSubtotal,
-      };
-      const res = await axios.post("/api/orders", orderPayload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-      dispatch(clearCart());
-      navigate("/order-success");
-    } catch (error) {
-      console.error("Order Error:", error.response?.data || error.message);
-      alert("Order failed. Please try again.");
-    }
-  };
   return (
-    <div className="order-summary-page container py-4">
-      <h2 className="mb-4">Order Summary</h2>
-      <div className="user-details mb-4">
-        <h4>Shipping To:</h4>
-        <p>
-          <strong>{userInfo?.name ?? "Name not available"}</strong>
-        </p>
-        <p>
-          {userInfo?.email ?? "Email missing"} | {userInfo?.phone ?? "Phone missing"}
-        </p>
-        <p>
-          {address.flat ?? "Flat"}, {address.area ?? "Area"}
-          {address.landmark ? `, ${address.landmark}` : ""}
-        </p>
-        <p>
-          {address.city ?? "City"} - {address.pincode ?? "PIN"}, {address.state ?? "State"},{" "}
-          {address.country ?? "Country"}
-        </p>
+    <div className="order-summary-page container mt-4">
+      <h2 className="mb-4 text-primary fw-bold text-center">Order Summary</h2>
+
+      <h5>Cart Items</h5>
+      <div className="table-responsive">
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th style={{ width: 80 }}>Qty</th>
+              <th style={{ width: 140 }}>Price</th>
+              <th style={{ width: 140 }}>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((item) => (
+              <tr key={`${item.category}-${item.id}`}>
+                <td>{item.name}</td>
+                <td>{item.quantity}</td>
+                <td>₹{Number(item.price).toLocaleString()}</td>
+                <td>₹{(Number(item.price) * Number(item.quantity)).toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={3} className="text-end fw-bold">
+                Subtotal:
+              </td>
+              <td className="fw-bold">₹{subtotal.toLocaleString()}</td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
 
-      <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Qty</th>
-            <th>Price (₹)</th>
-            <th>Total (₹)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {safeCartItems.map((item, index) => (
-            <tr key={index}>
-              <td>
-                <Image
-                  src={item.image || "https://via.placeholder.com/50"}
-                  alt={item.name}
-                  width={50}
-                  height={50}
-                  rounded
-                />
-              </td>
-              <td>{item.name}</td>
-              <td>{item.quantity}</td>
-              <td>{item.price}</td>
-              <td>{item.price * item.quantity}</td>
-            </tr>
-          ))}
-          <tr>
-            <td colSpan="4" className="text-end fw-bold">
-              Subtotal
-            </td>
-            <td className="fw-bold">₹{roundedSubtotal}</td>
-          </tr>
-        </tbody>
-      </Table>
+      <h5>Shipping Address</h5>
+      {address && (
+        <p>
+          {address.flat}, {address.area}
+          {address.landmark ? `, ${address.landmark}` : ""}, {address.city},{" "}
+          {address.state}, {address.country} - {address.pincode}
+        </p>
+      )}
 
-      <div className="text-end mt-4">
+      <h5>Payment Method</h5>
+      <p>{paymentMethod}</p>
+
+      <h4 className="text-end mt-3">Total: ₹{subtotal.toLocaleString()}</h4>
+
+      <div className="text-end mt-3">
         <Button variant="success" onClick={handlePlaceOrder}>
-          Place Order (Cash on Delivery)
+          Place Order
         </Button>
       </div>
     </div>
@@ -152,6 +111,3 @@ console.log("UserInfo:", userInfo);
 };
 
 export default OrderSummaryPage;
-
-
-

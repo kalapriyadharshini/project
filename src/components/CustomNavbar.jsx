@@ -416,6 +416,7 @@ import CartDropdown from './CartDropdown';
 import { clearUser } from '../redux/userSlice'; // adjust path if needed
 
 
+
 const CustomNavbar = () => {
   const hoverTimeout = useRef(null);
   const navigate = useNavigate();

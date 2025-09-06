@@ -11,8 +11,6 @@ import aquariumconditioners from '../assets/aquariumconditioners.jpg';
 import aquariumfilters from '../assets/aquariumfilters.jpg';
 import aquariumbreeding from '../assets/aquariumbreeding.jpg';
 import { useNavigate } from 'react-router-dom'; 
-
-
 const categoriesList = [
   { name: 'AQUARIUM TANKs', img: aquariumtanks },
   { name: 'AQUA PLANTS', img: Aquaticplants },
@@ -25,15 +23,11 @@ const categoriesList = [
   { name: 'AQUARIUM FILTERS', img: aquariumfilters },
   { name: 'BREEDING ACCESSORIES', img: aquariumbreeding },
 ];
-
 const Categories = () => {
   const navigate = useNavigate();
-
   const scrollRef = useRef();
   const [currentSlide, setCurrentSlide] = useState(0);
-
   const slidesToShow = 4;
-
   const scroll = (direction) => {
     const container = scrollRef.current;
     const width = container.clientWidth;
@@ -45,9 +39,7 @@ const Categories = () => {
       setCurrentSlide((prev) => Math.min(prev + 1, Math.ceil(categoriesList.length / slidesToShow) - 1));
     }
   };
-
   return (
-    
    <div className="category-container">
   <h2 className="category text-primary my-5 fw-bold">CATEGORIES</h2>
   <div className="category-inner-container">

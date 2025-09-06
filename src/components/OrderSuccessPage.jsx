@@ -1,28 +1,55 @@
+// src/pages/OrderSuccessPage.jsx
 import React, { useEffect } from "react";
-import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import "./OrderSuccessPage.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Button, Card } from "react-bootstrap";
+import "./OrderSuccessPage.css";
+import { clearCart } from "../redux/cartSlice";
+import { useDispatch } from "react-redux";
 
 const OrderSuccessPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+   const dispatch = useDispatch();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate("/");
-    }, 3000); 
+    // Clear cart AFTER reaching success page
+    dispatch(clearCart());
+  }, [dispatch]);
 
-    return () => clearTimeout(timer);
-  }, [navigate]);
+  // Get the orderId passed via state
+  const orderId = location.state?.orderId;
+
+  const handleViewOrders = () => {
+    navigate("/orders"); // Dedicated orders history page
+  };
+
+  const handleContinueShopping = () => {
+    navigate("/"); // Go back to home/shop
+  };
 
   return (
-    <div className="order-success-wrapper d-flex flex-column align-items-center justify-content-center">
-      <div className="success-box text-center">
-        <h2 className="text-success fw-bold"> Order Placed Successfully!</h2>
-        <p className="text-secondary">Thank you for shopping with us.</p>
-        <Button variant="primary" onClick={() => navigate("/")}>
-          Continue Shopping
-        </Button>
-      </div>
+    <div className="order-success-page">
+      <Card className="order-success-card shadow-lg p-4 text-center">
+        <Card.Body>
+          <h2 className="text-success mb-3">Order Placed Successfully!</h2>
+          {orderId && (
+            <p className="mb-2">Your Order ID: <strong>{orderId}</strong></p>
+          )}
+          <p className="mb-4">
+            Thank you for shopping with us. Your order has been confirmed and
+            will be processed shortly.
+          </p>
+          <div className="d-flex justify-content-center gap-3">
+            <Button variant="primary" onClick={handleViewOrders}>
+              View My Orders
+            </Button>
+            <Button variant="outline-secondary" onClick={handleContinueShopping}>
+              Continue Shopping
+            </Button>
+          </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
