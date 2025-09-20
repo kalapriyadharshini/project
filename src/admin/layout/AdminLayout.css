@@ -1,0 +1,401 @@
+:root {
+  /* --sidebar-bg: #004080; */
+     --sidebar-bg: #2fb8c2;
+  --sidebar-hover: #b2ecf2;
+  --sidebar-active: #b2ecf2;
+  /* --sidebar-active-border: #00b4d8; */
+  --header-bg: white;
+  --text-light: #201c1c;
+  --text-dark: #333333;
+  --content-bg: #b2ecf2;
+  --card-bg: #ffffff;
+}
+/* Container */
+.admin-container {
+  display: flex;
+  height: 760px;
+  font-family: 'Segoe UI', sans-serif;
+}
+/* Sidebar */
+.admin-sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg);
+  color: var(--text-light);
+  /* padding: 20px; */
+  flex-shrink: 0;
+}
+.admin-logo {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: var(--text-light);
+}
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.admin-sidebar li {
+  margin-bottom: 12px;
+}
+.admin-sidebar a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;  
+  border-radius: 0;    
+  transition: background 0.3s;
+  width: 100%;         
+  box-sizing: border-box;
+}
+/* Active link */
+.admin-sidebar a.active {
+  background-color: var(--sidebar-active);
+  font-weight: bold;        /* bold for active */
+  border-radius: 0;        
+  padding: 12px 20px;       /* same as normal links */
+  display: flex;            /* match normal link */
+  align-items: center;      /* match normal link */
+  gap: 10px;                /* match normal link */
+  width: 100%;
+  box-sizing: border-box;
+  border-left: none;        /* remove extra border shift */
+}
+/* Hover state */
+.admin-sidebar a:hover {
+  background-color: var(--sidebar-hover);
+  border-radius: 0;   
+}
+/* Icon inside menu */
+.admin-sidebar .icon {
+  font-size: 16px;
+}
+/* Main content */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--content-bg);
+}
+/* Header */
+.admin-header {
+  background-color: var(--header-bg);
+  padding: 12px 20px;
+  color: var(--text-light);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.admin-user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.admin-username {
+  font-weight: 600;
+}
+.admin-role {
+  font-size: 12px;
+  opacity: 0.8;
+}
+.admin-logo {
+  margin-bottom: 60px; 
+  text-align: center;
+  margin-top: 40px;
+}
+/* Content Area */
+.admin-content {
+  padding: 20px;
+  overflow-y: auto;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  margin: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.admin-breadcrumb {
+  background: #fff;
+  padding: 12px 18px;
+  margin: 15px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e6e6e6;
+}
+.breadcrumb-module {
+  font-weight: 700;
+  color: #0c050c; /* highlight module */
+}
+.breadcrumb-page {
+  color: #444;
+}
+/* Profile Card Wrapper */
+.admin-profile-card {
+  position: relative;
+  margin-left: auto;
+  cursor: pointer;
+  font-family: "Segoe UI", sans-serif;
+}
+/* Header section (always visible) */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+.profile-header:hover {
+  background: #f5f5f5;
+}
+.profile-icon {
+  font-size: 28px;
+  color: var(--primary-color, #007bff);
+}
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.profile-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-dark, #333);
+}
+.profile-role {
+  font-size: 12px;
+  opacity: 0.7;
+  color: var(--text-light, #666);
+}
+/* Dropdown container */
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: #fff;
+  width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: 1px solid #eee;
+  z-index: 1000;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-in-out;
+}
+/* Dropdown header (user info inside dropdown) */
+.dropdown-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  background: #f9f9f9;
+}
+.dropdown-user-icon {
+  font-size: 26px;
+  color: var(--primary-color, #007bff);
+}
+.dropdown-user-info .profile-name {
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+  color: var(--text-dark, #333);
+}
+.dropdown-user-info .profile-role {
+  font-size: 12px;
+  opacity: 0.7;
+  display: block;
+  color: var(--text-light, #666);
+}
+/* Dropdown items */
+.profile-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.profile-dropdown li {
+  padding: 19px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+  color: var(--text-dark, #333);
+}
+.profile-dropdown li:hover {
+  background: #f5f5f5;
+  color: var(--primary-color, #007bff);
+}
+/* Show dropdown on hover */
+.admin-profile-card:hover .profile-dropdown {
+  display: block;
+}
+/* Small fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.sidebar-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;  /* match links */
+  border-radius: 0;    /* proper flat edges */
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+}
+.sidebar-dropdown:hover {
+  background-color: var(--sidebar-hover);
+  border-radius: none;
+}
+/* Submenu styles */
+/* .submenu {
+  list-style: none;
+  margin: 5px 0 0 25px;
+  padding: 0;
+} */
+.submenu li {
+  margin-bottom: 8px;
+}
+/* .submenu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 8px 30px;
+  border-radius: 4px;
+} */
+/* Submenu styles - center below parent */
+/* .submenu {
+  list-style: none;
+  margin: 5px 0 0 0;   
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  border-radius: none;
+}
+.submenu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 8px 20px;
+  position: relative;
+  margin-left: 20px;      
+}
+
+.submenu a::before {
+  content: "|";          
+  margin-right: 6px;
+  font-weight: bold;
+  color: var(--text-light);
+}
+.submenu a:hover {
+  background: var(--sidebar-hover);
+} */
+ /* make sure padding behavior doesn't cause overflow */
+.admin-sidebar, .admin-sidebar * {
+  box-sizing: border-box;
+}
+
+/* submenu - full-width, no indent, no shifting on active */
+.submenu {
+  list-style: none;
+  margin: 5px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.submenu li {
+  margin-bottom: 8px;
+}
+
+/* baseline for submenu links */
+.submenu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 8px 20px;        /* keep left & right padding consistent */
+  width: 100%;              /* full width of sidebar */
+  margin: 0;                /* remove any indent */
+  box-sizing: border-box;
+  font-weight: 500;         /* same weight as other links - prevents jump */
+  white-space: nowrap;      /* avoid wrapping that moves text */
+  overflow: hidden;
+  text-overflow: ellipsis;  /* if text is too long, show ... instead of wrapping */
+  border: none;             /* ensure no borders appear on active */
+  outline: none;            /* remove default focus outline that may push layout */
+  background: transparent;  /* default background */
+}
+
+/* keep pseudo-element from shifting layout (optional pipe) */
+.submenu a::before {
+  content: "|";
+  display: inline-block;
+  width: 14px;              /* reserve fixed width so it never shifts text */
+  text-align: center;
+  margin-right: 6px;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+/* hover effect - full bar highlight */
+.submenu a:hover,
+.submenu a:focus {
+  background: var(--sidebar-hover);
+  color: var(--text-dark);
+  text-decoration: none;
+  box-shadow: none;
+}
+
+/* active link (clicked/current page) - same sizing as normal, full width highlight */
+.submenu a.active {
+  background: var(--sidebar-active);
+  color: var(--text-dark);
+  font-weight: 500;   /* enforce same weight to avoid layout shift */
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.arrow-icon {
+  margin-left: auto;         
+  transition: transform 0.3s ease;
+}
+.sidebar-dropdown.open .arrow-icon {
+  transform: rotate(90deg);  /* points down when open */
+}
+.arrow-icon {
+  margin-left: auto;
+  font-size: 14px; /* adjust size */
+}

@@ -1,51 +1,114 @@
-/* Scope all styles under .order-summary-page */
 .order-summary-page {
-  background: #fefeff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 1000px;
+  margin: 20px auto 40px auto;
+  padding: 30px;
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+  border: 2px solid #b2ebf2;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0, 150, 136, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Title */
-.order-summary-page .page-title {
-  color: #006d77;
-  font-weight: bold;
+.order-summary-page h2 {
+  font-size: 28px;
+  color: #0077b6;
+  /* border-bottom: 2px solid #00bcd4; */
+  padding-bottom: 10px;
   margin-bottom: 25px;
-  text-align: center;
+}
+
+/* Section headings */
+.order-summary-page h5 {
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #004d40;
+  /* border-left: 5px solid #26c6da; */
+  padding-left: 10px;
+  margin-bottom: 15px;
 }
 
 /* Table */
 .order-summary-page table {
-  background: #ffffff;
+  background-color: #f1fdfd;
   border-radius: 10px;
   overflow: hidden;
 }
-.order-summary-page th {
-  background: #e6f7ff;
-  color: #006d77;
-  text-align: center;
-}
-.order-summary-page td {
-  vertical-align: middle;
+
+.order-summary-page thead {
+  background-color: #00acc1;
+  color: #fff;
 }
 
-/* Address & payment */
-.order-summary-page h5 {
-  margin-top: 20px;
-  color: #004d4d;
-  font-weight: 600;
+.order-summary-page th,
+.order-summary-page td {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 15px;
+}
+
+.order-summary-page tbody tr:nth-child(even) {
+  background-color: #e0f7fa;
+}
+
+/* Subtotal row */
+.order-summary-page tfoot td {
+  background-color: #e0f2f1;
+  font-size: 16px;
+  color: #004d40;
+}
+
+/* Address & Payment text */
+.order-summary-page p {
+  font-size: 16px;
+  color: #004d40;
+  background: #e0f2f1;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 5px solid #26c6da;
+  margin-bottom: 10px;
 }
 
 /* Total */
-.order-summary-page .total {
-  font-size: 1.3rem;
-  color: #333;
+.order-summary-page h4 {
+  font-size: 22px;
+  color: #00695c;
   font-weight: bold;
 }
 
-/* Place order button */
+/* Place Order button */
 .order-summary-page .btn-success {
-  border-radius: 8px;
+  background-color: #26a69a !important;
+  border-color: #26a69a !important;
   padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
   font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.order-summary-page .btn-success:hover {
+  background-color: #00796b !important;
+  border-color: #00796b !important;
+  transform: scale(1.05);
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+  .order-summary-page {
+    padding: 20px;
+  }
+
+  .order-summary-page h2 {
+    font-size: 22px;
+  }
+
+  .order-summary-page table {
+    font-size: 14px;
+  }
+
+  .order-summary-page h4 {
+    font-size: 18px;
+  }
 }

@@ -8,6 +8,7 @@ import CategoryProducts from "../components/CategoryProducts";
 function Home() {
   return (
     <>
+    
       <Banner /> 
        <Categories />
       <CategoryProducts />

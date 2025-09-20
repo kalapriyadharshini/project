@@ -14,16 +14,13 @@ const ViewPage = () => {
       window.scrollTo(0, 0);
     }
   }, []);
-
   const handleRemove = (productId) => dispatch(removeFromCart(productId));
   const handleIncrease = (productId) => dispatch(increaseQty(productId));
   const handleDecrease = (productId) => dispatch(decreaseQty(productId));
-
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-
   return (
     <div className="container mt-4 cart-page-wrapper">
       <h2 className="mb-4  text-center text-primary fw-bold">Shopping Cart</h2>
@@ -44,7 +41,7 @@ const ViewPage = () => {
               <th style={{ color: '#003366', backgroundColor: '#cbe3f6' }}>Action</th>
              </tr>
             </thead>
-            <tbody className="text-center align-middle text-primary">
+            {/* <tbody className="text-center align-middle text-primary">
               {cartItems.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
@@ -91,7 +88,55 @@ const ViewPage = () => {
                   </td>
                 </tr>
               ))}
-            </tbody>
+            </tbody> */}
+            <tbody className="text-center align-middle text-primary">
+  {cartItems.map((item) => (
+    <tr key={item._id || item.id}>
+      <td>{item._id || item.id}</td>
+      <td>
+        <img
+          src={item.image}
+          alt={item.name}
+          width="80"
+          height="80"
+          className="me-2"
+        />
+      </td>
+
+      <td className="text-center">{item.name}</td>
+      <td>
+        <div className="qty-group">
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => handleDecrease(item._id || item.id)}
+          >
+            -
+          </Button>
+          <span className="qty-number">{item.quantity}</span>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => handleIncrease(item._id || item.id)}
+          >
+            +
+          </Button>
+        </div>
+      </td>
+      <td>₹{item.price.toFixed(2)}</td>
+      <td>₹{(item.quantity * item.price).toFixed(2)}</td>
+      <td>
+        <Button
+          variant="primary"
+          size="sm"
+          onClick={() => handleRemove(item._id || item.id)}
+        >
+          ×
+        </Button>
+      </td>
+    </tr>
+  ))}
+</tbody>
           </Table>
 
           <div className="summary-section text-end">
@@ -101,10 +146,8 @@ const ViewPage = () => {
             <h5>
               <strong style={{ color: '#003366'}}>Total:</strong> ₹{subtotal.toFixed(2)}
             </h5>
-
             <div className="d-flex justify-content-end mt-3 gap-2">
               <Button variant="primary" onClick={() => navigate("/")}>Continue Shopping</Button>
-              {/* <Button variant="primary" onClick={() => { userInfo ? navigate("/order-summary") : navigate("/login"); }}>Checkout</Button> */}
               <Button variant="primary" onClick={() => { userInfo ? navigate("/checkout/summary") : navigate("/login"); }}>Checkout</Button>
 
             </div>

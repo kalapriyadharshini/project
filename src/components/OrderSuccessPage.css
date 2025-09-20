@@ -1,46 +1,85 @@
-/* Container */
+/* Container
 .order-success-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 70vh;
-  background: #f9fdfb;
+  background: #f5f7fa; 
   padding: 20px;
 }
-
-/* Card */
-.order-success-page .success-card {
-  max-width: 500px;
+Card (full blue)
+.order-success-card {
+  max-width: 600px;
   width: 100%;
   border-radius: 15px;
-  padding: 25px;
-  background: #ffffff;
+  padding: 30px;
+  background: #e6f7f9 !important; 
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
 }
-
-/* Title */
-.order-success-page .success-title {
+Card body (remove extra white background from bootstrap)
+.order-success-card .card-body {
+  background: transparent !important;
+  padding: 0;
+}
+Title
+.order-success-card h2 {
   color: #28a745;
   font-weight: bold;
   margin-bottom: 15px;
 }
-
-/* Order ID */
-.order-success-page .order-id {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #333;
+Order ID
+.order-success-card p strong {
+  color: #000;
 }
-
-/* Message */
-.order-success-page .success-message {
+Message
+.order-success-card p {
   font-size: 0.95rem;
-  color: #555;
+  color: #333;
   margin-bottom: 25px;
 }
-
-/* Buttons */
-.order-success-page .action-buttons .btn {
+Buttons
+.order-success-card .btn {
   border-radius: 8px;
   font-weight: 500;
   padding: 10px 20px;
+} */
+
+
+
+
+
+
+
+.order-success-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  text-align: center;
+  background: #f0fdfd;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.order-success-page h2 {
+  color: #28a745;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.order-success-page p {
+  font-size: 16px;
+  color: #004d40;
+  margin: 5px 0;
+}
+
+.order-success-page .redirect-note {
+  font-size: 14px;
+  color: #00796b;
+  margin-top: 10px;
+  font-style: italic;
 }

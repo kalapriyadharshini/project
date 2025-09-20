@@ -1,0 +1,57 @@
+/* Page Header */
+.page-header {
+  background: #2fb8c2; /* aqua theme */
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: #fff;
+}
+.module-title {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Card Styling */
+.form-card {
+  background: #fff;
+  border: none !important;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+/* Title */
+.form-title {
+  color: #333;
+  font-weight: bold;
+}
+.form-subtitle {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-shadow: none;
+}
+
+/* Submit Button */
+.submit-btn {
+  background: #2fb8c2; /* aqua button */
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  color: #fff;
+}
+.submit-btn:hover {
+  background: #249aa3; /* darker aqua on hover */
+}
