@@ -14,7 +14,9 @@
 .admin-container {
   display: flex;
   height: 760px;
-  font-family: 'Segoe UI', sans-serif;
+  /* font-family: 'Segoe UI', sans-serif; */
+  font-family: 'Bitter', serif;
+
 }
 /* Sidebar */
 .admin-sidebar {
@@ -180,8 +182,8 @@
 .profile-dropdown {
   display: none;
   position: absolute;
-  top: 55px;
-  right: 0;
+  top: 40px;
+  right: -20px;
   background: #fff;
   width: 220px;
   border-radius: 8px;

@@ -96,7 +96,6 @@ const SidebarMenu = ({ onClose, onSelectCategory }) => {
       <div className="back-button" onClick={onClose}>
         <FaArrowLeft className="me-2" /> BACK
       </div>
-
       <div className="category-list">
         {categories.map((cat, index) => (
           <div

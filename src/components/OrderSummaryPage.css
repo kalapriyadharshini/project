@@ -8,7 +8,6 @@
   box-shadow: 0 4px 14px rgba(0, 150, 136, 0.15);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 /* Title */
 .order-summary-page h2 {
   font-size: 28px;
@@ -17,7 +16,6 @@
   padding-bottom: 10px;
   margin-bottom: 25px;
 }
-
 /* Section headings */
 .order-summary-page h5 {
   margin-top: 25px;
@@ -28,37 +26,31 @@
   padding-left: 10px;
   margin-bottom: 15px;
 }
-
 /* Table */
 .order-summary-page table {
   background-color: #f1fdfd;
   border-radius: 10px;
   overflow: hidden;
 }
-
 .order-summary-page thead {
   background-color: #00acc1;
   color: #fff;
 }
-
 .order-summary-page th,
 .order-summary-page td {
   vertical-align: middle;
   text-align: center;
   font-size: 15px;
 }
-
 .order-summary-page tbody tr:nth-child(even) {
   background-color: #e0f7fa;
 }
-
 /* Subtotal row */
 .order-summary-page tfoot td {
   background-color: #e0f2f1;
   font-size: 16px;
   color: #004d40;
 }
-
 /* Address & Payment text */
 .order-summary-page p {
   font-size: 16px;
@@ -69,14 +61,12 @@
   border-left: 5px solid #26c6da;
   margin-bottom: 10px;
 }
-
 /* Total */
 .order-summary-page h4 {
   font-size: 22px;
   color: #00695c;
   font-weight: bold;
 }
-
 /* Place Order button */
 .order-summary-page .btn-success {
   background-color: #26a69a !important;
@@ -87,27 +77,22 @@
   font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
-
 .order-summary-page .btn-success:hover {
   background-color: #00796b !important;
   border-color: #00796b !important;
   transform: scale(1.05);
 }
-
 /* Mobile responsive */
 @media (max-width: 576px) {
   .order-summary-page {
     padding: 20px;
   }
-
   .order-summary-page h2 {
     font-size: 22px;
   }
-
   .order-summary-page table {
     font-size: 14px;
   }
-
   .order-summary-page h4 {
     font-size: 18px;
   }

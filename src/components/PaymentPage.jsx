@@ -4,18 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setPaymentMethod } from "../redux/paymentSlice";
 import "./PaymentPage.css";
-
 const PaymentPage = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const address = useSelector((state) => state.address.address);
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const savedMethod = useSelector((state) => state.payment.method);
-
-  const [paymentMethod, setPaymentMethodLocal] = useState(savedMethod || "");
-  const [error, setError] = useState("");
-
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const address = useSelector((state) => state.address.address);
+const cartItems = useSelector((state) => state.cart.cartItems);
+const savedMethod = useSelector((state) => state.payment.method);
+const [paymentMethod, setPaymentMethodLocal] = useState(savedMethod || "");
+const [error, setError] = useState("");
   // don’t allow skipping address or empty cart
   useEffect(() => {
     if (!cartItems?.length) navigate("/cart");
@@ -30,7 +26,6 @@ const PaymentPage = () => {
     dispatch(setPaymentMethod(paymentMethod));
     navigate("/checkout/summary");
   };
-
   return (
     <div className="payment-page container mt-4" style={{ maxWidth: 600 }}>
       <h2>Select Payment Method</h2>
@@ -54,9 +49,7 @@ const PaymentPage = () => {
             </label>
           </div>
         ))}
-
         {error && <div className="text-danger my-3">{error}</div>}
-
         <button type="submit" className="btn btn-primary">
           Continue to Order Summary
         </button>
@@ -64,5 +57,4 @@ const PaymentPage = () => {
     </div>
   );
 };
-
 export default PaymentPage;

@@ -1,7 +1,6 @@
 // src/components/CategoryCard.jsx
 import React from 'react';
 import './Category.css';
-
 const CategoryCard = ({ image, title, onClick }) => {
   return (
     <div className="category-card" onClick={onClick}>
@@ -10,5 +9,4 @@ const CategoryCard = ({ image, title, onClick }) => {
     </div>
   );
 };
-
 export default CategoryCard;

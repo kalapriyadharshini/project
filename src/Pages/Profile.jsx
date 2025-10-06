@@ -119,10 +119,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Profile.css"; 
-
 const Profile = () => {
   const [profile, setProfile] = useState(null);
-
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -136,13 +134,10 @@ const Profile = () => {
       console.error("Profile fetch error:", err);
     }
   };
-
   useEffect(() => {
     fetchProfile();
   }, []);
-
   if (!profile) return <p className="profile-loading">Loading profile...</p>;
-
   return (
     <div className="profile-container mt-4">
       <h3 className="profile-title text-primary fw-bold">User Profile</h3>
@@ -159,7 +154,6 @@ const Profile = () => {
     </div>
   );
 };
-
 export default Profile;
 
 

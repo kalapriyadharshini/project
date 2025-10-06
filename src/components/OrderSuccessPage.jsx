@@ -62,36 +62,27 @@
 // export default OrderSuccessPage;
 
 
-
-
-
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
 import { clearCart } from "../redux/cartSlice";
 import { clearAddress } from "../redux/addressSlice";
 import { clearPaymentMethod } from "../redux/paymentSlice";
 import "./OrderSuccessPage.css";
-
 const OrderSuccessPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   useEffect(() => {
     // Clear cart, address, and payment after order success
     dispatch(clearCart());
     dispatch(clearAddress());
     dispatch(clearPaymentMethod());
-
     // Redirect to homepage after 3 seconds
     const timer = setTimeout(() => {
       navigate("/");
     }, 3000);
-
     return () => clearTimeout(timer);
   }, [dispatch, navigate]);
-
   return (
     <div className="order-success-page">
       <h2>Order Placed Successfully!</h2>
@@ -103,5 +94,4 @@ const OrderSuccessPage = () => {
     </div>
   );
 };
-
 export default OrderSuccessPage;

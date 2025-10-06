@@ -29,7 +29,8 @@ const Superadlogin = () => {
   localStorage.setItem("token", data.token);
   localStorage.setItem("currentUser", JSON.stringify(data.user));
 
-  navigate("/superadmin/layout");  //  redirect to welcome page
+  navigate("/superadmin");  // ✅ this matches your route
+  //  redirect to welcome page
   alert("Login successful!");
 } else {
   setError({ username: data.message });

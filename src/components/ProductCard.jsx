@@ -198,17 +198,13 @@ import { addToCart } from '../redux/cartSlice';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 import axios from 'axios';
-
 function ProductCard({ product }) {
   const dispatch = useDispatch();
-
   const token = localStorage.getItem('token'); // Token from login
-
   const handleAddToCart = () => {
     const cleanedPrice = parseFloat(
       (product.offer || product.price).replace(/[^0-9.]/g, '')
     );
-
     dispatch(
       addToCart({
         id: product.id,
@@ -219,7 +215,6 @@ function ProductCard({ product }) {
       })
     );
   };
-
   const handleAddToWishlist = async () => {
     const payload = {
       id: product.id,
@@ -227,7 +222,6 @@ function ProductCard({ product }) {
       price: parseFloat((product.offer || product.price).replace(/[^0-9.]/g, '')),
       image: product.img,
     };
-
     try {
       await axios.post('/api/wishlist/add', payload, {
         headers: { Authorization: `Bearer ${token}` },
@@ -238,7 +232,6 @@ function ProductCard({ product }) {
       alert('Failed to add to wishlist');
     }
   };
-
   return (
     <Card className="product-card">
       <div className="product-img-container">
@@ -268,5 +261,4 @@ function ProductCard({ product }) {
     </Card>
   );
 }
-
 export default ProductCard;

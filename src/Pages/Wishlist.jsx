@@ -4,19 +4,16 @@ import { addToCart } from '../redux/cartSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Wishlist.css';
-
 const Wishlist = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [wishlistItems, setWishlistItems] = useState([]);
   const token = localStorage.getItem('token');
-
   useEffect(() => {
     if (!token) {
       navigate('/login');
     }
   }, [token, navigate]);
-
   const fetchWishlist = async () => {
     try {
       const response = await axios.get('/api/wishlist', {
@@ -27,11 +24,9 @@ const Wishlist = () => {
       console.error('Error fetching wishlist:', error);
     }
   };
-
   useEffect(() => {
     if (token) fetchWishlist();
   }, [token]);
-
   const handleRemove = async (productId) => {
     try {
       await axios.post(
@@ -46,7 +41,6 @@ const Wishlist = () => {
       console.error('Error removing item:', error);
     }
   };
-
   const handleAddToCart = (item) => {
     const productId = item.id || item._id;
     if (!productId) {
@@ -63,7 +57,6 @@ const Wishlist = () => {
       })
     );
   };
-
   const handleCheckoutAll = () => {
     wishlistItems.forEach((item) => {
       const productId = item.id || item._id;
@@ -82,11 +75,9 @@ const Wishlist = () => {
       );
     });
   };
-
   return (
     <div className="wishlist-container">
       <h2 className="wishlist-title fw-bold">My Wishlist</h2>
-
       {wishlistItems.length === 0 ? (
         <div className="empty-wishlist text-center">
           <p>Your wishlist is empty.</p>
@@ -133,7 +124,6 @@ const Wishlist = () => {
               </tbody>
             </table>
           </div>
-
           <div className="wishlist-buttons text-center mt-4">
             <Link to="/" className="btn btn-green me-3">CONTINUE SHOPPING</Link>
             <Link
@@ -149,5 +139,4 @@ const Wishlist = () => {
     </div>
   );
 };
-
 export default Wishlist;

@@ -14,37 +14,31 @@
     width: 85%; /* Reduced width */
     margin: 0 auto;
   }
-
   .subcategory-container .row > .col-12.col-sm-6.col-md-6.col-lg-3 {
     padding-left: 5px;
     padding-right: 5px;
     margin-bottom: 10px;
   }
-
   .subcategory-container .row {
     margin-left: -5px;
     margin-right: -5px;
     justify-content: center !important;
   }
-
   .subcategory-title {
     margin-bottom: 1.5rem;
   }
 }
-
 /* Large Desktop view: 1440px and above */
 @media (min-width: 1440px) {
   .custom-card-wrapper {
     width: 69%; /* Wider container so cards come closer */
     margin: 0 auto;
   }
-
   .subcategory-container .row > .col-12.col-sm-6.col-md-6.col-lg-3 {
     padding-left: 4px;   /* Very small padding between cards */
     padding-right: 4px;
     margin-bottom: 8px;
   }
-
   .subcategory-container .row {
     margin-left: -4px;   /* Neutralize padding */
     margin-right: -4px;
@@ -52,7 +46,6 @@
     column-gap: 0;       /* Optional if you're using grid */
     justify-content: center !important;
   }
-
   .subcategory-title {
     margin-bottom: 2rem;
 

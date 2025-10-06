@@ -45,13 +45,13 @@
 .sidebar-nav a:hover {
   background: #b2ecf2;
   color: #023e8a;
-  border-left: 4px solid #ffffff;
+  /* border-left: 4px solid #ffffff; */
 }
 
 .active-link {
   background: #b2ecf2;
   color: #023e8a !important;
-  border-left: 4px solid #ffffff;
+  /* border-left: 4px solid #ffffff; */
   font-weight: bold;
 }
 
@@ -66,14 +66,58 @@
   flex-direction: column;
   position: relative;
 }
+/* .main-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--content-bg, #b2ecf2);
+  padding: 15px;
+} */
+
+/* Breadcrumb Card */
+.breadcrumb-card {
+  background: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark, #333);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #e6e6e6;
+  margin: 15px 12px;
+}
+
+.breadcrumb-module {
+  font-weight: 700;
+  color: #0c050c;
+}
+
+.breadcrumb-page {
+  color: #444;
+}
+
+/* Main Content Card */
+.content-card {
+  background-color: var(--card-bg, #fff);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  flex: 1; /* fills remaining space */
+  overflow-y: auto;
+}
 
 /* Topbar */
 .topbar {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 12px 20px;
+  padding: 28px 20px;
   background: #ffffff;
+  /* background: #b2ecf2; */
   border-bottom: 1px solid #ddd;
   position: relative;
   z-index: 1000;
@@ -97,8 +141,8 @@
 /* Dropdown */
 .dropdown-menu {
   position: absolute;
-  top: 60px; /* ensures below user-info */
-  right: 20px;
+  top: 50px; /* ensures below user-info */
+  right: 2px;
   background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -122,14 +166,14 @@
 .dropdown-menu::before {
   content: "";
   position: absolute;
-  top: -8px;
+  top: 0px;
   right: 15px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent #fff transparent;
+  /* border-color: transparent transparent #fff transparent; */
 }
 
-.dropdown-header {
+/* .dropdown-header {
   display: flex;
   align-items: center;
   padding: 10px 15px;
@@ -146,11 +190,29 @@
   font-weight: 600;
   margin: 0;
   color: #023e8a;
+} */
+.dropdown-header {
+  display: flex;
+  align-items: center;  /* vertically center icon + text */
+  padding: 10px 15px;
 }
 
+.dropdown-user-icon {
+  font-size: 22px;     /* smaller so it aligns better */
+  margin-right: 8px;
+  color: #2fb8c2;
+}
+
+.dropdown-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: #023e8a;
+  line-height: 1;      /* fixes vertical misalignment */
+}
 .dropdown-item {
   display: block;
-  padding: 10px 15px;
+  padding: 2px 15px;
   font-size: 14px;
   cursor: pointer;
   transition: background 0.2s;
@@ -172,6 +234,121 @@
 /* Main content area */
 .main-content {
   flex: 1;
-  padding: 20px;
+  /* padding: 20px; */
   overflow-y: auto;
 }
+.sidebar-dropdown {
+  margin-bottom: 10px;
+}
+
+.sidebar-dropdown-label {
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+}
+
+.sidebar-dropdown-items {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+
+/* .sidebar-dropdown-items .inactive-link,
+.sidebar-dropdown-items .active-link {
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #ccc;
+} */
+
+.sidebar-dropdown-items .active-link {
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 4px;
+}
+.main-content {
+   background-color:#b2ecf2;
+}
+/* Sidebar Items Wrapper */
+.sidebar-item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Normal links (Dashboard, Reports, Settings, etc.) */
+.sidebar-item > a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+/* Hover for direct links */
+.sidebar-item > a:hover {
+  background: #b2ecf2;
+  color: #023e8a;
+}
+
+/* Active state for direct links */
+/* .sidebar-item > .active-link {
+  background: #b2ecf2;
+  color: #023e8a !important;
+ 
+  font-weight: bold;
+} */
+/* Dropdown header (Users, Categories, etc.) */
+.sidebar-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* Hover for dropdown */
+.sidebar-dropdown:hover {
+  background: #b2ecf2;
+  color: #023e8a;
+  
+}
+
+/* Arrow rotation when open */
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+.arrow-icon.rotated {
+  transform: rotate(90deg);
+}
+/* Submenu items (Add User, Manage User, etc.) */
+.sidebar-dropdown-items a {
+  padding: 8px 18px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+/* Hover */
+.sidebar-dropdown-items a:hover {
+  background: #b2ecf2;
+  color: #023e8a;
+}
+
+/* Active sub-link */
+.sidebar-dropdown-items .active-link {
+  background: #b2ecf2;
+  color: #023e8a !important;
+  font-weight: 600;
+  border-left: 3px solid #023e8a;
+}
+

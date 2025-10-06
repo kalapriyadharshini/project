@@ -103,13 +103,11 @@ import axios from "axios";
 import productData from "../data/Productdata";
 import ProductCard from "./ProductCard";
 import "./SubcategoryPage.css";
-
 const SubcategoryPage = () => {
   const { categoryName } = useParams();
   const [categoryProducts, setCategoryProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
   // Find category key only once when categoryName changes
   const formattedCategory = useMemo(() => {
     if (!categoryName) return null;
@@ -117,7 +115,6 @@ const SubcategoryPage = () => {
       (key) => key.toLowerCase() === categoryName.toLowerCase()
     );
   }, [categoryName]);
-
   useEffect(() => {
     const fetchData = async () => {
       if (!formattedCategory) {
@@ -125,7 +122,6 @@ const SubcategoryPage = () => {
         setLoading(false);
         return;
       }
-
       try {
         const res = await axios.get(
           `/api/products?category=${encodeURIComponent(formattedCategory)}`
@@ -145,16 +141,13 @@ const SubcategoryPage = () => {
         setLoading(false);
       }
     };
-
     fetchData();
   }, [formattedCategory]);
-
   return (
     <div className="subcategory-container">
       <h2 className="subcategory-title text-center fw-bold">
         {formattedCategory?.toUpperCase() || "CATEGORY"}
       </h2>
-
       {loading ? (
         <p className="text-center mt-4">Loading products...</p>
       ) : error ? (
@@ -176,5 +169,4 @@ const SubcategoryPage = () => {
     </div>
   );
 };
-
 export default SubcategoryPage;

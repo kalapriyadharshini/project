@@ -14,7 +14,6 @@ const MainDisplay = () => {
   };
   fetchProducts();
 }, []);
-
   return (
     <div className="container mt-4">
       <FilteredProductDisplay

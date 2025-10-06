@@ -4,18 +4,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAddress as setAddressRedux } from '../redux/addressSlice';
-
 import "./AddressPage.css";
-
-
 const AddressPage = () => {
   const [address, setAddress] = useState(null);
   const [editing, setEditing] = useState(false);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token"); // this works if login saved only token
-
   const navigate = useNavigate();
-
   // Fetch user profile and address on mount
   useEffect(() => {
     const fetchProfile = async () => {
@@ -23,7 +18,6 @@ const AddressPage = () => {
         const { data } = await axios.get("/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
-
         setAddress({
           fullName: data.name || "",
           phone: data.phone || "",
@@ -42,7 +36,6 @@ const AddressPage = () => {
 
     fetchProfile();
   }, [token]);
-
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
@@ -50,7 +43,6 @@ const AddressPage = () => {
   dispatch(setAddressRedux(address)); // Save current address to Redux
   navigate("/checkout/payment");      // Go to Payment page
 };
-
 const handleSave = async (e) => {
   e.preventDefault();
   try {
@@ -84,7 +76,6 @@ const handleSave = async (e) => {
   country: data.address?.country || address.country || "",
 });
     setEditing(false);
-       
     // navigate("/checkout/payment");
   } catch (err) {
     console.error("Error saving address:", err);
@@ -233,5 +224,4 @@ const handleSave = async (e) => {
     </div>
   );
 };
-
 export default AddressPage;

@@ -116,9 +116,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Checkout = () => {
-  const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem("user");
-
+const navigate = useNavigate();
+const isLoggedIn = !!localStorage.getItem("user");
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login?redirect=checkout");
@@ -126,9 +125,6 @@ const Checkout = () => {
       navigate("/checkout/address");
     }
   }, [isLoggedIn, navigate]);
-
- 
-
   return null;
 };
 export default Checkout;

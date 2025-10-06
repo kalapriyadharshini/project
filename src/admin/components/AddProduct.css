@@ -55,3 +55,14 @@
 .submit-btn:hover {
   background: #249aa3; /* darker aqua on hover */
 }
+/* Remove unwanted extra space for invalid select */
+.form-select.is-invalid,
+.form-select.is-valid {
+  margin-bottom: 0 !important;
+}
+
+/* Align feedback text closer to select */
+.form-select.is-invalid ~ .invalid-feedback,
+.form-select.is-valid ~ .valid-feedback {
+  margin-top: 2px !important;
+}

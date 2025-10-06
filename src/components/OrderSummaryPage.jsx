@@ -149,19 +149,15 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./OrderSummaryPage.css";
-
 const OrderSummaryPage = () => {
-  const navigate = useNavigate();
-
-  const cartItems = useSelector((state) => state.cart.cartItems) ?? [];
-  const address = useSelector((state) => state.address.address);
-  const paymentMethod = useSelector((state) => state.payment.method) ?? "";
-
-  const subtotal = cartItems.reduce(
+const navigate = useNavigate();
+const cartItems = useSelector((state) => state.cart.cartItems) ?? [];
+const address = useSelector((state) => state.address.address);
+const paymentMethod = useSelector((state) => state.payment.method) ?? "";
+const subtotal = cartItems.reduce(
     (acc, item) => acc + Number(item.price || 0) * Number(item.quantity || 1),
     0
   );
-
   // Redirect if any step is missing
   useEffect(() => {
     if (cartItems.length === 0) navigate("/cart");
@@ -176,13 +172,11 @@ const OrderSummaryPage = () => {
         alert("You must be logged in to place an order");
         return;
       }
-
       // Place order API call
       // const res = await axios.post(
       //   "/api/orders",
       const res = await axios.post(
   "http://localhost:5000/api/orders",
-
         {
           products: cartItems.map((item) => ({
             // productId: item.id,
@@ -199,9 +193,7 @@ const OrderSummaryPage = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
       const orderId = res.data._id;
-
       // Navigate to Order Success page first
       navigate("/order-success", { state: { orderId } });
       // Clearing cart/address/payment will now be handled in OrderSuccessPage
@@ -210,7 +202,6 @@ const OrderSummaryPage = () => {
       alert("Failed to place order. Please try again.");
     }
   };
-
   if (cartItems.length === 0) {
     return (
       <div className="container mt-4 text-center">
@@ -218,11 +209,9 @@ const OrderSummaryPage = () => {
       </div>
     );
   }
-
   return (
     <div className="order-summary-page container mt-4">
       <h2 className="mb-4 text-primary fw-bold text-center">Order Summary</h2>
-
       <h5>Cart Items</h5>
       <div className="table-responsive">
         <table className="table table-bordered">
@@ -254,7 +243,6 @@ const OrderSummaryPage = () => {
           </tfoot>
         </table>
       </div>
-
       <h5>Shipping Address</h5>
       {address && (
         <p>
@@ -263,12 +251,9 @@ const OrderSummaryPage = () => {
           {address.state}, {address.country} - {address.pincode}
         </p>
       )}
-
       <h5>Payment Method</h5>
       <p>{paymentMethod}</p>
-
       <h4 className="text-end mt-3">Total: ₹{subtotal.toLocaleString()}</h4>
-
       <div className="text-end mt-3">
         <Button className="btn-success" onClick={handlePlaceOrder}>
           Place Order
@@ -277,5 +262,4 @@ const OrderSummaryPage = () => {
     </div>
   );
 };
-
 export default OrderSummaryPage;

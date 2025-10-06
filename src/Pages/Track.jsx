@@ -75,13 +75,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Track.css";
-
 const Track = () => {
   const [orderId, setOrderId] = useState("");
   const [order, setOrder] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
   const fetchOrder = async () => {
     if (!orderId) {
       setError("Please enter an Order ID");
@@ -103,11 +101,9 @@ const Track = () => {
     }
     setLoading(false);
   };
-
   return (
     <div className="track-container">
       <h2 className="track-title">Track Your Order</h2>
-
       <input
         className="track-input"
         type="text"
@@ -118,10 +114,8 @@ const Track = () => {
       <button className="track-button" onClick={fetchOrder}>
         Track
       </button>
-
       {loading && <p className="track-loading">Loading...</p>}
       {error && <p className="track-error">{error}</p>}
-
       {order && (
         <div className="track-order-details">
           <h3 className="order-id">Order ID: {order._id}</h3>
@@ -142,5 +136,4 @@ const Track = () => {
     </div>
   );
 };
-
 export default Track;

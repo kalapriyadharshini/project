@@ -6,14 +6,11 @@ import family from "../assets/family.jpg";
 import aquariumtank from "../assets/aquariumtank.jpg";
 import TropicalFish from "../assets/TropicalFish.jpg";
 import './Banner.css';
-
 function Banner() {
   const [index, setIndex] = useState(0);
-
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-
   return (
     <div className="banner-carousel-wrapper">
       <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
@@ -55,5 +52,4 @@ function Banner() {
   
   );
 }
-
 export default Banner;

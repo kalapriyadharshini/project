@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Dashboard.css";
-
 const Dashboard = () => {
-  const [stats, setStats] = useState({
+const [stats, setStats] = useState({
     totalCustomers: 0,
     totalProducts: 0,
     totalOrders: 0,
     totalRevenue: 0,
     totalSales: 0,
   });
-
   const axiosInstance = axios.create({
     baseURL: "http://localhost:5000/api",
   });
-
   axiosInstance.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -22,7 +19,6 @@ const Dashboard = () => {
     }
     return config;
   });
-
   useEffect(() => {
     const fetchStats = async () => {
       try {
@@ -34,7 +30,6 @@ const Dashboard = () => {
     };
     fetchStats();
   }, []);
-
   return (
     <div className="dashboard-container">
       <h2 className="dashboard-title">Dashboard</h2>
@@ -63,5 +58,4 @@ const Dashboard = () => {
     </div>
   );
 };
-
 export default Dashboard;

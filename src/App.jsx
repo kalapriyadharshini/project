@@ -66,6 +66,8 @@ import Manageuser from './admin/components/Manageuser'
 import Superadlogin from './admin/layout/superadlogin'
 import SuperAdminWelcome from './admin/components/SuperAdminWelcome'
 import SuperadminLayout from './admin/layout/SuperadminLayout'
+import Profilepage from './admin/components/Profilepage'
+// import Addcustomer from './admin/components/Addcustomer'
 // import PaymentPage from './components/PaymentPage'
 function App() {
   const [count, setCount] = useState(0)
@@ -136,6 +138,7 @@ function App() {
            <Route path="users/list" element={<Adduser />} /> */}
             {/* <Route path="customer" element={<Customer />} /> */}
            <Route path="customer/list" element={<Managecustomer />} />
+           {/* <Route path="customer/add" element={<Addcustomer />} /> */}
            <Route path="orders" element={<Order />} /> 
           <Route path="orders/list" element={<Manageorder />} /> 
           {/* <Route path="orders/list" element={<Addorder />} /> */}
@@ -150,10 +153,30 @@ function App() {
           <Route path="reports" element={<Report />} />
           <Route path="settings" element={<Setting />} />
           </Route>
-           <Route path="/adminlogin" element={<Adminlogin />} />
-           <Route path="/superadminlogin" element={<Superadlogin />} />
-           <Route path="/superadmin/layout" element={<SuperadminLayout />} />
-           
+           {/* <Route path="/adminlogin" element={<Adminlogin />} /> */}
+           {/* <Route path="/superadminlogin" element={<Superadlogin />} />
+           <Route path="/superadmin/layout" element={<SuperadminLayout />} /> */}
+          <Route path="/superadminlogin" element={<Superadlogin />} />
+{/* 
+<Route path="/superadmin" element={<SuperadminLayout />}>
+  <Route index element={<Profilepage />} />          
+  <Route path="profile" element={<Profilepage />} />  */}
+  <Route path="/superadmin" element={<SuperadminLayout />}>       
+  <Route path="dashboard" element={<Dashboard />} /> 
+  <Route path="profile" element={<Profilepage />} /> 
+  <Route path="users/add" element={<Adduser />} />
+  <Route path="users/manage" element={<Manageuser/>} />
+  <Route path="category/add" element={<Addcategoryform />} />
+  <Route path="category/manage" element={<Addcategorytable />} />
+  <Route path="products/add" element={<AddProduct />} />
+  <Route path="products/manage" element={<ProductList />} />
+  <Route path="customers/manage" element={<Managecustomer />} />
+  {/* <Route path="customers/manage" element={<Managecustomer />} /> */}
+  <Route path="orders/manage" element={<Manageorder />} />
+  <Route path="inventory/manage" element={<Stocktable />} />
+  <Route path="reports" element={<Report />} />
+  <Route path="settings" element={<Setting />} />
+</Route>
           </Routes>
        {/* <Footer /> */}
     </>

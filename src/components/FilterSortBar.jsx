@@ -40,10 +40,8 @@
 // components/FilterSortBar.jsx
 import React from "react";
 import './FilterSortBar.css';
-
 const FilterSortBar = ({ sortType, setSortType, priceRange, setPriceRange }) => {
   return (
-    
     <div className="d-flex justify-content-between align-items-center my-5 px-5 flex-wrap">
   {/*  First: Price Range */}
   <div className="price-range-section d-flex flex-column flex-md-row align-items-md-center mb-3">
@@ -57,7 +55,6 @@ const FilterSortBar = ({ sortType, setSortType, priceRange, setPriceRange }) => 
       className="form-range ms-md-3"
     />
   </div>
-
   {/*  Then: Sort Dropdown */}
   <select
     value={sortType}
@@ -70,9 +67,7 @@ const FilterSortBar = ({ sortType, setSortType, priceRange, setPriceRange }) => 
     <option value="price-high">Price (High to Low)</option>
   </select>
 </div>
-
   );
 };
-
 export default FilterSortBar;
 

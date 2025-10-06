@@ -56,12 +56,10 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./SearchResults.css"; // Optional styling
-
 const SearchResults = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("q") || "";
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   useEffect(() => {
     const fetchSearchResults = async () => {
       try {
@@ -70,18 +68,15 @@ const SearchResults = () => {
         // const res = await axios.get(`http://localhost:5000/api/search?q=${query}`);
         // setFilteredProducts(res.data);
         const res = await axios.get(`http://localhost:5000/api/search?q=${query}`); // ✅ now works
-
         setFilteredProducts(res.data); 
       } catch (err) {
         console.error("Search error:", err);
       }
     };
-
     if (query) {
       fetchSearchResults();
     }
   }, [query]);
-
   return (
     <div className="search-results-container">
       <h4 className="mb-4 text-primary">Search Results for "{query}"</h4>
@@ -105,5 +100,4 @@ const SearchResults = () => {
     </div>
   );
 };
-
 export default SearchResults;

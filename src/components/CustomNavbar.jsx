@@ -412,26 +412,17 @@ import SidebarMenu from './SidebarMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDropdown, removeFromCart } from '../redux/cartSlice';
 import CartDropdown from './CartDropdown';
-
 import { clearUser } from '../redux/userSlice'; // adjust path if needed
-
-
-
 const CustomNavbar = () => {
   const hoverTimeout = useRef(null);
   const navigate = useNavigate();
-
   const userInfo = useSelector((state) => state.user.userInfo);
-
-  const handleLogout = () => {
-  
-    
+  const handleLogout = () => { 
 localStorage.removeItem("userInfo");
 localStorage.removeItem("token"); // if you're using a token
 dispatch(clearUser());
 navigate("/login");
   };
-
   const location = useLocation();
   const [showSidebar, setShowSidebar] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -886,10 +877,8 @@ useEffect(() => {
 </div>
 
 </div>
-
         </Container>
       </Navbar>
-
       {/* Mobile Top Navbar */}
       <Navbar className="py-2 bg-light-blue shadow-sm d-flex d-md-none position-sticky top-0" style={{ zIndex: 999 }}>
         <Container fluid className="ms-1 me-1">
