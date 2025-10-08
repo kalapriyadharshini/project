@@ -97,67 +97,140 @@
 
 
 
-import React, { useEffect, useState, useMemo } from "react";
+// import React, { useEffect, useState, useMemo } from "react";
+// import { useParams } from "react-router-dom";
+// import axios from "axios";
+// import productData from "../data/Productdata";
+// import ProductCard from "./ProductCard";
+// import "./SubcategoryPage.css";
+// const SubcategoryPage = () => {
+//   const { categoryName } = useParams();
+//   const [categoryProducts, setCategoryProducts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState("");
+//   const formattedCategory = useMemo(() => {
+//     if (!categoryName) return null;
+//     return Object.keys(productData).find(
+//       (key) => key.toLowerCase() === categoryName.toLowerCase()
+//     );
+//   }, [categoryName]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       if (!formattedCategory) {
+//         setError("Category not found.");
+//         setLoading(false);
+//         return;
+//       }
+//       try {
+//         const res = await axios.get(
+//           `/api/products?category=${encodeURIComponent(formattedCategory)}`
+//         );
+//         setCategoryProducts(res.data);
+//         setError("");
+//       } catch (err) {
+//         console.error("API call failed, using local data", err);
+//         const fallbackData = productData[formattedCategory] || [];
+//         setCategoryProducts(fallbackData);
+//         if (fallbackData.length === 0) {
+//           setError("No products found in this category.");
+//         } else {
+//           setError("");
+//         }
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     fetchData();
+//   }, [formattedCategory]);
+//   return (
+//     <div className="subcategory-container">
+//       <h2 className="subcategory-title text-center fw-bold">
+//         {formattedCategory?.toUpperCase() || "CATEGORY"}
+//       </h2>
+//       {loading ? (
+//         <p className="text-center mt-4">Loading products...</p>
+//       ) : error ? (
+//         <p className="text-center text-danger mt-4">{error}</p>
+//       ) : (
+//         <div className="row justify-content-center">
+//           {categoryProducts.map((product, index) => (
+//             <div
+//               className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3"
+//               key={product._id || index}
+//             >
+//               <div className="custom-card-wrapper">
+//                 <ProductCard product={product} />
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+// export default SubcategoryPage;
+
+
+
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import productData from "../data/Productdata";
 import ProductCard from "./ProductCard";
 import "./SubcategoryPage.css";
+
 const SubcategoryPage = () => {
   const { categoryName } = useParams();
   const [categoryProducts, setCategoryProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  // Find category key only once when categoryName changes
-  const formattedCategory = useMemo(() => {
-    if (!categoryName) return null;
-    return Object.keys(productData).find(
-      (key) => key.toLowerCase() === categoryName.toLowerCase()
-    );
-  }, [categoryName]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      if (!formattedCategory) {
-        setError("Category not found.");
+    const fetchCategoryProducts = async () => {
+      if (!categoryName) {
+        setError("Category not specified.");
         setLoading(false);
         return;
       }
+
       try {
         const res = await axios.get(
-          `/api/products?category=${encodeURIComponent(formattedCategory)}`
+          `http://localhost:5000/api/products?category=${encodeURIComponent(
+            categoryName
+          )}`
         );
-        setCategoryProducts(res.data);
-        setError("");
-      } catch (err) {
-        console.error("API call failed, using local data", err);
-        const fallbackData = productData[formattedCategory] || [];
-        setCategoryProducts(fallbackData);
-        if (fallbackData.length === 0) {
+        if (res.data.length === 0) {
           setError("No products found in this category.");
         } else {
+          setCategoryProducts(res.data);
           setError("");
         }
+      } catch (err) {
+        console.error("Error fetching category products:", err);
+        setError("Failed to load products. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
-    fetchData();
-  }, [formattedCategory]);
+
+    fetchCategoryProducts();
+  }, [categoryName]);
+
   return (
     <div className="subcategory-container">
       <h2 className="subcategory-title text-center fw-bold">
-        {formattedCategory?.toUpperCase() || "CATEGORY"}
+        {categoryName?.toUpperCase() || "CATEGORY"}
       </h2>
+
       {loading ? (
         <p className="text-center mt-4">Loading products...</p>
       ) : error ? (
         <p className="text-center text-danger mt-4">{error}</p>
       ) : (
         <div className="row justify-content-center">
-          {categoryProducts.map((product, index) => (
+          {categoryProducts.map((product) => (
             <div
               className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3"
-              key={product._id || index}
+              key={product._id}
             >
               <div className="custom-card-wrapper">
                 <ProductCard product={product} />
@@ -169,4 +242,5 @@ const SubcategoryPage = () => {
     </div>
   );
 };
+
 export default SubcategoryPage;

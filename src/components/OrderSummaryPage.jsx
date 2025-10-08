@@ -142,6 +142,135 @@
 // export default OrderSummaryPage;
 
 
+// // src/pages/OrderSummaryPage.jsx
+// import React, { useEffect } from "react";
+// import { useSelector } from "react-redux";
+// import { Button } from "react-bootstrap";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import "./OrderSummaryPage.css";
+// const OrderSummaryPage = () => {
+// const navigate = useNavigate();
+// const cartItems = useSelector((state) => state.cart.cartItems) ?? [];
+// const address = useSelector((state) => state.address.address);
+// // const paymentMethod = useSelector((state) => state.payment.method) ?? "";
+// const paymentMethod =
+//   useSelector((state) => state.payment.method) ||
+//   localStorage.getItem("paymentMethod");
+// const subtotal = cartItems.reduce(
+//     (acc, item) => acc + Number(item.price || 0) * Number(item.quantity || 1),
+//     0
+//   );
+//   // Redirect if any step is missing
+//   useEffect(() => {
+//     if (cartItems.length === 0) navigate("/cart");
+//     else if (!address) navigate("/checkout/address");
+//     else if (!paymentMethod) navigate("/checkout/payment");
+//   }, [cartItems, address, paymentMethod, navigate]);
+
+//   const handlePlaceOrder = async () => {
+//     try {
+//       const token = localStorage.getItem("token");
+//       if (!token) {
+//         alert("You must be logged in to place an order");
+//         return;
+//       }
+//       // Place order API call
+//       // const res = await axios.post(
+//       //   "/api/orders",
+//       const res = await axios.post(
+//   "http://localhost:5000/api/orders",
+//         {
+//           products: cartItems.map((item) => ({
+//             // productId: item.id,
+//             productId: item._id || item.id,
+
+//             quantity: item.quantity,
+//             price: item.price,
+//           })),
+//           shippingAddress: address,
+//           paymentMethod,
+//           totalAmount: subtotal,
+//         },
+//         {
+//           headers: { Authorization: `Bearer ${token}` },
+//         }
+//       );
+//       const orderId = res.data._id;
+//       // Navigate to Order Success page first
+//       navigate("/order-success", { state: { orderId } });
+//       // Clearing cart/address/payment will now be handled in OrderSuccessPage
+//     } catch (error) {
+//       console.error("Order placement failed:", error);
+//       alert("Failed to place order. Please try again.");
+//     }
+//   };
+//   if (cartItems.length === 0) {
+//     return (
+//       <div className="container mt-4 text-center">
+//         <h3>Your cart is empty.</h3>
+//       </div>
+//     );
+//   }
+//   return (
+//     <div className="order-summary-page container mt-4">
+//       <h2 className="mb-4 text-primary fw-bold text-center">Order Summary</h2>
+//       <h5>Cart Items</h5>
+//       <div className="table-responsive">
+//         <table className="table table-bordered">
+//           <thead>
+//             <tr>
+//               <th>Product</th>
+//               <th style={{ width: 80 }}>Qty</th>
+//               <th style={{ width: 140 }}>Price</th>
+//               <th style={{ width: 140 }}>Total</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {cartItems.map((item) => (
+//               <tr key={`${item.category}-${item.id}`}>
+//                 <td>{item.name}</td>
+//                 <td>{item.quantity}</td>
+//                 <td>₹{Number(item.price).toLocaleString()}</td>
+//                 <td>₹{(Number(item.price) * Number(item.quantity)).toLocaleString()}</td>
+//               </tr>
+//             ))}
+//           </tbody>
+//           <tfoot>
+//             <tr>
+//               <td colSpan={3} className="text-end fw-bold">
+//                 Subtotal:
+//               </td>
+//               <td className="fw-bold">₹{subtotal.toLocaleString()}</td>
+//             </tr>
+//           </tfoot>
+//         </table>
+//       </div>
+//       <h5>Shipping Address</h5>
+//       {address && (
+//         <p>
+//           {address.flat}, {address.area}
+//           {address.landmark ? `, ${address.landmark}` : ""}, {address.city},{" "}
+//           {address.state}, {address.country} - {address.pincode}
+//         </p>
+//       )}
+//       <h5>Payment Method</h5>
+//       <p>{paymentMethod}</p>
+//       <h4 className="text-end mt-3">Total: ₹{subtotal.toLocaleString()}</h4>
+//       <div className="text-end mt-3">
+//         <Button className="btn-success" onClick={handlePlaceOrder}>
+//           Place Order
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// };
+// export default OrderSummaryPage;
+
+
+
+
+
 // src/pages/OrderSummaryPage.jsx
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -149,15 +278,20 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./OrderSummaryPage.css";
+
 const OrderSummaryPage = () => {
-const navigate = useNavigate();
-const cartItems = useSelector((state) => state.cart.cartItems) ?? [];
-const address = useSelector((state) => state.address.address);
-const paymentMethod = useSelector((state) => state.payment.method) ?? "";
-const subtotal = cartItems.reduce(
+  const navigate = useNavigate();
+  const cartItems = useSelector((state) => state.cart.cartItems) ?? [];
+  const address = useSelector((state) => state.address.address);
+  const reduxPaymentMethod = useSelector((state) => state.payment.method) ?? "";
+  const paymentMethod =
+    reduxPaymentMethod || localStorage.getItem("paymentMethod") || "";
+
+  const subtotal = cartItems.reduce(
     (acc, item) => acc + Number(item.price || 0) * Number(item.quantity || 1),
     0
   );
+
   // Redirect if any step is missing
   useEffect(() => {
     if (cartItems.length === 0) navigate("/cart");
@@ -172,16 +306,25 @@ const subtotal = cartItems.reduce(
         alert("You must be logged in to place an order");
         return;
       }
+
+      // Save paymentMethod to localStorage (backup)
+      localStorage.setItem("paymentMethod", paymentMethod);
+      console.log({
+  products: cartItems.map((item) => ({
+    productId: item._id || item.id,
+    quantity: item.quantity,
+    price: item.price,
+  })),
+  shippingAddress: address,
+  paymentMethod,
+  totalAmount: subtotal,
+});
       // Place order API call
-      // const res = await axios.post(
-      //   "/api/orders",
       const res = await axios.post(
-  "http://localhost:5000/api/orders",
+        "http://localhost:5000/api/orders",
         {
           products: cartItems.map((item) => ({
-            // productId: item.id,
             productId: item._id || item.id,
-
             quantity: item.quantity,
             price: item.price,
           })),
@@ -193,15 +336,15 @@ const subtotal = cartItems.reduce(
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+
       const orderId = res.data._id;
-      // Navigate to Order Success page first
       navigate("/order-success", { state: { orderId } });
-      // Clearing cart/address/payment will now be handled in OrderSuccessPage
     } catch (error) {
       console.error("Order placement failed:", error);
       alert("Failed to place order. Please try again.");
     }
   };
+
   if (cartItems.length === 0) {
     return (
       <div className="container mt-4 text-center">
@@ -209,6 +352,7 @@ const subtotal = cartItems.reduce(
       </div>
     );
   }
+
   return (
     <div className="order-summary-page container mt-4">
       <h2 className="mb-4 text-primary fw-bold text-center">Order Summary</h2>
@@ -229,7 +373,9 @@ const subtotal = cartItems.reduce(
                 <td>{item.name}</td>
                 <td>{item.quantity}</td>
                 <td>₹{Number(item.price).toLocaleString()}</td>
-                <td>₹{(Number(item.price) * Number(item.quantity)).toLocaleString()}</td>
+                <td>
+                  ₹{(Number(item.price) * Number(item.quantity)).toLocaleString()}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -243,6 +389,7 @@ const subtotal = cartItems.reduce(
           </tfoot>
         </table>
       </div>
+
       <h5>Shipping Address</h5>
       {address && (
         <p>
@@ -251,8 +398,10 @@ const subtotal = cartItems.reduce(
           {address.state}, {address.country} - {address.pincode}
         </p>
       )}
+
       <h5>Payment Method</h5>
-      <p>{paymentMethod}</p>
+      <p>{paymentMethod || "Not selected"}</p>
+
       <h4 className="text-end mt-3">Total: ₹{subtotal.toLocaleString()}</h4>
       <div className="text-end mt-3">
         <Button className="btn-success" onClick={handlePlaceOrder}>
@@ -262,4 +411,12 @@ const subtotal = cartItems.reduce(
     </div>
   );
 };
+
 export default OrderSummaryPage;
+
+
+
+
+
+
+

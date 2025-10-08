@@ -149,7 +149,13 @@ function ProductCard({ product }) {
     <Card className="product-card">
       <div className="product-img-container">
         <Link to={`/product/${encodeURIComponent(product.name)}`}>
-          <img src={product.img} alt={product.name} className="product-img" />
+          {/* <img src={product.img} alt={product.name} className="product-img" /> */}
+          <img
+  src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.png"}
+  alt={product.name}
+  className="product-img"
+/>
+
         </Link>
         <div className="overlay-icons">
           <div className="icon-box" onClick={handleAddToWishlist}>

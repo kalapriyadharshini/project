@@ -52,12 +52,12 @@ const wishlistSlice = createSlice({
       const existing = state.items.find(item => item.id === action.payload.id);
       if (!existing) {
         state.items.push(action.payload);
-        updateLocalStorage(state.items); // 🟢 persist here
+        updateLocalStorage(state.items); //  persist here
       }
     },
     removeFromWishlist: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload);
-      updateLocalStorage(state.items); // 🟢 persist here
+      updateLocalStorage(state.items); //  persist here
     },
   },
 });

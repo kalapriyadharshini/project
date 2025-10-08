@@ -94,13 +94,15 @@ const ViewPage = () => {
     <tr key={item._id || item.id}>
       <td>{item._id || item.id}</td>
       <td>
-        <img
+        {/* <img
           src={item.image}
           alt={item.name}
           width="80"
           height="80"
           className="me-2"
-        />
+        /> */}
+        <img src={item.image} alt={item.name} width="80" height="80" />
+
       </td>
 
       <td className="text-center">{item.name}</td>

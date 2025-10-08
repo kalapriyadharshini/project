@@ -24,6 +24,7 @@ const [error, setError] = useState("");
       return;
     }
     dispatch(setPaymentMethod(paymentMethod));
+    localStorage.setItem("paymentMethod", paymentMethod); 
     navigate("/checkout/summary");
   };
   return (

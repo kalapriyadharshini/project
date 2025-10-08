@@ -10,6 +10,7 @@ const AddProduct = ({ mode = "add", product = null, onClose, refreshList }) => {
     description: "",
     size: "",
     price: "",
+    offer: "",
     stock: "",
     image: null,
     status: "Available",
@@ -28,6 +29,7 @@ const AddProduct = ({ mode = "add", product = null, onClose, refreshList }) => {
         description: product.description || "",
         size: product.size || "",
         price: product.price || "",
+        offer: product.offer || "",
         stock: product.stock || "",
         image: product.image || null,
         status: product.status || "Available",
@@ -52,6 +54,8 @@ useEffect(() => {
     if (name === "name" && (!value || !value.trim())) error = "Product name is required";
     if (name === "price" && (value === "" || value === null || Number(value) <= 0))
       error = "Valid price is required";
+     if (name === "offer" && (value === "" || value === null || Number(value) <= 0))
+      error = "Valid offer is required";
     if (name === "size" && (!value || !value.trim())) error = "Size is required";
     if (name === "description" && (!value || !value.trim())) error = "Description is required";
     if (name === "stock" && (value === "" || value === null)) error = "Stock is required";
@@ -240,11 +244,12 @@ useEffect(() => {
                 </Form.Group>
               </Col>
             </Row>
+            <Col md={6}>
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
-                rows={4}
+                // rows={4}
                 placeholder="Enter Product Description"
                 name="description"
                 value={formData.description}
@@ -254,8 +259,29 @@ useEffect(() => {
                 disabled={isReadOnly}
                 required
               />
+             
+              <Form.Control.Feedback type="invalid">{errors.description}</Form.Control.Feedback>
+               </Form.Group>
+                </Col>
+               <Col md={6}>
+               
+            <Form.Group className="mb-3">
+              <Form.Label>Offer</Form.Label>
+              <Form.Control
+                type="number"
+                // rows={4}
+                placeholder="Enter offer"
+                name="offer"
+                value={formData.offer}
+                    onChange={handleChange}
+                    isInvalid={!!errors.offer}
+                    isValid={validated && !errors.offer && Number(formData.offer) > 0}
+                    disabled={isReadOnly}
+                    required
+              />
               <Form.Control.Feedback type="invalid">{errors.description}</Form.Control.Feedback>
             </Form.Group>
+            </Col>
             <Row>
               <Col md={12}>
                 <Form.Group className="mb-3">

@@ -137,9 +137,7 @@ const Categories = () => {
       setCurrentSlide((prev) => Math.min(prev + 1, Math.ceil(categoriesList.length / slidesToShow) - 1));
     }
   };
-
   return (
-
    <div className="category-container">
   <h2 className="category text-primary my-5 fw-bold">CATEGORIES</h2>
   <div className="category-inner-container">
@@ -160,10 +158,8 @@ const Categories = () => {
           </div>
         ))}
       </div>
-
       <span className="arrow right" onClick={() => scroll('right')}>&#10095;</span>
     </div>
-
     <div className="dots">
       {Array.from({ length: Math.ceil(categoriesList.length / slidesToShow) }).map((_, index) => (
         <span
