@@ -106,7 +106,7 @@ import aquariumfilters from '../assets/aquariumfilters.jpg';
 import aquariumbreeding from '../assets/aquariumbreeding.jpg';
 import { useNavigate } from 'react-router-dom'; 
  const categoriesList = [
-  { name: 'AQUARIUM TANKs', img: aquariumtanks },
+  { name: 'AQUARIUM TANK', img: aquariumtanks },
   { name: 'AQUA PLANTS', img: Aquaticplants },
   { name: 'PLANTED AQUARIUM KITS', img: Plantedaquariumkits },
   { name: 'AQUARIUM LIGHTING', img: Aquariumlighting },
@@ -117,15 +117,11 @@ import { useNavigate } from 'react-router-dom';
   { name: 'AQUARIUM FILTERS', img: aquariumfilters },
   { name: 'BREEDING ACCESSORIES', img: aquariumbreeding },
 ];
-
 const Categories = () => {
   const navigate = useNavigate();
-
   const scrollRef = useRef();
   const [currentSlide, setCurrentSlide] = useState(0);
-
   const slidesToShow = 4;
-
   const scroll = (direction) => {
     const container = scrollRef.current;
     const width = container.clientWidth;
@@ -143,15 +139,19 @@ const Categories = () => {
   <div className="category-inner-container">
     <div className="carousel-wrapper">
       <span className="arrow left" onClick={() => scroll('left')}>&#10094;</span>
-
       <div className="category-scroll no-scrollbar" ref={scrollRef}>
         {categoriesList.map(({ img, name }, index) => (
           // <div className="category-card animated-border" key={index}>
           <div
   className="category-card animated-border"
   key={index}
- onClick={() => navigate(`/subcategory/${name.toLowerCase()}`)}
-// ROUTE
+//  onClick={() => navigate(`/subcategory/${name.toLowerCase()}`)}
+// onClick={() => navigate(`/subcategory/${name}`)}
+// onClick={() => navigate(`/subcategory/${encodeURIComponent(name)}`)}
+// onClick={() => navigate(`/subcategory/${encodeURIComponent(name)}`)}
+onClick={() => navigate(`/subcategory/${encodeURIComponent(name)}`)}
+
+
 >
             <img src={img} alt={name} className="category-image" />
             <h5 className="category-name">{name}</h5>

@@ -79,7 +79,7 @@
 import { FaFish, FaLeaf, FaCubes, FaLightbulb, FaHome,FaTrophy, FaUtensils, FaTint, FaFilter, FaEgg, FaArrowLeft, } from "react-icons/fa";
 import "./SidebarMenu.css";
 const categories = [
-  { name: "Aquarium Tanks", icon: <FaHome /> },
+  { name: "Aquarium Tank", icon: <FaHome /> },
   { name: "Aqua Plants", icon: <FaLeaf /> },
   { name: "Planted Aquarium kits", icon: <FaCubes /> },
   { name: "Aquarium Lighting", icon: <FaLightbulb /> },

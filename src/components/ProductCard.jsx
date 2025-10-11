@@ -300,6 +300,7 @@ function ProductCard({ product }) {
 />
 
         </Link>
+        
         <div className="overlay-icons">
           <div className="icon-box" onClick={handleAddToWishlist}>
             <i className="icon fas fa-heart"></i>
@@ -321,6 +322,7 @@ function ProductCard({ product }) {
         </Card.Text>
       </Card.Body> */}
       <Card.Body>
+        <Card.Title className="product-title text-center">{product.name}</Card.Title>
       <Card.Text className="price text-center">
   {product.offer ? (
     <>

@@ -299,51 +299,140 @@ const OrderSummaryPage = () => {
     else if (!paymentMethod) navigate("/checkout/payment");
   }, [cartItems, address, paymentMethod, navigate]);
 
-  const handlePlaceOrder = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("You must be logged in to place an order");
-        return;
-      }
+//   const handlePlaceOrder = async () => {
+//     try {
+//       const token = localStorage.getItem("token");
+//       if (!token) {
+//         alert("You must be logged in to place an order");
+//         return;
+//       }
 
-      // Save paymentMethod to localStorage (backup)
-      localStorage.setItem("paymentMethod", paymentMethod);
-      console.log({
-  products: cartItems.map((item) => ({
-    productId: item._id || item.id,
-    quantity: item.quantity,
-    price: item.price,
-  })),
-  shippingAddress: address,
-  paymentMethod,
-  totalAmount: subtotal,
-});
-      // Place order API call
-      const res = await axios.post(
-        "http://localhost:5000/api/orders",
-        {
-          products: cartItems.map((item) => ({
-            productId: item._id || item.id,
-            quantity: item.quantity,
-            price: item.price,
-          })),
-          shippingAddress: address,
-          paymentMethod,
-          totalAmount: subtotal,
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+//       // Save paymentMethod to localStorage (backup)
+//       localStorage.setItem("paymentMethod", paymentMethod);
+//       console.log({
+//   products: cartItems.map((item) => ({
+//     productId: item._id || item.id,
+//     quantity: item.quantity,
+//     price: item.price,
+//   })),
+//   shippingAddress: address,
+//   paymentMethod,
+//   totalAmount: subtotal,
+// });
+//       // Place order API call
+//       const res = await axios.post(
+//         "http://localhost:5000/api/orders",
+//         {
+//           products: cartItems.map((item) => ({
+//             productId: item._id || item.id,
+//             quantity: item.quantity,
+//             price: item.price,
+//           })),
+//           shippingAddress: address,
+//           paymentMethod,
+//           totalAmount: subtotal,
+//         },
+//         {
+//           headers: { Authorization: `Bearer ${token}` },
+//         }
+//       );
 
-      const orderId = res.data._id;
-      navigate("/order-success", { state: { orderId } });
-    } catch (error) {
-      console.error("Order placement failed:", error);
-      alert("Failed to place order. Please try again.");
+//       const orderId = res.data._id;
+//       navigate("/order-success", { state: { orderId } });
+//     } catch (error) {
+//       console.error("Order placement failed:", error);
+//       alert("Failed to place order. Please try again.");
+//     }
+//   };
+
+
+// const handlePlaceOrder = async () => {
+//   try {
+//     const token = localStorage.getItem("token");
+//     if (!token) {
+//       alert("You must be logged in to place an order");
+//       return;
+//     }
+
+//     // Prepare products with id, name, quantity, price
+//     const orderProducts = cartItems.map((item) => ({
+//       productId: item._id || item.id, // backend expects productId
+//       name: item.name,                 // send product name
+//       quantity: item.quantity,
+//       price: item.price,
+//     }));
+
+//     // Save payment method backup
+//     localStorage.setItem("paymentMethod", paymentMethod);
+
+//     console.log("Placing order:", {
+//       products: orderProducts,
+//       shippingAddress: address,
+//       paymentMethod,
+//       totalAmount: subtotal,
+//     });
+
+//     // Place order API call
+//     const res = await axios.post(
+//       "http://localhost:5000/api/orders",
+//       {
+//         products: orderProducts,
+//         shippingAddress: address,
+//         paymentMethod,
+//         totalAmount: subtotal,
+//       },
+//       {
+//         headers: { Authorization: `Bearer ${token}` },
+//       }
+//     );
+
+//     const orderId = res.data._id;
+//     navigate("/order-success", { state: { orderId } });
+//   } catch (error) {
+//     console.error("Order placement failed:", error);
+//     alert("Failed to place order. Please try again.");
+//   }
+// };
+
+const handlePlaceOrder = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("You must be logged in to place an order");
+      return;
     }
-  };
+
+    // Place order API call
+    const res = await axios.post(
+      "http://localhost:5000/api/orders",
+      {
+        products: cartItems.map((item) => ({
+          productId: item._id || item.id,
+          quantity: item.quantity,
+          price: item.price,
+          name: item.name, // make sure name is sent too
+        })),
+        shippingAddress: address,
+        paymentMethod,
+        totalAmount: subtotal,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    //  Alert success
+    alert("Order placed successfully!");
+
+    //  Redirect to order success page with orderId
+    const orderId = res.data._id;
+    navigate("/order-success", { state: { orderId } });
+  } catch (error) {
+    console.error("Order placement failed:", error);
+    alert("Failed to place order. Please try again.");
+  }
+};
+
 
   if (cartItems.length === 0) {
     return (

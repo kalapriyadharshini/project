@@ -176,7 +176,14 @@ const exportToPDF = (data) => {
     } catch (err) {
       console.error("Update error:", err);
     }
-  };
+  }
+ 
+// Add this function here
+const handleView = (customer) => {
+  setCurrentCustomer(customer);
+  setShowView(true);
+};
+
   return (
     <div className="manage-customer-container">
       <Row className="mb-3 align-items-center">

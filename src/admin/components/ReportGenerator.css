@@ -1,0 +1,77 @@
+.report-container {
+  padding: 20px;
+  background: #f7f9fc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.report-container h2 {
+  margin-bottom: 20px;
+  color: #0077b6;
+}
+.report-form {
+  display: flex;
+  gap: 15px;
+  /* align-items: flex-end; */
+  flex-wrap: wrap;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+input[type="date"], select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.generate-btn {
+  background-color: #0077b6;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.generate-btn:hover {
+  background-color: #0096c7;
+}
+.report-result {
+  margin-top: 30px;
+}
+.report-result table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.report-result th, .report-result td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.report-result th {
+  background-color: #caf0f8;
+}
+/* Validation styles similar to AddCategoryForm */
+.is-invalid {
+  border: 2px solid red !important;
+  border-radius: 5px;
+}
+
+.is-valid {
+  border: 2px solid green !important;
+  border-radius: 5px;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 3px;
+}
+
+.valid-feedback {
+  color: green;
+  font-size: 0.9em;
+  margin-top: 3px;
+}

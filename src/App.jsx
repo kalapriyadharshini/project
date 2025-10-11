@@ -101,7 +101,9 @@ function App() {
           <Route path="/shipping" element={<Shipping />} />
            {/* <Route path="/shop" element={<Categories />} /> */}
           <Route path="/category/:categoryName" element={<CategoryPage />} />
-          <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} /> 
+          {/* <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} />  */}
+          <Route path="/subcategory/:categoryName" element={<SubcategoryPage />} />
+
           <Route path="/cart" element={<ViewPage />} />  
           <Route path="/product/:name" element={<ProductDetails />} />
           {/* <Route path="/checkout" element={<CheckoutAuthPage />} /> */}
