@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./ReportGenerator.css";
-
 const Report = () => {
   const [formData, setFormData] = useState({
     startDate: "",
@@ -11,7 +10,6 @@ const Report = () => {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [reportData, setReportData] = useState([]);
-
   // Field validation
   const validateField = (name, value) => {
     if (!value || value.trim() === "") {
@@ -19,16 +17,13 @@ const Report = () => {
     }
     return "";
   };
-
   // Handle change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-
     const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
-
   //  Handle blur (field touched)
   const handleBlur = (e) => {
     const { name } = e.target;
